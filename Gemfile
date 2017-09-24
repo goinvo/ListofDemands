@@ -26,10 +26,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
-group :production do
-  gem 'mailgun_rails'
-end
-
 group :development do
   gem "letter_opener"
   gem 'listen', '>= 3.0.5', '< 3.2'
