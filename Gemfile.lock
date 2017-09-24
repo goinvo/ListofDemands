@@ -207,7 +207,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)
-  sentry-raven
+  sentry-raven (= 2.6.3)
   simple_form (= 3.5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
