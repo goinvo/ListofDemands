@@ -5,6 +5,10 @@
   @extend .alert-danger;
 }
 
+.alert-notice {
+  @extend .alert-info;
+}
+
 body > .container {
   padding-top: 60px;
 }
