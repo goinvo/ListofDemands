@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project name</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to("Search", "#") %></li>
+        <li><%= link_to("Me", "#") %></li>
+        <li><%= link_to("Voting District", "#") %></li>
+        <li><%= link_to("Town/City", "#") %></li>
+        <li><%= link_to("State", "#") %></li>
+        <li><%= link_to("Country", "#") %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to("Sign Out", destroy_user_session_url, method: :delete) %></li>
+        <% else %>
+          <li><%= link_to("Sign In", new_user_session_url) %></li>
+          <li><%= link_to("Sign Up", new_user_registration_url) %></li>
+        <% end %>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

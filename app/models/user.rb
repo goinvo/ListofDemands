@@ -12,6 +12,6 @@ class User < ApplicationRecord
   private
 
   def create_profile
-    self.build_profile
+    self.build_profile if profile.blank?
   end
 end
