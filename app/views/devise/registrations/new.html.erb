@@ -7,15 +7,12 @@
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
     <%= f.input :password_confirmation, required: true %>
-  </div>
-
-  <div class="form-iputs">
-    <%= f.fields_for :address do |address_fields| %>
-      <%= f.input :address1, required: true %>
-      <%= f.input :address2 %>
-      <%= f.input :city, required: true %>
-      <%= f.input :state, required: true %>
-      <%= f.input :zip, required: true %>
+    <%= f.simple_fields_for :profile, resource.profile || resource.build_profile do |address_fields| %>
+      <%= address_fields.input :address1, required: true %>
+      <%= address_fields.input :address2 %>
+      <%= address_fields.input :city, required: true %>
+      <%= address_fields.input :state, required: true %>
+      <%= address_fields.input :zip, required: true %>
     <% end %>
   </div>
 
