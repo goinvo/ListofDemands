@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :confirmable
 
   has_one :profile
+  accepts_nested_attributes_for :profile
 
   before_save :create_profile, on: :create
 

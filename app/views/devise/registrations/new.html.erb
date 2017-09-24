@@ -9,6 +9,16 @@
     <%= f.input :password_confirmation, required: true %>
   </div>
 
+  <div class="form-iputs">
+    <%= f.fields_for :address do |address_fields| %>
+      <%= f.input :address1, required: true %>
+      <%= f.input :address2 %>
+      <%= f.input :city, required: true %>
+      <%= f.input :state, required: true %>
+      <%= f.input :zip, required: true %>
+    <% end %>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
   </div>

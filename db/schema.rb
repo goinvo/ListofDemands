@@ -17,6 +17,11 @@ ActiveRecord::Schema.define(version: 20170922201154) do
 
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "address1", null: false
+    t.string "address2"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip", null: false
     t.string "gender"
     t.date "date_of_birth"
     t.string "political_party"
