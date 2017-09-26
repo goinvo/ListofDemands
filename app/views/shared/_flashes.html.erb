@@ -1,10 +1,8 @@
 <% flash.each do |key, value| %>
-  <div class="alert alert-dismissible alert-<%= key %>">
-    <a href="#" data-dismiss="alert" class="close">×</a>
-    <ul>
-      <li>
-        <%= value %>
-      </li>
-    </ul>
+  <div class="alert <%= %w(alert error).include?(key) ? '' : 'alert-dismissible' %> alert-<%= key %>">
+    <% if !%w(alert error).include?(key) %>
+      <a href="#" data-dismiss="alert" class="close">×</a>
+    <% end %>
+    <%= value %>
   </div>
 <% end %>
