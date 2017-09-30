@@ -89,7 +89,7 @@ if User.find_by(email: "bernie-derp@mailinator.com").blank?
   bernie.save!
 end
 
-if User.find_by(email: "").blank?
+if User.find_by(email: "trumpy-derp@mailinator.com").blank?
   trumpy = User.new(
     email: "trumpy-derp@mailinator.com",
     password: "password",
