@@ -44,7 +44,7 @@ if User.find_by(email: "sharon@goinvo.com").blank?
   sharon.save!
 end
 
-if User.find_by(email: "").blank?
+if User.find_by(email: "harrysleeper@gmail.com").blank?
   harry = User.new(
     email: "harrysleeper@gmail.com",
     password: "password",
