@@ -49,6 +49,8 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
+    bulk_insert (1.6.0)
+      activerecord (>= 4.1.0)
     byebug (9.0.6)
     concurrent-ruby (1.0.5)
     debase (0.2.2.beta10)
@@ -185,6 +187,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
+  bulk_insert
   byebug
   debase (= 0.2.2.beta10)
   devise
