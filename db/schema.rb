@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922201154) do
+ActiveRecord::Schema.define(version: 20170930190905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "area_definitions", force: :cascade do |t|
+    t.bigint "area_id", null: false
+    t.bigint "zip_code_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id", "zip_code_id"], name: "index_area_definitions_on_area_id_and_zip_code_id", unique: true
+    t.index ["area_id"], name: "index_area_definitions_on_area_id"
+    t.index ["zip_code_id"], name: "index_area_definitions_on_zip_code_id"
+  end
+
+  create_table "areas", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_areas_on_name", unique: true
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
@@ -50,6 +67,17 @@ ActiveRecord::Schema.define(version: 20170922201154) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "zip_codes", force: :cascade do |t|
+    t.string "zip", null: false
+    t.string "city"
+    t.string "state"
+    t.string "state_abbreviation"
+    t.string "county"
+    t.decimal "latitude", precision: 7, scale: 4
+    t.decimal "longitude", precision: 7, scale: 4
+    t.index ["zip"], name: "index_zip_codes_on_zip", unique: true
   end
 
 end
