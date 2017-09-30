@@ -103,3 +103,6 @@ if User.find_by(email: "").blank?
   trumpy.skip_confirmation!
   trumpy.save!
 end
+
+# import ZipCodes, Areas, and AreaDefinitions
+Util::ZipCodeImporter.run
