@@ -1,4 +1,4 @@
 class ZipCode < ApplicationRecord
-  has_many :area_definitions
-  has_many :areas, through: :area_definitions
+  has_one :area_definition
+  has_one :area, through: :area_definition
 end

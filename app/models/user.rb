@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   has_one :profile
   accepts_nested_attributes_for :profile
+  delegate :zip_code, to: :profile
+
+  has_many :demands
 
   before_save :create_profile, on: :create
 

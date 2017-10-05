@@ -9,6 +9,7 @@ end
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bulk_insert'
 gem 'devise'
+gem 'faker', require: false
 gem 'geocoder'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'

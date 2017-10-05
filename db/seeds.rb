@@ -1,4 +1,8 @@
-if User.find_by(email: "rob@rescuedcode.com").blank?
+require 'faker'
+require_relative "../app/util/zip_code_importer"
+
+rob = User.find_by(email: "rob@rescuedcode.com")
+if rob.blank?
   rob = User.new(
       email: "rob@rescuedcode.com",
       password: "password",
@@ -13,7 +17,8 @@ if User.find_by(email: "rob@rescuedcode.com").blank?
   rob.save!
 end
 
-if User.find_by(email: "juhan@mit.edu").blank?
+juhan = User.find_by(email: "juhan@mit.edu")
+if juhan.blank?
   juhan = User.new(
     email: "juhan@mit.edu",
     password: "password",
@@ -28,7 +33,8 @@ if User.find_by(email: "juhan@mit.edu").blank?
   juhan.save!
 end
 
-if User.find_by(email: "sharon@goinvo.com").blank?
+sharon = User.find_by(email: "sharon@goinvo.com")
+if sharon.blank?
   sharon = User.new(
     email: "sharon@goinvo.com",
     password: "password",
@@ -44,7 +50,25 @@ if User.find_by(email: "sharon@goinvo.com").blank?
   sharon.save!
 end
 
-if User.find_by(email: "harrysleeper@gmail.com").blank?
+eric = User.find_by(email: "eric@goinvo.com")
+if eric.blank?
+  eric = User.new(
+    email: "eric@goinvo.com",
+    password: "password",
+    password_confirmation: "password",
+    profile_attributes: {
+      address1: "661 Massachusetts Ave.",
+      address2: "3rd Floor",
+      city: "Arlington",
+      state: "MA",
+      zip: "02476"
+    })
+  eric.skip_confirmation!
+  eric.save!
+end
+
+harry = User.find_by(email: "harrysleeper@gmail.com")
+if harry.blank?
   harry = User.new(
     email: "harrysleeper@gmail.com",
     password: "password",
@@ -59,7 +83,8 @@ if User.find_by(email: "harrysleeper@gmail.com").blank?
   harry.save!
 end
 
-if User.find_by(email: "hillary-derp@mailinator.com").blank?
+hillary = User.find_by(email: "hillary-derp@mailinator.com")
+if hillary.blank?
   hillary = User.new(
     email: "hillary-derp@mailinator.com",
     password: "password",
@@ -74,7 +99,8 @@ if User.find_by(email: "hillary-derp@mailinator.com").blank?
   hillary.save!
 end
 
-if User.find_by(email: "bernie-derp@mailinator.com").blank?
+bernie = User.find_by(email: "bernie-derp@mailinator.com")
+if bernie.blank?
   bernie = User.new(
     email: "bernie-derp@mailinator.com",
     password: "password",
@@ -89,7 +115,8 @@ if User.find_by(email: "bernie-derp@mailinator.com").blank?
   bernie.save!
 end
 
-if User.find_by(email: "trumpy-derp@mailinator.com").blank?
+trumpy = User.find_by(email: "trumpy-derp@mailinator.com")
+if trumpy.blank?
   trumpy = User.new(
     email: "trumpy-derp@mailinator.com",
     password: "password",
@@ -106,3 +133,24 @@ end
 
 # import ZipCodes, Areas, and AreaDefinitions
 Util::ZipCodeImporter.run
+
+Demand.delete_all
+arlington = Area.find_by(name: "Arlington, Massachusetts")
+bedford = Area.find_by(name: "Bedford, Massachusetts")
+boxford = Area.find_by(name: "Boxford, Massachusetts")
+
+{
+  arlington => [juhan, sharon, eric, bernie],
+  bedford => [harry, hillary],
+  boxford => [rob, trumpy]
+}.each do |city, users|
+  15.times do
+    user = users.sample
+    user.demands.create(
+      area: user.zip_code.area,
+      name: Faker::Lorem.words(2..5).join(' '),
+      why: Faker::Lorem.sentence,
+      how: Faker::Lorem.paragraphs(2).join("\n")
+    )
+  end
+end
