@@ -9,13 +9,24 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile
   delegate :zip_code, to: :profile
 
+  belongs_to :area
   has_many :demands
 
-  before_save :create_profile, on: :create
+  before_validation :create_profile, on: :create
+  before_validation :associate_area, on: :create
 
   private
 
   def create_profile
     self.build_profile if profile.blank?
+  end
+
+  def associate_area
+    return if profile&.zip.blank?
+
+    zip_code = ZipCode.find_by(zip: profile.zip)
+    return if zip_code.area.blank?
+
+    self.area = zip_code.area
   end
 end

@@ -1,6 +1,10 @@
 require 'faker'
 require_relative "../app/util/zip_code_importer"
 
+puts "importing zip codes, areas, and area definitions"
+Util::ZipCodeImporter.run
+
+puts "creating users"
 rob = User.find_by(email: "rob@rescuedcode.com")
 if rob.blank?
   rob = User.new(
@@ -90,10 +94,10 @@ if hillary.blank?
     password: "password",
     password_confirmation: "password",
     profile_attributes: {
-      address1: "26 Surry Rd.",
-      city: "Arlington",
+      address1: "202 Burlington Rd.",
+      city: "Bedford",
       state: "MA",
-      zip: "02476"
+      zip: "01730"
     })
   hillary.skip_confirmation!
   hillary.save!
@@ -131,9 +135,7 @@ if trumpy.blank?
   trumpy.save!
 end
 
-# import ZipCodes, Areas, and AreaDefinitions
-Util::ZipCodeImporter.run
-
+puts "creating random Demands"
 Demand.delete_all
 arlington = Area.find_by(name: "Arlington, Massachusetts")
 bedford = Area.find_by(name: "Bedford, Massachusetts")
