@@ -17,12 +17,6 @@ class User < ApplicationRecord
   before_validation :create_profile, on: :create
   before_validation :associate_area, on: :create
 
-  private
-
-  def create_profile
-    self.build_profile if profile.blank?
-  end
-
   def associate_area
     return if profile&.zip.blank?
 
@@ -30,5 +24,11 @@ class User < ApplicationRecord
     return if zip_code.area.blank?
 
     self.area = zip_code.area
+  end
+  
+  private
+
+  def create_profile
+    self.build_profile if profile.blank?
   end
 end

@@ -134,6 +134,7 @@ if trumpy.blank?
   trumpy.skip_confirmation!
   trumpy.save!
 end
+User.all.each(&:associate_area)
 
 puts "creating random Demands"
 Demand.delete_all
