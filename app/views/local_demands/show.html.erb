@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="text-center text-overflow-ellipsis"><%= @demand.name %></h1>
+    <h4><%= @demand.why %></h4>
+    <% @demand.how.split("\n").each do |paragraph| %>
+      <p><%= paragraph %></p>
+    <% end %>
+    <% unless demanded_by_user?(@demand) %>
+      <%= form_tag(demand_it_local_demand_path(@demand)) do %>
+        <%= submit_tag("Demand It", class: 'btn btn-lg btn-block btn-primary') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap-custom";
 
+.text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .alert-alert {
   @extend .alert-danger;
 }

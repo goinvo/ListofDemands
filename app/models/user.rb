@@ -10,7 +10,8 @@ class User < ApplicationRecord
   delegate :zip_code, to: :profile
 
   belongs_to :area
-  has_many :demands
+  has_many :demands # own user's demands
+  has_many :user_demands # other users' demands
 
   before_validation :create_profile, on: :create
   before_validation :associate_area, on: :create
