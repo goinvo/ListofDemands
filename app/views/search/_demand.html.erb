@@ -1,0 +1,10 @@
+<%= link_to local_demand_path(demand) do %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    <%= demand.name %>
+    </div>
+    <div class="panel-body">
+      <%= demand.solution.split("\n").first %>
+    </div>
+  </div>
+<% end %>

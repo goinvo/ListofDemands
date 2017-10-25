@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       post :demand_it
     end
   end
+
+  resource :profile, only: [:show, :edit, :update], controller: :profile
+  resource :search, only: [:show], controller: :search
   
   root to: "welcome#index"
 end

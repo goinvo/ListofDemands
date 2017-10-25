@@ -10,8 +10,10 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to("Search", "#") %></li>
-        <li><%= link_to("Me", "#") %></li>
+        <li><%= link_to("Search", search_path) %></li>
+        <% if user_signed_in? %>
+        <li><%= link_to("Me", profile_path) %></li>
+        <% end %>
         <li><%= link_to("Voting District", "#") %></li>
         <li><%= link_to("Town/City", "#") %></li>
         <li><%= link_to("State", "#") %></li>
