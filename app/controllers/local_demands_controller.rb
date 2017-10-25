@@ -1,6 +1,6 @@
 class LocalDemandsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:demand_it]
+  before_action :authenticate_user!
 
   def index
     @demands = area.demands

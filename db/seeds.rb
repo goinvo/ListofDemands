@@ -141,6 +141,22 @@ arlington = Area.find_by(name: "Arlington, Massachusetts")
 bedford = Area.find_by(name: "Bedford, Massachusetts")
 boxford = Area.find_by(name: "Boxford, Massachusetts")
 
+["Americans do not all have access to Primary Care. [Everyone needs Primary Care. Everyone!]",
+"Too many Americans can't navigate the healthcare system. [It's too damn complicated!]",
+"Healthcare price data is not standardized.",
+"Prescription drugs prices are too high.",
+"Virtual Primary Care is only on 0.3% of smartphones in 2017.",
+"Too few Massachusetts residents can walk to their community health center.",
+"There too few Health Centers and too many Health Clinics in Massachusetts.",
+"Medical Schools are not collaboratively standardizing the health data, health metrics, and health system algorithms used to care for human beings.",
+"Patients don’t own, manage, and fully control their personal health record.",
+"Too many Americans die from Opioid Use Disorder.",
+"Mental health is not integrated into everyday healthcare.",
+"Too many Americans eat shit (ie, are not eating real food).",
+"Too many..."].each do |problem_name|
+  Problem.create!(name: problem_name)
+end
+
 {
   arlington => [juhan, sharon, eric, bernie],
   bedford => [harry, hillary],
@@ -150,9 +166,8 @@ boxford = Area.find_by(name: "Boxford, Massachusetts")
     user = users.sample
     user.demands.create(
       area: user.zip_code.area,
-      name: Faker::Lorem.words(2..5).join(' '),
-      why: Faker::Lorem.sentence,
-      how: Faker::Lorem.paragraphs(2).join("\n")
+      problem: Problem.all.sample,
+      solution: Faker::Lorem.paragraphs(4).join("\n")
     )
   end
 end
