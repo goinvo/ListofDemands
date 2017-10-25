@@ -1,10 +1,12 @@
 <div class="row">
   <div class="col-xs-12">
-    <h1 class="text-center text-overflow-ellipsis"><%= @demand.name %></h1>
+    <h1 class="text-center"><%= @demand.name %></h1>
     <% @demand.solution.split("\n").each do |paragraph| %>
       <p><%= paragraph %></p>
     <% end %>
-    <% unless demanded_by_user?(@demand) %>
+    <% if demanded_by_user?(@demand) %>
+      <h4 class="text-center">You're supporting this demand! :thumbsup:</h4>
+    <% else %>
       <%= form_tag(demand_it_local_demand_path(@demand)) do %>
         <%= submit_tag("Demand It", class: 'btn btn-lg btn-block btn-primary') %>
       <% end %>
