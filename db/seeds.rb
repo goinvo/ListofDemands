@@ -157,17 +157,32 @@ boxford = Area.find_by(name: "Boxford, Massachusetts")
   Problem.create!(name: problem_name)
 end
 
-{
+cities_and_users = {
   arlington => [juhan, sharon, eric, bernie],
   bedford => [harry, hillary],
   boxford => [rob, trumpy]
-}.each do |city, users|
+}
+cities_and_users.each do |city, users|
   15.times do
     user = users.sample
     user.demands.create(
       area: user.zip_code.area,
       problem: Problem.all.sample,
       solution: Faker::Lorem.paragraphs(4).join("\n")
+    )
+  end
+end
+
+# randomly have some users demand some demands
+puts "creating random user demands"
+users = cities_and_users.values.flatten
+UserDemand.delete_all
+Demand.all.each do |demand|
+  rand(1..3).times do
+    filtered_users = users.reject { |u| demand.user == u || u.supported_demands.include?(demand) }
+    UserDemand.create(
+      user: filtered_users.sample,
+      demand: demand
     )
   end
 end
