@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   end
 
   resource :profile, only: [:show, :edit, :update], controller: :profile
-  resource :search, only: [:show], controller: :search
+  resource :search, only: [:show], controller: :search do
+    get :new_area, on: :collection
+    put :update_area, on: :collection
+  end
   
   root to: "welcome#index"
 end

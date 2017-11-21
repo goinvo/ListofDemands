@@ -14,6 +14,7 @@
 //= require jquery
 //= require turbolinks
 //= require bootstrap
+//= require lodash
 //= require_tree .
 
 $(function() {

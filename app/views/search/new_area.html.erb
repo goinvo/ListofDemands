@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>We need your ZIP</h1>
+    <%= form_tag update_area_search_path, method: :put, class: "form-inline" do %>
+      <div class="form-group">
+        <label class="sr-only" for="q">Enter your ZIP</label>
+        <%= text_field_tag("zip", params[:zip], class: "form-control", placeholder: "90210") %>
+      </div>
+      <%= submit_tag "Set ZIP", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>Why do we need your ZIP?</h4>
+    <p>
+      List of Demands is all about local issues that are important to you and your neighbors. In order to start showing
+      you what folks in your area have on their minds we need your ZIP.
+    </p>
+  </div>
+</div>
