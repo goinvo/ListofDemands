@@ -22,6 +22,7 @@
         <li><%= link_to("#{user_area.zip_codes.first.county} County", "#") %></li>
         <li><%= link_to(user_area.zip_codes.first.state, "#") %></li>
         <% end %>
+        <li><a href="mailto:demandfeedback@goinvo.com?subject=re: List of Demands Feedback">Got Feedback?</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
