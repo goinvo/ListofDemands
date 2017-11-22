@@ -15,12 +15,15 @@
 //= require turbolinks
 //= require bootstrap
 //= require lodash
+//= require datepicker
 //= require_tree .
 
 $(function() {
   $(document).on('turbolinks:load', function() {
     setTimeout(function() {
       $('.alert-dismissible').fadeOut();
-    }, 3000)
-  })
-})
+    }, 3000);
+
+    $('.datepicker-input').datepicker();
+  });
+});

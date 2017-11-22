@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Your Profile</h1>
+    <%= simple_form_for(current_user, url: profile_path) do |f| %>
+      <%= f.simple_fields_for :profile, current_user.profile do |address_fields| %>
+        <%= address_fields.input :name %>
+        <%= address_fields.input :address1, required: true %>
+        <%= address_fields.input :address2 %>
+        <%= address_fields.input :city, required: true %>
+        <%= address_fields.input :state, required: true %>
+        <%= address_fields.input :zip, required: true %>
+        <%= address_fields.input :gender %>
+        <%= address_fields.input :date_of_birth, as: :string, input_html: {class: 'datepicker-input'} %>
+        <%= address_fields.input :political_party %>
+      <% end %>
+      <%= f.submit("Update Profile", class: 'btn btn-primary') %>
+      or <%= link_to('cancel', profile_path) %>
+    <% end %>
+  </div>
+</div>
