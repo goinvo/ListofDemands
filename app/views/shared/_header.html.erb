@@ -15,7 +15,7 @@
         <li><%= link_to("Me", profile_path) %></li>
         <% end %>
         <% if user_area.present? %>
-        <li><%= link_to("Town/City", "#", class: 'tight-right') %> <%= link_to('(change?)', edit_area_path, class: 'tight-left') %></li>
+        <li><%= link_to("Town/City", "#", class: 'tight-right') %> <%= link_to('(change?)', edit_area_path(set_area_redirect: request.original_url), class: 'tight-left') %></li>
         <li><%= link_to("State", "#") %></li>
         <li><%= link_to("Country", "#") %></li>
         <% end %>

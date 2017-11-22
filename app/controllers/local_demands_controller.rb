@@ -4,7 +4,7 @@ class LocalDemandsController < ApplicationController
   before_action :ensure_user_area, except: [:show]
 
   def index
-    @demands = area.demands
+    @demands = user_area.demands
   end
 
   def show
@@ -21,6 +21,6 @@ class LocalDemandsController < ApplicationController
   helper_method :area
 
   def find_demand
-    area.demands.find(params[:id])
+    user_area.demands.find(params[:id])
   end
 end
