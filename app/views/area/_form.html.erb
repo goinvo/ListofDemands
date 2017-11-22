@@ -1,0 +1,7 @@
+<%= form_tag area_path, method: :put, class: "form-inline" do %>
+    <div class="form-group">
+      <label class="sr-only" for="q">Enter your ZIP</label>
+      <%= text_field_tag("zip", params[:zip], class: "form-control", placeholder: "90210") %>
+    </div>
+    <%= submit_tag "Set ZIP", class: "btn btn-primary" %>
+<% end %>

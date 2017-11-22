@@ -18,3 +18,15 @@
 body > .container {
   padding-top: 60px;
 }
+
+.navbar-nav li a {
+  display: inline-block;
+
+  &.tight-right {
+    padding-right: 5px;
+  }
+
+  &.tight-left {
+    padding-left: 5px;
+  }
+}
