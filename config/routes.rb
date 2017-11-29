@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   resource :profile, only: [:show, :edit, :update], controller: :profile
   resource :search, only: [:show], controller: :search
   resource :area, controller: :area
+  resource :me, controller: :me
+  resource :supported_demands
   
   root to: "welcome#index"
 end

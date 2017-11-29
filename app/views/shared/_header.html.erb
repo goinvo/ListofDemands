@@ -12,7 +12,7 @@
       <ul class="nav navbar-nav">
         <li><%= link_to("Search", search_path) %></li>
         <% if user_signed_in? %>
-        <li><%= link_to("Me", profile_path) %></li>
+        <li><%= link_to("Me", me_path) %></li>
         <% end %>
         <% if user_area.present? %>
         <li>
