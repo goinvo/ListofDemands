@@ -35,7 +35,7 @@
       onAdd: function(event) {
         $(event.target)
           .closest('form')
-          .append($("<input name='redirect' value='true'>"))
+          .append($("<input type='hidden' name='redirect' value='true'>"))
           .removeData('remote');
       }
     });

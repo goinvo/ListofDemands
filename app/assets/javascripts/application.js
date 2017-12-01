@@ -14,6 +14,7 @@
 //= require jquery-ujs
 //= require turbolinks
 //= require bootstrap
+//= require bootstrap.typeahead
 //= require lodash
 //= require datepicker
 //= require sortable
@@ -26,5 +27,10 @@ $(function() {
     }, 3000);
 
     $('.datepicker-input').datepicker();
+
+    $('.typeahead').each(function(index, element) {
+      var $element = $(element)
+      $element.typeahead({source: $element.data().source})
+    });
   });
 });
