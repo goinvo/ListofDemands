@@ -8,7 +8,7 @@
         <%= address_fields.input :address2 %>
         <%= address_fields.input :city, required: true %>
         <%= address_fields.input :state, required: true %>
-        <%= address_fields.input :zip, required: true %>
+        <%= address_fields.input :zip, required: true, hint: 'Heads up! Changing your ZIP code will change your area.' %>
         <%= address_fields.input :gender %>
         <%= address_fields.input :date_of_birth, as: :string, input_html: {class: 'datepicker-input'} %>
         <%= address_fields.input :political_party %>

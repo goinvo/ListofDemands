@@ -17,7 +17,7 @@
         <% if user_area.present? %>
         <li>
           <%= link_to(user_area.name, "#", class: 'tight-right') %>
-          <%= link_to('(change?)', edit_area_path(set_area_redirect: request.original_url), class: 'tight-left') %>
+          <%= link_to('(change?)', edit_area_or_profile_path, class: 'tight-left') %>
         </li>
         <li><%= link_to("#{user_area.zip_codes.first.county} County", "#") %></li>
         <li><%= link_to(user_area.zip_codes.first.state, "#") %></li>
