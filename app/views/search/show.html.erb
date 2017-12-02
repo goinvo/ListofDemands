@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-10">
-    <%= form_tag search_path, id: "demand-search", method: "GET", class: "form-inline" do %>
+    <%= form_tag search_path, id: "demand-search", method: "GET" do %>
       <div class="form-group">
         <label class="sr-only" for="q">Enter search</label>
         <%= text_field_tag("q", params[:q], class: "form-control", placeholder: "search", data: {"turbolinks-permanent" => true}) %>
