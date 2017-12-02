@@ -1,4 +1,7 @@
 class DemandsController < ApplicationController
+
+  before_action :authenticate_user!
+
   def new
     @demand = current_user.demands.build
   end
