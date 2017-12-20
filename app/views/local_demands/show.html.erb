@@ -5,10 +5,10 @@
       <p><%= paragraph %></p>
     <% end %>
     <% if demanded_by_user?(@demand) %>
-      <h4 class="text-center">You're supporting this demand! :thumbsup:</h4>
+      <span class="btn btn-primary btn-lg">Demanded</span>
     <% else %>
       <%= form_tag(demand_it_local_demand_path(@demand)) do %>
-        <%= submit_tag("Demand It", class: 'btn btn-lg btn-block btn-primary') %>
+        <%= submit_tag("Demand It", class: 'btn btn-lg') %>
       <% end %>
     <% end %>
   </div>

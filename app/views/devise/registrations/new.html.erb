@@ -6,13 +6,14 @@
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
     <%= f.simple_fields_for :profile, resource.profile || resource.build_profile do |address_fields| %>
-      <%= address_fields.input :address1, required: true %>
-      <%= address_fields.input :address2 %>
-      <%= address_fields.input :city, required: true %>
-      <%= address_fields.input :state, required: true %>
       <%= address_fields.input :zip, required: true %>
+      <h4>Optional, but helpful.</h4>
+      <%= address_fields.input :address1 %>
+      <%= address_fields.input :address2 %>
+      <%= address_fields.input :city %>
+      <%= address_fields.input :state %>
+
     <% end %>
   </div>
 
