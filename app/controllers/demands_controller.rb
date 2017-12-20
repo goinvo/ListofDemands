@@ -13,6 +13,9 @@ class DemandsController < ApplicationController
 
     if @demand.save
       redirect_to me_url
+    elsif @demand.solution.blank?
+      flash[:info] = "Okay, we've saved that issue but no demand was created because the proposed solution was empty."
+      redirect_to search_url
     else
       flash[:alert] = "Oops — we couldn't save those changes..."
       render :new

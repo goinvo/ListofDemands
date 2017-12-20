@@ -2,6 +2,6 @@
 
 <%= simple_form_for(@demand) do |f| %>
   <%= f.input(:problem_text, input_html: { class: 'typeahead', data: {source: Problem.all.map(&:name).uniq.to_json} }) %>
-  <%= f.input(:solution) %>
+  <%= f.input(:solution, required: false) %>
   <%= f.submit("Add it!", class: 'btn btn-primary') %>
 <% end %>
