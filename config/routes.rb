@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resource :area, controller: :area
   resource :me, controller: :me
   resource :supported_demands
-  resource :demands
+  resources :demands
   
   root to: "welcome#index"
 end

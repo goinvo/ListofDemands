@@ -3,24 +3,28 @@
     <%= link_to('view profile', profile_path, class: 'pull-right') %>
     <h1 class="text-center">Top Priorities</h1>
 
-    <%= form_tag(supported_demands_path, method: :put, remote: true, authenticity_token: true) do %>
-      <ol class="list-group supported-demands sortable-list">
-        <% current_user.user_demands[0..4].each do |demand| %>
-          <li class="list-group-item">
-            <%= hidden_field_tag("supported_demands[]", demand.id) %>
-            <%= demand.problem.name %>
-          </li>
-        <% end %>
-      </ol>
-      <h3>All demands</h3>
-      <ul class="list-group supported-demands sortable-list">
-        <% current_user.user_demands[5..-1].each do |demand| %>
-          <li class="list-group-item">
-            <%= hidden_field_tag("supported_demands[]", demand.id) %>
-            <%= demand.problem.name %>
-          </li>
-        <% end %>
-      </ul>
+    <% if current_user.user_demands.none? %>
+      <h3>You have no demands.</h3>
+    <% else %>
+      <%= form_tag(supported_demands_path, method: :put, remote: true, authenticity_token: true) do %>
+        <ol class="list-group supported-demands sortable-list">
+          <% current_user.user_demands[0..4].each do |user_demand| %>
+            <li class="list-group-item">
+              <%= hidden_field_tag("supported_demands[]", user_demand.id) %>
+              <%= link_to(user_demand.problem.name, user_demand.demand) %>
+            </li>
+          <% end %>
+        </ol>
+        <h3>All demands</h3>
+        <ul class="list-group supported-demands sortable-list">
+          <% Array(current_user.user_demands[5..-1]).each do |demand| %>
+            <li class="list-group-item">
+              <%= hidden_field_tag("supported_demands[]", demand.id) %>
+              <%= demand.problem.name %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     <% end %>
   </div>
 </div>

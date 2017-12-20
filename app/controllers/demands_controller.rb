@@ -19,6 +19,10 @@ class DemandsController < ApplicationController
     end
   end
 
+  def show
+    @demand = current_user.supported_demands.find(params[:id])
+  end
+
   private
 
   def create_params
