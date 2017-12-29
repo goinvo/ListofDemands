@@ -9,7 +9,7 @@ class SearchController < ApplicationController
       # TODO: replace this with a proper search engine. elasticsearch?
       query = params[:q].split(' ').join('|')
 
-      demands = @demands.advanced_search(solution: query)
+      demands = user_area.demands.advanced_search(solution: query)
 
       demands_by_problem = user_area
                    .problems
