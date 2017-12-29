@@ -1,3 +1,20 @@
-<li class="list-group-item">
-  <%= link_to(demand.name, local_demand_path(demand)) %>
+<li class="row">
+  <div class="col-xs-1">
+    <div class="demand-counter"><%= demand_counter + 1 %></div>
+  </div>
+  <div class="col-xs-11">
+    <div class="demand-name"><%= link_to(demand.name, local_demand_path(demand)) %></div>
+    <div class="demand-demanded">
+      demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %></span>
+    </div>
+    <div class="demand-button">
+      <% if user_signed_in? && current_user.supported_demands.include?(demand) %>
+        <span class="btn btn-primary btn-demand">Demanded</span>
+      <% else %>
+        <%= form_tag(demand_it_local_demand_path(demand)) do %>
+          <%= submit_tag("Demand", class: 'btn btn-default btn-demand') %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </li>

@@ -36,4 +36,15 @@ body > .container {
   font-family: "Times New Roman", "Times", "serif";
 }
 
+.btn {
+  text-transform: uppercase;
+  letter-spacing: 1.37px;
+  font-size: 12px;
+}
+
+.btn-demand {
+  min-width: 105px;
+}
+
 @import "datepicker";
+@import "demands-list";
