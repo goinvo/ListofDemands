@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
-ruby '2.3.4'
+ruby '2.5.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'bootsnap', require: false
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bulk_insert'
 gem 'devise'
@@ -31,7 +32,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'debase', '0.2.2.beta10'
+  gem 'debase', '0.2.2.beta14'
   gem "letter_opener"
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry-nav'
@@ -39,4 +40,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :test do
+  gem 'rspec-rails'
 end
