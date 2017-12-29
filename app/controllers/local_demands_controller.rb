@@ -11,13 +11,6 @@ class LocalDemandsController < ApplicationController
     @demand = find_demand
   end
 
-  def demand_it
-    @demand = find_demand
-    current_user.user_demands.create(demand: @demand)
-    flash[:info] = "Great, you've demanded #{@demand.name}!"
-    redirect_to local_demand_url(@demand)
-  end
-
   helper_method :area
 
   def find_demand

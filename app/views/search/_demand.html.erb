@@ -11,7 +11,9 @@
       <% if user_signed_in? && current_user.supported_demands.include?(demand) %>
         <span class="btn btn-primary btn-demand">Demanded</span>
       <% else %>
-        <%= form_tag(demand_it_local_demand_path(demand)) do %>
+        <%= form_tag(supported_demands_path) do %>
+          <input type="hidden" name="id" value="<%= demand.id %>" />
+          <input type="hidden" name="redirect" value="<%= request.original_url %>" />
           <%= submit_tag("Demand", class: 'btn btn-default btn-demand') %>
         <% end %>
       <% end %>

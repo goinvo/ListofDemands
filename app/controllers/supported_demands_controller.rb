@@ -1,5 +1,14 @@
 class SupportedDemandsController < ApplicationController
+
   before_action :authenticate_user!
+  before_action :ensure_user_area, except: [:show]
+
+  def create
+    @demand = find_demand
+    current_user.user_demands.create(demand: @demand)
+    flash[:info] = "You've demanded #{@demand.name}!"
+    redirect_to params[:redirect] || local_demand_url(@demand)
+  end
 
   def update
     UserDemand.transaction do
@@ -19,5 +28,9 @@ class SupportedDemandsController < ApplicationController
 
   def update_params
     params.require(:supported_demands)
+  end
+
+  def find_demand
+    user_area.demands.find(params[:id])
   end
 end
