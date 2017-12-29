@@ -4,12 +4,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :local_demands do
-    member do
-      post :demand_it
-    end
-  end
-
   resource :profile, only: [:show, :edit, :update], controller: :profile
   resource :search, only: [:show], controller: :search
   resource :area, controller: :area

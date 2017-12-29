@@ -7,20 +7,32 @@
       <h3>You have no demands.</h3>
     <% else %>
       <%= form_tag(supported_demands_path, method: :put, remote: true, authenticity_token: true) do %>
-        <ol class="list-group supported-demands sortable-list">
-          <% current_user.user_demands[0..4].each do |user_demand| %>
-            <li class="list-group-item">
+        <ol class="demands-list sortable-list">
+          <% current_user.user_demands[0..4].each_with_index do |user_demand, index| %>
+            <li class="row">
               <%= hidden_field_tag("supported_demands[]", user_demand.id) %>
-              <%= link_to(user_demand.problem.name, user_demand.demand) %>
+              <div class="col-xs-1">
+                <span class="demand-counter"><%= index + 1 %></span>
+              </div>
+              <div class="col-xs-11">
+                <div class="demand-name">
+                  <%= link_to(user_demand.problem.name, user_demand.demand) %>
+                </div>
+              </div>
             </li>
           <% end %>
         </ol>
         <h3>All demands</h3>
-        <ul class="list-group supported-demands sortable-list">
-          <% Array(current_user.user_demands[5..-1]).each do |demand| %>
-            <li class="list-group-item">
-              <%= hidden_field_tag("supported_demands[]", demand.id) %>
-              <%= demand.problem.name %>
+        <ul class="demands-list sortable-list">
+          <% Array(current_user.user_demands[5..-1]).each_with_index do |user_demand, index| %>
+            <li class="row">
+              <%= hidden_field_tag("supported_demands[]", user_demand.id) %>
+              <div class="col-xs-1">
+                <span class="demand-counter"><%= index + 6 %></span>
+              </div>
+              <div class="col-xs-11">
+                <div class="demand-name"><%= link_to(user_demand.problem.name, user_demand.demand) %></div>
+              </div>
             </li>
           <% end %>
         </ul>
@@ -28,19 +40,19 @@
     <% end %>
   </div>
 </div>
+
 <% content_for(:before_body) do %>
+
 <script type="text/javascript">
   $('.sortable-list').each(function(index, element) {
     new Sortable(element, {
       group: "yep",
       onEnd: function(event) {
-        $(event.target).closest('form').submit();
-      },
-      onAdd: function(event) {
         $(event.target)
           .closest('form')
           .append($("<input type='hidden' name='redirect' value='true'>"))
           .removeData('remote');
+        $(event.target).closest('form').submit();
       }
     });
   })

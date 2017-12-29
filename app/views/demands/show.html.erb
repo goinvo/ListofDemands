@@ -5,10 +5,11 @@
       <p><%= paragraph %></p>
     <% end %>
     <% if demanded_by_user?(@demand) %>
-      <span class="btn btn-primary btn-lg">Demanded</span>
+      <span class="btn btn-primary btn-demand">Demanded</span>
     <% else %>
-      <%= form_tag(demand_it_local_demand_path(@demand)) do %>
-        <%= submit_tag("Demand It", class: 'btn btn-lg') %>
+      <%= form_tag(supported_demands_path) do %>
+        <input type="hidden" name="id" value="<%= demand.id %>" />
+        <%= submit_tag("Demand", class: 'btn btn-default btn-demand') %>
       <% end %>
     <% end %>
   </div>

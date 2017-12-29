@@ -7,7 +7,7 @@ class SupportedDemandsController < ApplicationController
     @demand = find_demand
     current_user.user_demands.create(demand: @demand)
     flash[:info] = "You've demanded #{@demand.name}!"
-    redirect_to params[:redirect] || local_demand_url(@demand)
+    redirect_to params[:redirect] || demand_url(@demand)
   end
 
   def update

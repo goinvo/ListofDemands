@@ -3,7 +3,7 @@
     <div class="demand-counter"><%= demand_counter + 1 %></div>
   </div>
   <div class="col-xs-11">
-    <div class="demand-name"><%= link_to(demand.name, local_demand_path(demand)) %></div>
+    <div class="demand-name"><%= link_to(demand.name, demand_path(demand)) %></div>
     <div class="demand-demanded">
       demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %></span>
     </div>
