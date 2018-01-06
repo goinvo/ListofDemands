@@ -9,8 +9,16 @@ class ApplicationController < ActionController::Base
 
   def ensure_user_area
     if !user_signed_in? && session[:area_id].blank?
-      session[:set_area_redirect] = request.original_url
-      redirect_to new_area_url
+      # attempt to geocode
+      location = request.location
+
+      if zip_code = ZipCode.find_by(zip: location.data['zip_code'])
+        session[:area_id] = zip_code.area.id
+      else
+        # :shrug: bad ZIP?
+        session[:set_area_redirect] = request.original_url
+        redirect_to new_area_url
+      end
     end
   end
 
