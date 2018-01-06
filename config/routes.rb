@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resource :supported_demands
   resources :demands
   
-  root to: "welcome#index"
+  root to: "search#show"
 end
