@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-10 search-form">
+    <%= form_tag search_path, id: "demand-search", method: "GET" do %>
+      <div class="form-group">
+        <label class="sr-only" for="q">Enter search</label>
+        <%= text_field_tag("q", params[:q], class: "form-control", placeholder: "search", data: {"turbolinks-permanent" => true}) %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-xs-2 search-form-button">
+    <%= link_to("+", new_demand_path, class: "btn btn-default") %>
+  </div>
+</div>

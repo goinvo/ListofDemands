@@ -48,3 +48,21 @@ body > .container {
 
 @import "datepicker";
 @import "demands-list";
+
+.has-header-second-row {
+  margin-top: 40px;
+}
+
+.search-form {
+  padding-right: 0;
+}
+
+.search-form-button {
+  padding-left: 0;
+  padding-right: 0;
+
+  a {
+    margin-left: 10px;
+    width: 70%;
+  }
+}

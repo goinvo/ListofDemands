@@ -1,17 +1,7 @@
-<div class="row">
-  <div class="col-xs-10">
-    <%= form_tag search_path, id: "demand-search", method: "GET" do %>
-      <div class="form-group">
-        <label class="sr-only" for="q">Enter search</label>
-        <%= text_field_tag("q", params[:q], class: "form-control", placeholder: "search", data: {"turbolinks-permanent" => true}) %>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-xs-2">
-    <%= link_to("+", new_demand_path, class: "btn btn-primary") %>
-  </div>
-</div>
+<% content_for(:header_second_row) do %>
+  <%= render('shared/search_form') %>
+<% end %>
 
-<ul class="demands-list">
+<ul class="demands-list has-header-second-row">
   <%= render(partial: 'demand', collection: @demands) %>
 </ul>

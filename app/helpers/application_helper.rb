@@ -11,9 +11,13 @@ module ApplicationHelper
     if content_for(:brand)
       yield(:brand)
     else
-      user_signed_in? ?
-        current_user.area.name :
+      if user_signed_in?
+        current_user.area.name
+      elsif (area = Area.find_by(id: session[:area_id])).present?
+        "#{area.name} <small>(#{link_to('change?', edit_area_or_profile_path)})</small>".html_safe
+      else
         ""
+      end
     end
   end
 end
