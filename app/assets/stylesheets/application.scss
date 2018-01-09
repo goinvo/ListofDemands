@@ -16,6 +16,14 @@
   @extend .alert-info;
 }
 
+.flashes {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  z-index: 99999;
+  padding: 0 15px;
+}
+
 body > .container {
   padding-top: 60px;
 }
@@ -44,6 +52,39 @@ body > .container {
 
 .btn-demand {
   min-width: 105px;
+}
+
+.navbar-toggle {
+  border: none;
+}
+
+.navbar-nav {
+  li {
+    &.uppercase a, &.uppercase span {
+      text-transform: uppercase;
+      color: $color-orange;
+    }
+
+    &.active {
+      color: #FFF;
+      background-color: $color-orange;
+
+      a, span {
+        background-color: $color-orange;
+      }
+    }
+  }
+
+  .nav-blurb {
+    color: #777;
+    display: inline-block;
+    padding: 10px 15px;
+    line-height: 20px;
+  }
+}
+
+a {
+  color: $color-orange;
 }
 
 @import "datepicker";

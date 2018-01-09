@@ -12,27 +12,30 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to("Search", search_path) %></li>
           <% if user_signed_in? %>
-            <li><%= link_to("Me", me_path) %></li>
+            <li class="uppercase"><%= link_to("My Demands", me_path) %></li>
           <% end %>
           <% if user_area.present? %>
-            <li>
+            <li class="uppercase">
               <%= link_to(user_area.name, "#", class: 'tight-right') %>
               <%= link_to('(change?)', edit_area_or_profile_path, class: 'tight-left') %>
             </li>
-            <li><%= link_to("#{user_area.zip_codes.first.county} County", "#") %></li>
-            <li><%= link_to(user_area.zip_codes.first.state, "#") %></li>
+            <li class="uppercase"><%= link_to("#{user_area.zip_codes.first.county} County", "#") %></li>
+            <li class="uppercase"><%= link_to(user_area.zip_codes.first.state, "#") %></li>
           <% end %>
-          <li><a href="mailto:demandfeedback@goinvo.com?subject=re: List of Demands Feedback">Got Feedback?</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-            <li><%= link_to("Sign Out", destroy_user_session_url, method: :delete) %></li>
-          <% else %>
-            <li><%= link_to("Sign In", new_user_session_url) %></li>
-            <li><%= link_to("Sign Up", new_user_registration_url) %></li>
-          <% end %>
+          <li><span class="nav-blurb">Understand what matters the most from Me to We.</span></li>
+          <li><span class="nav-blurb">Add your own demands and take action to impact policy.</span></li>
+          <div class="container">
+            <div class="row">
+              <li class="col-xs-4"><a href="#">about</a></li>
+              <li class="col-xs-4"><a href="mailto:demandfeedback@goinvo.com?subject=re: List of Demands Feedback">feedback</a></li>
+              <% if user_signed_in? %>
+                <li class="col-xs-4"><%= link_to("signout", destroy_user_session_url, method: :delete) %></li>
+              <% else %>
+                <li class="col-xs-4"><%= link_to("signin", new_user_session_url) %> / <%= link_to("register", new_user_registration_url) %></li>
+              <% end %>
+            </div>
+          </div>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
