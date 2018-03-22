@@ -1,6 +1,4 @@
-@import "bootstrap-sprockets";
 @import "variables";
-@import "bootstrap-custom";
 
 .text-overflow-ellipsis {
   overflow: hidden;
@@ -8,13 +6,6 @@
   white-space: nowrap;
 }
 
-.alert-alert {
-  @extend .alert-danger;
-}
-
-.alert-notice {
-  @extend .alert-info;
-}
 
 .flashes {
   position: absolute;

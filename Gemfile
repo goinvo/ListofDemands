@@ -7,7 +7,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
-gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bulk_insert'
 gem 'devise', github: 'plataformatec/devise'
 gem 'faker', require: false
