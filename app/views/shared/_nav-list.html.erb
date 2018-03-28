@@ -4,7 +4,7 @@
   <% end %>
   <% if user_area.present? %>
     <li><%= link_to(user_area.zip_codes.first.city, "#") %></li>
-    <li><%= link_to("#{user_area.zip_codes.first.county} County", "#") %></li>
+    <li><%= link_to("#{user_area.zip_codes.first.county}", "#") %></li>
     <li><%= link_to(user_area.zip_codes.first.state, "#") %></li>
     <li><%= link_to('Change Address', edit_area_or_profile_path, class: is_active_path(edit_area_or_profile_path)) %></li>
   <% end %>
