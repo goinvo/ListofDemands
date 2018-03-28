@@ -19,8 +19,17 @@
 //= require sortable
 //= require_tree .
 
+$.fn.slideFadeToggle  = function(speed, easing, callback) {
+  return this.animate({opacity: 'toggle', height: 'toggle'}, speed, easing, callback);
+};
+
 $(function() {
   $(document).on('turbolinks:load', function() {
+    var state = {
+      navOpen: false
+    };
+    var breakpointDesktop = 800; // Should be equal to SCSS variable '$breakpoint-desktop'
+
     setTimeout(function() {
       $('.alert-dismissible').fadeOut();
     }, 3000);
@@ -30,6 +39,24 @@ $(function() {
     $('.typeahead').each(function(index, element) {
       var $element = $(element)
       $element.typeahead({source: $element.data().source})
+    });
+
+    function toggleHeader() {
+      $("#navbar-title").slideFadeToggle();
+      $("#navbar-title-open").slideFadeToggle();
+      $('#navbar-expand').slideToggle();
+      $('#navbar-extra').slideToggle();
+      $('#navbar-toggle .icon').toggle();
+      $('#overlay').toggleClass('is-active');
+      state.navOpen = !state.navOpen;
+    }
+
+    $('#navbar-toggle, #overlay').click(toggleHeader);
+
+    $(window).resize(function() {
+      if (window.innerWidth > breakpointDesktop && state.navOpen) {
+        toggleHeader();
+      }
     });
   });
 });

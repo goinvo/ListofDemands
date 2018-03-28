@@ -1,28 +1,53 @@
 .demands-list {
-  margin: 0 -15px 0 -15px;
-  padding: 0 15px 0 15px;
+  @include list-unstyled();
+  padding: $spacing;
+  padding-bottom: 0;
   background: linear-gradient(#F9F9F9, #FFFFFF 15px);
+}
 
-  li {
-    border-bottom: 1px solid #E6E6E6;
-    padding-bottom: 15px;
+.demand-item {
+  display: flex;
+  border-bottom: 1px solid $color-gray--light;
+  padding: $spacing 0 ($spacing * 2) 0;
+
+  &__counter {
+    padding: 0 ($spacing * 2) 0 $spacing;
+    font-size: $font-size-large;
+    font-family: $font-family-serif;
+    font-weight: 600;
   }
-}
 
-.demand-counter {
-  font-size: 24px;
-  font-family: $font-family-serif;
-}
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
 
-.demand-name {
-  a {
-    font-size: 16px;
-    color: $color-orange;
+    @media only screen and (min-width: $breakpoint-desktop) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__name-container {
+    width: 100%;
+    padding-right: $spacing * 2;
+
+    @media only screen and (min-width: $breakpoint-desktop) {
+      width: auto;
+      flex: 1;
+    }
+  }
+
+  &__button {
+    margin-top: $spacing;
+
+    @media only screen and (min-width: $breakpoint-desktop) {
+      margin-top: 0;
+    }
   }
 }
 
 .demand-demanded {
-  color: $color-grey;
+  color: $color-gray;
 }
 
 .demand-count {

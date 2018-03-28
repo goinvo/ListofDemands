@@ -2,6 +2,16 @@
   <%= render('shared/search_form') %>
 <% end %>
 
-<ul class="demands-list has-header-second-row">
-  <%= render(partial: 'demand', collection: @demands) %>
-</ul>
+<div class="main__content search-show">
+  <div class="desktop-only">
+    <h2>
+      <span class="h3 gray margin-bottom">The town of</span>
+      <span class="h2 margin-bottom"><%= user_header %></span>
+      <span class="h3 gray">demands</span>
+    </h2>
+    <%= render('shared/search_form') %>
+  </div>
+  <ul class="main__scroll demands-list">
+    <%= render(partial: 'demand', collection: @demands) %>
+  </ul>
+</div>

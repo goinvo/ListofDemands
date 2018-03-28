@@ -1,0 +1,33 @@
+.uppercase {
+  text-transform: uppercase;
+}
+
+.h2 {
+  @extend .uppercase;
+  display: block;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-large;
+  letter-spacing: $font-letter-spacing-large;
+}
+
+.h3 {
+  @extend .uppercase;
+  display: block;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  letter-spacing: $font-letter-spacing-small;
+}
+
+.text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.number {
+  font-family: $font-family-serif;
+}
+
+.gray {
+  color: $color-gray;
+}

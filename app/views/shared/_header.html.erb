@@ -1,44 +1,24 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="row">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <span class="navbar-brand" href="#"><%= user_header %></span>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <% if user_signed_in? %>
-            <li class="uppercase"><%= link_to("My Demands", me_path) %></li>
-          <% end %>
-          <% if user_area.present? %>
-            <li class="uppercase">
-              <%= link_to(user_area.name, "#", class: 'tight-right') %>
-              <%= link_to('(change?)', edit_area_or_profile_path, class: 'tight-left') %>
-            </li>
-            <li class="uppercase"><%= link_to("#{user_area.zip_codes.first.county} County", "#") %></li>
-            <li class="uppercase"><%= link_to(user_area.zip_codes.first.state, "#") %></li>
-          <% end %>
-          <li><span class="nav-blurb">Understand what matters the most from Me to We.</span></li>
-          <li><span class="nav-blurb">Add your own demands and take action to impact policy.</span></li>
-          <div class="container">
-            <div class="row">
-              <li class="col-xs-4"><a href="#">about</a></li>
-              <li class="col-xs-4"><a href="mailto:demandfeedback@goinvo.com?subject=re: List of Demands Feedback">feedback</a></li>
-              <% if user_signed_in? %>
-                <li class="col-xs-4"><%= link_to("signout", destroy_user_session_url, method: :delete) %></li>
-              <% else %>
-                <li class="col-xs-4"><%= link_to("signin", new_user_session_url) %> / <%= link_to("register", new_user_registration_url) %></li>
-              <% end %>
-            </div>
-          </div>
-        </ul>
-      </div><!--/.nav-collapse -->
+<nav id="navbar" class="navbar">
+  <div class="navbar__overlay"></div>
+  <div class="navbar__main">
+    <div class="navbar__title-container">
+      <span class="navbar__title mobile-only" id="navbar-title"><%= user_header %></span>
+      <span class="navbar__title navbar__title--main" id="navbar-title-open">listofdemands.us</span>
     </div>
+    <button id="navbar-toggle" class="navbar__toggle btn btn-icon btn-transparent mobile-only" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <svg class="icon icon-menu" id="icon-menu"><use xlink:href="#icons-menu"></svg>
+      <svg class="icon icon-close" id="icon-x"><use xlink:href="#icons-close"></svg>
+    </button>
+    <div class="navbar__site-links desktop-only">
+      <%= render('shared/site-links') %>
+    </div>
+  </div>
+  <div id="navbar-expand" class="navbar__expand">
+    <%= render('shared/nav-list') %>
+    <%= render('shared/site-links') %>
+  </div>
+  <div id="navbar-extra" class="navbar__extra">
     <%= yield(:header_second_row) %>
   </div>
 </nav>

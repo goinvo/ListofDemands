@@ -1,0 +1,34 @@
+.search-show {
+  padding-top: 48px;
+
+  h2 {
+    padding: 10px;
+  }
+
+  @media only screen and (min-width: $breakpoint-desktop) {
+    padding-top: 0;
+  }
+}
+
+.search-form {
+  display: flex;
+  padding: 5px 10px;
+
+  &__bar {
+    flex: 1;
+    margin-right: $spacing;
+
+    form {
+      height: 100%;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .btn-add {
+    min-width: 4rem;
+  }
+}

@@ -19,6 +19,7 @@ gem 'sentry-raven'
 gem 'simple_form', '3.5.0'
 gem 'textacular', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'svgeez'
 
 # https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
