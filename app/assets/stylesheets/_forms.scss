@@ -1,5 +1,38 @@
-.form-control-text {
-  border: 1px solid $color-gray--light;
-  border-radius: $border-radius;
-  padding: 5px 10px;
+label input[type="checkbox"],
+label input[type="radio"] {
+  margin-right: $spacing;
+}
+
+.form-group {
+  margin-bottom: $spacing * 2;
+}
+
+.control-label {
+  display: block;
+  margin-bottom: $spacing / 2;
+  color: $color-gray;
+}
+
+.form-control {
+  display: block;
+
+  &--text {
+    width: 100%;
+    border: 1px solid $color-gray--light;
+    border-radius: $border-radius;
+    padding: 5px 10px;
+
+    &:focus {
+      @include focus;
+    }
+  }
+}
+
+abbr[title] {
+  text-decoration: none;
+}
+
+.help-block {
+  color: $color-gray;
+  font-size: $font-size-small;
 }

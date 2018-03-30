@@ -1,15 +1,20 @@
-<h2>Log in</h2>
+<div class="main__content profile">
+  <div class="main__scroll pad-all">
+    <h2 class="h2">Log in</h2>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email, input_html: { class: 'form-control--text' }, required: false, autofocus: true %>
+        <%= f.input :password, input_html: { class: 'form-control--text' }, required: false %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      <div class="form-actions">
+        <%= f.button :submit, "Log in", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+
+    <div class="margin-top-double">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

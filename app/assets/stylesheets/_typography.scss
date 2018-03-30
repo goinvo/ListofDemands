@@ -2,6 +2,13 @@
   text-transform: uppercase;
 }
 
+.h1 {
+  display: block;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-extra-large;
+  line-height: $font-size-extra-large + 10px;
+}
+
 .h2 {
   @extend .uppercase;
   display: block;
@@ -22,6 +29,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.text {
+  &--small {
+    font-size: $font-size-small;
+  }
 }
 
 .number {

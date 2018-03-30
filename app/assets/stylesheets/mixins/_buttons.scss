@@ -21,7 +21,7 @@
 
   &:focus,
   &.focus {
-    box-shadow: $btn-box-shadow;
+    @include focus;
   }
 
   // Disabled comes first so active can properly restyle
@@ -68,7 +68,7 @@
 
   &:focus,
   &.focus {
-    box-shadow: $btn-box-shadow;
+    @include focus;
   }
 
   &.disabled,

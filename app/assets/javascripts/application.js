@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require bootstrap.typeahead
 //= require lodash
-//= require datepicker
+//= require @fengyuanchen/datepicker/dist/datepicker
 //= require sortable
 //= require_tree .
 
@@ -54,7 +54,7 @@ $(function() {
     $('#navbar-toggle, #overlay').click(toggleHeader);
 
     $(window).resize(function() {
-      if (window.innerWidth > breakpointDesktop && state.navOpen) {
+      if (state.navOpen && window.innerWidth > breakpointDesktop) {
         toggleHeader();
       }
     });

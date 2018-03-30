@@ -1,16 +1,22 @@
-<h2>Resend unlock instructions</h2>
+<div class="main__content profile">
+  <div class="main__scroll pad-all">
+    <h2 class="h2">Resend unlock instructions</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :unlock_token %>
+    <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
+      <%= f.full_error :unlock_token %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+      <div class="form-inputs">
+        <%= f.input :email, input_html: { class: "form-controll--text" }, required: true, autofocus: true %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Resend instructions", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <div class="margin-top-double">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Resend unlock instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1>Your Profile</h1>
+<div class="main__content">
+  <div class="main__scroll pad-all">
+    <h1 class="h2">Your Profile</h1>
     <p><%= link_to('edit profile', edit_profile_path) %></p>
     <dl>
       <dt>Name</dt>
@@ -8,7 +8,7 @@
       <dt>Address</dt>
       <dd><%= current_user.profile.address1 %></dd>
       <dt>Address (cont)</dt>
-      <dd><%= current_user.profile.address2 %></dd>
+      <dd><%= current_user.profile.address2 || "N/A" %></dd>
       <dt>City</dt>
       <dd><%= current_user.profile.city %></dd>
       <dt>State</dt>

@@ -2,7 +2,7 @@
   <div class="search-form__bar">
     <%= form_tag search_path, id: "demand-search", method: "GET" do %>
       <label class="sr-only" for="q">Enter search</label>
-      <%= text_field_tag("q", params[:q], class: "form-control-text", placeholder: "SEARCH", data: {"turbolinks-permanent" => true}) %>
+      <%= text_field_tag("q", params[:q], class: "form-control--text", placeholder: "SEARCH", data: {"turbolinks-permanent" => true}) %>
     <% end %>
   </div>
   <%= link_to new_demand_path, class: "btn btn-primary--outline btn-add" do %>

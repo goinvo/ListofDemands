@@ -52,10 +52,15 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    autoprefixer-rails (8.2.0)
+      execjs
     bcrypt (3.1.11)
     bindex (0.5.0)
     bootsnap (1.2.0)
       msgpack (~> 1.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     bulk_insert (1.6.0)
       activerecord (>= 4.1.0)
@@ -227,6 +232,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bootstrap-sass (~> 3.3.6)
   bulk_insert
   byebug
   debase (= 0.2.2.beta14)
