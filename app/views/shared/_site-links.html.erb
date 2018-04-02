@@ -1,0 +1,10 @@
+<ul class="site-links">
+  <li><a href="#">about</a></li>
+  <li><a href="mailto:demandfeedback@goinvo.com?subject=re: List of Demands Feedback">feedback</a></li>
+  <% if user_signed_in? %>
+    <li><%= link_to("signout", destroy_user_session_url, method: :delete) %></li>
+  <% else %>
+    <li><%= link_to("signin", new_user_session_url) %></li>
+    <li><%= link_to("register", new_user_registration_url) %></li>
+  <% end %>
+</ul>

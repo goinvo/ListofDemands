@@ -1,0 +1,75 @@
+$directions: 'top' 'bottom' 'left' 'right';
+
+.pad-all {
+  padding: $spacing;
+
+  &--double {
+    padding: $spacing * 2;
+  }
+
+  &--half {
+    padding: $spacing / 2;
+  }
+}
+
+.pad-horizontal {
+  padding-left: $spacing;
+  padding-right: $spacing;
+
+  &--double {
+    padding-left: $spacing * 2;
+    padding-right: $spacing * 2;
+  }
+}
+
+.pad-vertical {
+  padding-top: $spacing;
+  padding-bottom: $spacing;
+
+  &--double {
+    padding-top: $spacing * 2;
+    padding-bottom: $spacing * 2;
+  }
+}
+
+.margin-all {
+  margin: $spacing;
+}
+
+@each $direction in $directions {
+  .pad-#{$direction} {
+    padding-#{$direction}: $spacing;
+  }
+
+  .pad-#{$direction}-half {
+    padding-#{$direction}: $spacing / 2;
+  }
+
+  .pad-#{$direction}-none {
+    padding-#{$direction}: 0;
+  }
+
+  .margin-#{$direction} {
+    margin-#{$direction}: $spacing;
+  }
+
+  .margin-#{$direction}-half {
+    margin-#{$direction}: $spacing / 2;
+  }
+
+  .margin-#{$direction}-quarter {
+    margin-#{$direction}: $spacing / 4;
+  }
+
+  .margin-#{$direction}-double {
+    margin-#{$direction}: $spacing * 2;
+  }
+
+  .margin-#{$direction}-none {
+    margin-#{$direction}: 0;
+  }
+}
+
+.margin-none {
+  margin: 0;
+}

@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1 class="text-center"><%= @demand.name %></h1>
+<div class="main__content">
+  <div class="main__scroll pad-all">
+    <h1 class="h2"><%= @demand.name %></h1>
     <% @demand.solution.split("\n").each do |paragraph| %>
       <p><%= paragraph %></p>
     <% end %>
@@ -9,7 +9,7 @@
     <% else %>
       <%= form_tag(supported_demands_path) do %>
         <input type="hidden" name="id" value="<%= demand.id %>" />
-        <%= submit_tag("Demand", class: 'btn btn-default btn-demand') %>
+        <%= submit_tag("Demand", class: 'btn btn-primary--outline btn-demand') %>
       <% end %>
     <% end %>
   </div>

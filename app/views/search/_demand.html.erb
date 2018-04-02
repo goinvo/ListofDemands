@@ -1,20 +1,20 @@
-<li class="row">
-  <div class="col-xs-1">
-    <div class="demand-counter"><%= demand_counter + 1 %></div>
-  </div>
-  <div class="col-xs-11">
-    <div class="demand-name"><%= link_to(demand.name, demand_path(demand)) %></div>
-    <div class="demand-demanded">
-      demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %></span>
+<li class="demand-item">
+  <div class="demand-item__counter"><%= demand_counter + 1 %></div>
+  <div class="demand-item__content">
+    <div class="demand-item__name-container">
+      <div class="demand-name"><%= link_to(demand.name, demand_path(demand)) %></div>
+      <div class="demand-demanded">
+        demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %></span>
+      </div>
     </div>
-    <div class="demand-button">
+    <div class="demand-item__button">
       <% if user_signed_in? && current_user.supported_demands.include?(demand) %>
-        <span class="btn btn-primary btn-demand">Demanded</span>
+        <button class="btn btn-primary btn-demand">Demanded</button>
       <% else %>
         <%= form_tag(supported_demands_path) do %>
           <input type="hidden" name="id" value="<%= demand.id %>" />
           <input type="hidden" name="redirect" value="<%= request.original_url %>" />
-          <%= submit_tag("Demand", class: 'btn btn-default btn-demand') %>
+          <%= submit_tag("Demand", class: 'btn btn-primary--outline btn-demand') %>
         <% end %>
       <% end %>
     </div>

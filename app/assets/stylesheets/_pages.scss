@@ -1,0 +1,42 @@
+.search-show {
+  padding-top: 48px;
+
+  h2 {
+    padding: 10px;
+    margin-bottom: 0;
+
+    .h2,
+    .h3 {
+      margin-bottom: $spacing / 2;
+    }
+  }
+
+  @media only screen and (min-width: $breakpoint-desktop) {
+    padding-top: 0;
+  }
+}
+
+.profile {
+  &__edit-fields {
+    padding: $spacing;
+  }
+}
+
+.new-demand {
+  padding: $spacing;
+  position: relative;
+}
+
+.my-demands {
+  &__header {
+  display: flex;
+
+    a {
+      margin-left: auto;
+    }
+  }
+
+  .demands-list:first-of-type {
+    margin-bottom: $spacing * 4;
+  }
+}

@@ -1,109 +1,20 @@
-@import "bootstrap-sprockets";
-@import "variables";
-@import "bootstrap-custom";
+// Vendor
+@import "@fengyuanchen/datepicker/dist/datepicker";
 
-.text-overflow-ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.alert-alert {
-  @extend .alert-danger;
-}
-
-.alert-notice {
-  @extend .alert-info;
-}
-
-.flashes {
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
-  z-index: 99999;
-  padding: 0 15px;
-}
-
-body > .container {
-  padding-top: 60px;
-}
-
-.navbar-nav li a {
-  display: inline-block;
-
-  &.tight-right {
-    padding-right: 5px;
-  }
-
-  &.tight-left {
-    padding-left: 5px;
-  }
-}
-
-.number {
-  font-family: "Times New Roman", "Times", "serif";
-}
-
-.btn {
-  text-transform: uppercase;
-  letter-spacing: 1.37px;
-  font-size: 12px;
-}
-
-.btn-demand {
-  min-width: 105px;
-}
-
-.navbar-toggle {
-  border: none;
-}
-
-.navbar-nav {
-  li {
-    &.uppercase a, &.uppercase span {
-      text-transform: uppercase;
-      color: $color-orange;
-    }
-
-    &.active {
-      color: #FFF;
-      background-color: $color-orange;
-
-      a, span {
-        background-color: $color-orange;
-      }
-    }
-  }
-
-  .nav-blurb {
-    color: #777;
-    display: inline-block;
-    padding: 10px 15px;
-    line-height: 20px;
-  }
-}
-
-a {
-  color: $color-orange;
-}
-
-@import "datepicker";
+// App
+@import "variables/variables";
+@import "mixins/mixins";
+@import "reboot";
+@import "screen-readers";
+@import "typography";
+@import "spacing";
+@import "layout";
+@import "icons";
+@import "lists";
+@import "buttons";
+@import "forms";
+@import "typeahead";
+@import "nav";
+@import "search-form";
 @import "demands-list";
-
-.has-header-second-row {
-  margin-top: 40px;
-}
-
-.search-form {
-  padding-right: 0;
-}
-
-.search-form-button {
-  padding-left: 0;
-  padding-right: 0;
-
-  a {
-    margin-left: 10px;
-    width: 70%;
-  }
-}
+@import "pages";

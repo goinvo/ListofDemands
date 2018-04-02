@@ -1,0 +1,16 @@
+<ul class="nav-list">
+  <% if user_signed_in? %>
+    <li><%= link_to("My Demands", me_path, class: is_active_path(me_path)) %></li>
+    <li><%= link_to("New Demand", new_demand_path, class: is_active_path(new_demand_path)) %></li>
+  <% end %>
+  <% if user_area.present? %>
+    <li><%= link_to(user_area.zip_codes.first.city, "#") %></li>
+    <li><%= link_to("#{user_area.zip_codes.first.county}", "#") %></li>
+    <li><%= link_to(user_area.zip_codes.first.state, "#") %></li>
+    <li><%= link_to('Change Address', edit_area_or_profile_path, class: is_active_path(edit_area_or_profile_path)) %></li>
+  <% end %>
+</ul>
+<div class="nav__blurbs">
+  <span class="nav-blurb">Understand what matters the most from Me to We.</span>
+  <span class="nav-blurb">Add your own demands and take action to impact policy.</span>
+</div>

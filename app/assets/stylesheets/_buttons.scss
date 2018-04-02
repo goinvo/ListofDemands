@@ -1,0 +1,164 @@
+a {
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    @include focus;
+  }
+}
+
+.btn {
+  @extend .uppercase;
+  display: inline-block;
+  border: $border-width solid transparent;
+  letter-spacing: $font-letter-spacing-medium;
+  font-weight: $font-weight-normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  @include button-size(6px, 25px, $font-size-small, $font-size-small + 10px, $border-radius);
+
+  // For links styled as buttons
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: $btn-box-shadow;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
+  }
+
+  // Opinionated: add "hand" cursor to non-disabled .btn elements
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    background-image: none;
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset:disabled a.btn {
+  pointer-events: none;
+}
+
+.btn-primary {
+  @include button-variant($color-white, $color-primary, $color-primary);
+}
+
+.btn-primary--outline {
+  @include button-outline-variant($color-primary, $color-white);
+}
+
+.btn-transparent {
+  @include button-variant($color-black, transparent, transparent);
+}
+
+.btn-demand {
+  min-width: 150px;
+}
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $color-primary;
+  background-color: transparent;
+
+  &:hover {
+    color: $color-primary;
+    text-decoration: none;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: none;
+    border-color: transparent;
+    box-shadow: $btn-box-shadow;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: gray; // TODO
+    pointer-events: none;
+  }
+
+  // No need for an active state here
+}
+
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+  @include button-size(10px, 20px, $font-size-base, 12px, $border-radius);
+}
+
+.btn-sm {
+  @include button-size(5px, 10px, $font-size-small, 12px, $border-radius);
+}
+
+.btn-icon {
+  position: relative;
+  padding: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+//
+// Block button
+//
+
+.btn-block {
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  + .btn-block {
+    margin-top: $spacing;
+  }
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}

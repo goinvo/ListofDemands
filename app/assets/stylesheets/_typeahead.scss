@@ -1,0 +1,16 @@
+.typeahead.dropdown-menu {
+  @include list-unstyled;
+  display: block;
+  position: absolute;
+  background-color: $color-white;
+  border: 1px solid $color-gray--light;
+  border-radius: $border-radius;
+
+  li {
+    padding: ($spacing / 2) $spacing;
+
+    &.active {
+      background-color: transparentize($color-focus, .85);
+    }
+  }
+}

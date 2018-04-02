@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>List of Demands</title>
     <%= csrf_meta_tags %>
-    <link href="https://fonts.googleapis.com/css?family=Asap:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Asap:400,500" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
     <%= render("shared/flashes") %>
     <%= render("shared/header") %>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-          <%= yield %>
-        </div>
+    <div class="app-container">
+      <div class="sidebar desktop-only">
+        <%= render('shared/nav-list') %>
+      </div>
+      <div class="main">
+        <%= yield %>
       </div>
     </div>
     <%= yield(:before_body) %>
+    <div id="overlay" class="body-overlay"></div>
+    <%= raw Rails.application.assets_manifest.find_sources('icons.svg').first.force_encoding("UTF-8") %>
   </body>
 </html>

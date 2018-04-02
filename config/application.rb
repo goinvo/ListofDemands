@@ -18,6 +18,9 @@ Bundler.require(*Rails.groups)
 
 module ListOfDemands
   class Application < Rails::Application
+    # Add node_modules to asset pipeline
+    config.assets.paths << Rails.root.join('node_modules')
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 

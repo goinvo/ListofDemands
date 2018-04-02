@@ -1,7 +1,8 @@
-<h1>Demand Something!</h1>
-
-<%= simple_form_for(@demand) do |f| %>
-  <%= f.input(:problem_text, input_html: { class: 'typeahead', data: {source: Problem.all.map(&:name).uniq.to_json} }) %>
-  <%= f.input(:solution, required: false) %>
-  <%= f.submit("Add it!", class: 'btn btn-primary') %>
-<% end %>
+<div class="new-demand">
+  <h1 class="h2">Demand Something!</h1>
+  <%= simple_form_for(@demand) do |f| %>
+    <%= f.input(:problem_text, input_html: { class: 'typeahead form-control--text', data: {source: Problem.all.map(&:name).uniq.to_json} }) %>
+    <%= f.input(:solution, input_html: { class: 'typeahead form-control--text' }, required: false) %>
+    <%= f.submit("Add it!", class: 'btn btn-primary') %>
+  <% end %>
+</div>
