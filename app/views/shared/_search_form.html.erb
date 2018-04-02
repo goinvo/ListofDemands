@@ -1,12 +1,12 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'search-form', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <div class="search-form">
   <div class="search-form__bar">
-    <%= form_tag search_path, id: "demand-search", method: "GET" do %>
+    <form>
       <label class="sr-only" for="q">Enter search</label>
-      <%= text_field_tag("q", params[:q], class: "form-control--text", placeholder: "SEARCH", data: {"turbolinks-permanent" => true}) %>
-    <% end %>
+      <%= text_field_tag("q", params[:q], class: "form-control--text search-input", placeholder: "SEARCH", data: {"turbolinks-permanent" => true, source: @demands.map(&:name).uniq.to_json}) %>
+    </form>
   </div>
-  <%= link_to new_demand_path, class: "btn btn-primary--outline btn-add" do %>
-    <svg class="icon icon-add mobile-only"><use xlink:href="#icons-add"></svg>
-    <span class="desktop-only">+ Add</span>
-  <% end %>
 </div>

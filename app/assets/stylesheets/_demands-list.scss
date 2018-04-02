@@ -1,8 +1,6 @@
 .demands-list {
   @include list-unstyled();
-  padding: $spacing;
-  padding-bottom: 0;
-  background: linear-gradient(#F9F9F9, #FFFFFF 15px);
+  padding: 0 $spacing;
 }
 
 .demand-item {
@@ -52,4 +50,8 @@
 
 .demand-count {
   color: $color-black;
+}
+
+.no-demands {
+  display: none;
 }

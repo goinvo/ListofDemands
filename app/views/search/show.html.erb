@@ -1,5 +1,5 @@
 <% content_for(:header_second_row) do %>
-  <%= render('shared/search_form') %>
+  <%= render('shared/search_form', locals: { demands: @demands }) %>
 <% end %>
 
 <div class="main__content search-show">
@@ -9,9 +9,17 @@
       <span class="h2 margin-bottom"><%= user_header %></span>
       <span class="h3 gray">demands</span>
     </h2>
-    <%= render('shared/search_form') %>
+    <%= render('shared/search_form', locals: { demands: @demands }) %>
   </div>
-  <ul class="main__scroll demands-list">
-    <%= render(partial: 'demand', collection: @demands) %>
-  </ul>
+  <div class="main__scroll">
+    <ul class="demands-list">
+      <%= render(partial: 'demand', collection: @demands) %>
+    </ul>
+    <div class="no-demands pad-all">
+      <p>No demands found! :(</p>
+      <%= link_to new_demand_path, class: "btn btn-primary--outline btn-add" do %>
+        <span>+ Add a demand</span>
+      <% end %>
+    </div>
+  </div>
 </div>

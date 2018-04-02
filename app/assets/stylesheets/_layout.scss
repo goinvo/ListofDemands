@@ -73,6 +73,7 @@ body {
   flex: 1;
   max-width: 800px;
   height: 100%;
+  padding-top: $spacing;
 
   &__content {
     display: flex;
@@ -83,7 +84,6 @@ body {
   &__scroll {
     flex: 1;
     overflow: auto;
-    padding-top: $spacing;
   }
 
   @media only screen and (min-width: $breakpoint-desktop) {

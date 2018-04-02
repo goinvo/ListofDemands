@@ -37,8 +37,8 @@ $(function() {
     $('.datepicker-input').datepicker();
 
     $('.typeahead').each(function(index, element) {
-      var $element = $(element)
-      $element.typeahead({source: $element.data().source})
+      var $element = $(element);
+      $element.typeahead({source: $element.data().source, fitToElement: true})
     });
 
     function toggleHeader() {

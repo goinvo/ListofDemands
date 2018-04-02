@@ -1,6 +1,7 @@
 <ul class="nav-list">
   <% if user_signed_in? %>
     <li><%= link_to("My Demands", me_path, class: is_active_path(me_path)) %></li>
+    <li><%= link_to("New Demand", new_demand_path, class: is_active_path(new_demand_path)) %></li>
   <% end %>
   <% if user_area.present? %>
     <li><%= link_to(user_area.zip_codes.first.city, "#") %></li>

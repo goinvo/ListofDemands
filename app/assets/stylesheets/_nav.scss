@@ -6,7 +6,7 @@
   max-height: 100vh;
   overflow-y: auto;
   background-color: $color-white;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+  box-shadow: $fixed-header-shadow;
   z-index: $z-index-header;
 
   &__main {
