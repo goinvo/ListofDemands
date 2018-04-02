@@ -2,7 +2,7 @@
   "name": "list_of_demands",
   "private": true,
   "dependencies": {
-    "@fengyuanchen/datepicker": "^0.6.4"
+    "@fengyuanchen/datepicker": "^0.6.5"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
