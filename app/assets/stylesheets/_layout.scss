@@ -1,3 +1,7 @@
+html {
+  overflow: hidden;
+}
+
 body {
   padding-top: $header-height;
   font-family: $font-family-sans-serif;
@@ -84,6 +88,7 @@ body {
   &__scroll {
     flex: 1;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   @media only screen and (min-width: $breakpoint-desktop) {

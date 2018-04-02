@@ -7,7 +7,7 @@ $(function() {
       var $demands = $(".demands-list li");
       $demands.each(function(i, demand) {
         var demandNameText = $(demand).find('.demand-name').text().toLowerCase();
-        var demandMatchesSearchCriteria = demandNameText.includes(searchValue.toLowerCase());
+        var demandMatchesSearchCriteria = _.includes(demandNameText, searchValue.toLowerCase());
 
         demandMatchesSearchCriteria ? $(demand).show() : $(demand).hide()
       });

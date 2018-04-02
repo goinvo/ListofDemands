@@ -6,7 +6,7 @@
     </div>
 
     <% if current_user.user_demands.none? %>
-      <h3>You have no demands.</h3>
+      <h3 class="h3">You have no demands.</h3>
     <% else %>
       <%= form_tag(supported_demands_path, method: :put, remote: true, authenticity_token: true) do %>
         <ol class="demands-list sortable-list">
