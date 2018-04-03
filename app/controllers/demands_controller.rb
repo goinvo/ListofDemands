@@ -1,6 +1,6 @@
 class DemandsController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def new
     @demand = current_user.demands.build
@@ -23,7 +23,7 @@ class DemandsController < ApplicationController
   end
 
   def show
-    @demand = current_user.supported_demands.find(params[:id])
+    @demand = Demand.find(params[:id])
   end
 
   private
