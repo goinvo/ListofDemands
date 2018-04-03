@@ -8,7 +8,7 @@
       <span class="btn btn-primary btn-demand">Demanded</span>
     <% else %>
       <%= form_tag(supported_demands_path) do %>
-        <input type="hidden" name="id" value="<%= demand.id %>" />
+        <input type="hidden" name="id" value="<%= @demand.id %>" />
         <%= submit_tag("Demand", class: 'btn btn-primary--outline btn-demand') %>
       <% end %>
     <% end %>
