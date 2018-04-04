@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       # attempt to geocode
       location = request.location
 
-      if zip_code = ZipCode.find_by(zip: location.data['zip_code'])
+      if zip_code = ZipCode.find_by(zip: location.data['zip'])
         session[:area_id] = zip_code.area.id
       else
         # :shrug: bad ZIP?
