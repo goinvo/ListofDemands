@@ -21,6 +21,12 @@ class SearchController < ApplicationController
 
     end
 
+    if params[:county]
+      @demands = user_area.demands_by_county
+    elsif params[:state]
+      @demands = user_area.demands_by_state
+    end
+
     @demands.sort! { |first, second|
       # this will NOT scale
       if first.user_demands.count == second.user_demands.count
