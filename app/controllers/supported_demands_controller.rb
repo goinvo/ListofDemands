@@ -1,7 +1,7 @@
 class SupportedDemandsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :ensure_user_area, except: [:show]
+  before_action :ensure_user_municipality, except: [:show]
 
   def create
     @demand = find_demand
@@ -31,6 +31,6 @@ class SupportedDemandsController < ApplicationController
   end
 
   def find_demand
-    user_area.demands.find(params[:id])
+    user_municipality.demands.find(params[:id])
   end
 end

@@ -1,0 +1,3 @@
+class State < Area
+
+end

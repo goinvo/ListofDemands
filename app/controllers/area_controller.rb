@@ -10,7 +10,7 @@ class AreaController < ApplicationController
 
   def update
     if params[:zip].present? && zip = ZipCode.find_by(zip: params[:zip])
-      session[:area_id] = zip.area.id
+      session[:area_id] = zip.municipality.id
       redirect_to session.delete(:set_area_redirect) || search_url
     else
       flash[:alert] = "We know of #{ZipCode.count} ZIP codes. That wasn't one of them :-("
