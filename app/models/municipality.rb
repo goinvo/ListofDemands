@@ -1,6 +1,15 @@
 class Municipality < Area
   has_one :area_definition
-  has_one :zip_code, through: :area_definition
-  # has_one :county, through: :zip_code
-  # has_one :state, through: :zip_code
+
+  def county
+    self.zip_codes.first.county
+  end
+
+  def state
+    self.zip_codes.first.state
+  end
+
+  def name_abbreviated
+    "#{self.zip_codes.first.city}, #{self.zip_codes.first.state_abbreviation}"
+  end
 end

@@ -21,10 +21,12 @@ class SearchController < ApplicationController
 
     end
 
-    if params[:county]
-      @demands = user_municipality.demands_by_county
-    elsif params[:state]
-      @demands = user_municipality.demands_by_state
+    if params[:scope] == 'county'
+      @demands = user_municipality.county.demands.to_a
+    elsif params[:scope] == 'state'
+      @demands = user_municipality.state.demands.to_a
+    elsif params[:scope] == 'country'
+      @demands = Demand.all.to_a
     end
 
     @demands.sort! { |first, second|

@@ -9,7 +9,7 @@ class DemandsController < ApplicationController
   def create
     @demand = current_user.demands.build
     @demand.assign_attributes(create_params)
-    @demand.area = current_user.area
+    @demand.area = current_user.municipality
 
     if @demand.save
       redirect_to me_url
