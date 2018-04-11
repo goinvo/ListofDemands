@@ -1,4 +1,5 @@
 require 'faker'
+require "constants"
 
 puts "creating users"
 rob = User.find_by(email: "rob@rescuedcode.com")
@@ -168,7 +169,8 @@ cities_and_users.each do |city, users|
     user.demands.create(
       area: user.zip_code.municipality,
       problem: Problem.all.sample,
-      solution: Faker::Lorem.paragraphs(4).join("\n")
+      solution: Faker::Lorem.paragraphs(4).join("\n"),
+      topic: Constants::DEMAND_TOPICS.sample
     )
   end
 end

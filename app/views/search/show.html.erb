@@ -11,6 +11,13 @@
     </h2>
     <%= render('shared/search_form', locals: { demands: @demands }) %>
   </div>
+  <div>
+    <ul>
+      <% Constants::DEMAND_TOPICS.each do |topic| %>
+        <li><%= link_to("#{topic}", URI.encode("#{search_url}?topic=#{topic}")) %></li>
+      <% end %>
+    </ul>
+  </div>
   <div class="main__scroll">
     <ul class="demands-list">
       <%= render(partial: 'demand', collection: @demands) %>

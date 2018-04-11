@@ -1,9 +1,12 @@
+require "constants"
+
 class Demand < ApplicationRecord
   belongs_to :user
   belongs_to :area
   belongs_to :problem
   has_many :user_demands
   validates :user, :area, :solution, presence: true
+  validates :topic, acceptance: { accept: Constants::DEMAND_TOPICS }
 
   delegate :name, to: :problem
   attr_accessor :problem_text

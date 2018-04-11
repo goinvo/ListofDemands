@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2018_04_19_182356) do
     t.datetime "updated_at", null: false
     t.text "solution"
     t.integer "problem_id", null: false
+    t.string "topic"
     t.index ["area_id"], name: "index_demands_on_area_id"
     t.index ["user_id"], name: "index_demands_on_user_id"
   end
