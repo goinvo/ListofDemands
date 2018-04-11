@@ -3,20 +3,14 @@
 <% end %>
 
 <div class="main__content search-show">
-  <div class="desktop-only">
+  <div class="desktop-only desktop-header-container">
     <h2>
       <span class="h3 gray margin-bottom">The town of</span>
       <span class="h2 margin-bottom"><%= user_header %></span>
       <span class="h3 gray">demands</span>
     </h2>
     <%= render('shared/search_form', locals: { demands: @demands }) %>
-  </div>
-  <div>
-    <ul>
-      <% Constants::DEMAND_TOPICS.each do |topic| %>
-        <li><%= link_to("#{topic}", URI.encode("#{search_url}?topic=#{topic}")) %></li>
-      <% end %>
-    </ul>
+    <%= render('shared/topics-filter') %>
   </div>
   <div class="main__scroll">
     <ul class="demands-list">

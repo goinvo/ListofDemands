@@ -1,0 +1,10 @@
+<div class="topics-filter">
+  <span class="topics-filter__label">Topics</span>
+  <ul class="pills">
+    <% Constants::DEMAND_TOPICS.each do |topic| %>
+      <% is_active_topic = topic == SearchController.class_variable_get('@@active_topic_filter') %>
+      <% query = "?topic=#{topic}" %>
+      <li><%= link_to("#{topic}", URI.encode("#{search_url}#{is_active_topic ? '' : query}"), class: "btn btn-primary--outline #{ is_active_topic ? 'is-active' : ''}") %></li>
+    <% end %>
+  </ul>
+</div>

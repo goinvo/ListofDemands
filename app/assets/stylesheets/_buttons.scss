@@ -24,7 +24,8 @@ a {
   @include button-size(6px, 25px, $font-size-small, $font-size-small + 10px, $border-radius);
 
   // For links styled as buttons
-  &:hover {
+  &:hover,
+  &.is-active {
     text-decoration: none;
   }
 

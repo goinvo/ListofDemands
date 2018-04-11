@@ -1,4 +1,15 @@
 .search-form {
   padding: 5px 10px;
-  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.1);
+}
+
+.topics-filter {
+  display: flex;
+  align-items: center;
+  padding: $spacing $spacing ($spacing / 2);
+
+  &__label {
+    flex-shrink: 0;
+    margin-right: 0 $spacing ($spacing / 2) 0;
+    color: $color-gray;
+  }
 }

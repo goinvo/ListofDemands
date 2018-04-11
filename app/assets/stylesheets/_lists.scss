@@ -2,3 +2,16 @@ dt {
   color: $color-gray;
   font-weight: $font-weight-normal;
 }
+
+.pills {
+  @include list-unstyled();
+  display: flex;
+  flex-wrap: wrap;
+
+  a {
+    font-size: $font-size-extra-small;
+    padding: 2px 10px;
+    border-radius: 25px;
+    margin: 0 ($spacing / 2) ($spacing / 2) 0;
+  }
+}

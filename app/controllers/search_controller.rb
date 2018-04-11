@@ -4,6 +4,8 @@ class SearchController < ApplicationController
 
   before_action :ensure_user_municipality
 
+  cattr_accessor :active_topic_filter
+
   def show
     @demands = user_municipality.demands.to_a
 
@@ -27,10 +29,11 @@ class SearchController < ApplicationController
       @demands = user_municipality.state.demands.to_a
     end
 
-    if params[:topic].present?
-      if (Constants::DEMAND_TOPICS.include?(params[:topic]))
-        @demands = Demand.all.where(topic: params[:topic], area: user_area).to_a
-      end
+    if params[:topic].present? && Constants::DEMAND_TOPICS.include?(params[:topic])
+      SearchController.class_variable_set("@@active_topic_filter", params[:topic])
+      @demands = Demand.all.where(topic: params[:topic], area: user_area).to_a
+    else
+      SearchController.class_variable_set("@@active_topic_filter", '')
     end
 
     @demands.sort! { |first, second|

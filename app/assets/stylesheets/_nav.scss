@@ -60,7 +60,8 @@
     margin-left: auto;
   }
 
-  .search-form {
+  .search-form,
+  .topics-filter {
     @media only screen and (min-width: $breakpoint-desktop) {
       display: none;
     }
