@@ -24,48 +24,29 @@ module Util
         worker.save!
       end
 
-      area_destination_columns = [:name, :type, :created_at, :updated_at]
-
-      Area.bulk_insert(*area_destination_columns, update_duplicates: true) do |worker|
+      Area.bulk_insert(:name, :created_at, :updated_at) do |worker|
         set = Set.new
 
         CSV.foreach(Rails.root.join('data', 'us_postal_codes.csv'), headers: true) do |row|
-          set << {name: "#{row["city"]}, #{row["county"]}, #{row["state"]}", type: "Municipality"}
-          set << {name: "#{row["county"]}, #{row["state"]}", type: "County"}
-          set << {name: "#{row["state"]}", type: "State"}
+          set << "#{row["city"]}, #{row["state"]}"
         end
 
-        set.to_a.map do |row|
-          worker.add([row[:name], row[:type], Time.now, Time.now])
+        set.to_a.map do |name|
+          worker.add([name, Time.now, Time.now])
         end
 
         worker.save!
       end
 
-      area_definitions_destination_columns = [:zip_code_id, :area_id, :created_at, :updated_at]
-
-      AreaDefinition.bulk_insert(*area_definitions_destination_columns, update_duplicates: true) do |worker|
+      AreaDefinition.bulk_insert(:zip_code_id, :area_id, :created_at, :updated_at) do |worker|
 
         zip_codes = ZipCode.all.reduce({}) { |hash, zip| hash[zip.zip] = zip.id; hash }
         areas = Area.all.reduce({}) { |hash, area| hash[area.name] = area.id; hash }
 
-
         CSV.foreach(Rails.root.join('data', 'us_postal_codes.csv'), headers: true) do |row|
           worker.add([
             zip_codes[row["zip"]],
-            areas["#{row["city"]}, #{row["county"]}, #{row["state"]}"],
-            Time.now,
-            Time.now
-          ])
-          worker.add([
-            zip_codes[row["zip"]],
-            areas["#{row["county"]}, #{row["state"]}"],
-            Time.now,
-            Time.now
-          ])
-          worker.add([
-            zip_codes[row["zip"]],
-            areas["#{row["state"]}"],
+            areas["#{row["city"]}, #{row["state"]}"],
             Time.now,
             Time.now
           ])
