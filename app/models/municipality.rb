@@ -1,6 +1,4 @@
 class Municipality < Area
-  has_one :area_definition
-
   def county
     self.zip_codes.first.county
   end

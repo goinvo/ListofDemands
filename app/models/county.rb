@@ -1,6 +1,4 @@
 class County < Area
-  has_one :area_definition
-
   def state
     self.zip_codes.first.state
   end
