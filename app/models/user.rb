@@ -9,7 +9,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile
   delegate :zip_code, to: :profile
 
-  belongs_to :municipality
+  belongs_to :area
   has_many :demands # demands created by this user
   has_many :user_demands # the link to show support for other users' demands
   has_many :supported_demands, through: :user_demands, source: :demand, class_name: "Demand"
@@ -17,13 +17,17 @@ class User < ApplicationRecord
   before_validation :create_profile, on: :create
   before_validation :associate_municipality, on: :create
 
+  def municipality
+    self.area
+  end
+
   def associate_municipality
     return if profile&.zip.blank?
 
     zip_code = ZipCode.find_by(zip: profile.zip)
     return if zip_code.municipality.blank?
 
-    self.municipality = zip_code.municipality
+    self.area = zip_code.municipality
   end
 
   private

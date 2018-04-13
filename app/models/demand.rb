@@ -7,6 +7,7 @@ class Demand < ApplicationRecord
 
   delegate :name, to: :problem
   attr_accessor :problem_text
+  attr_accessor :is_statewide
 
   before_create :create_user_demand
 

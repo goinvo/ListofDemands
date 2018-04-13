@@ -9,7 +9,7 @@ class DemandsController < ApplicationController
   def create
     @demand = current_user.demands.build
     @demand.assign_attributes(create_params)
-    @demand.area = current_user.municipality
+    @demand.area = @demand.is_statewide ? current_user.municipality.state : current_user.municipality
 
     if @demand.save
       redirect_to me_url
@@ -29,6 +29,6 @@ class DemandsController < ApplicationController
   private
 
   def create_params
-    params.require(:demand).permit(:solution, :problem_text)
+    params.require(:demand).permit(:solution, :problem_text, :is_statewide)
   end
 end
