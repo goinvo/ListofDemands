@@ -18,10 +18,7 @@ class SearchController < ApplicationController
 
       @demands = Set.new(demands)
                    .merge(demands_by_problem).to_a
-
-    end
-
-    if params[:scope] == 'county'
+    elsif params[:scope] == 'county'
       county_municipality_ids = user_municipality.county.municipalities.map { |muni| muni.id }
       @demands = Demand.where(area_id: county_municipality_ids).to_a
     elsif params[:scope] == 'state'
