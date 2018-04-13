@@ -1,4 +1,8 @@
 class County < Area
+  def municipalities
+    self.zip_codes.map { |zip| zip.municipality }
+  end
+
   def state
     self.zip_codes.first.state
   end
