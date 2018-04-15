@@ -1,0 +1,6 @@
+example_id                                     | status | run_time        |
+---------------------------------------------- | ------ | --------------- |
+./spec/forms/demand_create_form_spec.rb[1:1:1] | passed | 0.01826 seconds |
+./spec/forms/demand_create_form_spec.rb[1:1:2] | passed | 0.01933 seconds |
+./spec/forms/demand_create_form_spec.rb[1:2:1] | passed | 0.01705 seconds |
+./spec/forms/demand_create_form_spec.rb[1:2:2] | passed | 0.80577 seconds |
