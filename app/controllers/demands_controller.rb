@@ -7,13 +7,11 @@ class DemandsController < ApplicationController
   end
 
   def create
-    @demand = current_user.demands.build
-    @demand.assign_attributes(create_params)
-    @demand.area = current_user.area
+    form = DemandCreateForm.new(current_user, create_params)
 
-    if @demand.save
+    if form.submit
       redirect_to me_url
-    elsif @demand.solution.blank?
+    elsif form.has_solution?
       flash[:info] = "Okay, we've saved that issue but no demand was created because the proposed solution was empty."
       redirect_to search_url
     else
@@ -29,6 +27,6 @@ class DemandsController < ApplicationController
   private
 
   def create_params
-    params.require(:demand).permit(:solution, :problem_text)
+    params.require(:demand).permit(:solution, :problem_text, :is_statewide)
   end
 end

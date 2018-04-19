@@ -15,17 +15,21 @@ class User < ApplicationRecord
   has_many :supported_demands, through: :user_demands, source: :demand, class_name: "Demand"
 
   before_validation :create_profile, on: :create
-  before_validation :associate_area, on: :create
+  before_validation :associate_municipality, on: :create
 
-  def associate_area
+  def municipality
+    self.area
+  end
+
+  def associate_municipality
     return if profile&.zip.blank?
 
     zip_code = ZipCode.find_by(zip: profile.zip)
-    return if zip_code.area.blank?
+    return if zip_code.municipality.blank?
 
-    self.area = zip_code.area
+    self.area = zip_code.municipality
   end
-  
+
   private
 
   def create_profile

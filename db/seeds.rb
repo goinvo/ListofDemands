@@ -135,15 +135,15 @@ if trumpy.blank?
   trumpy.save!
 end
 User.all.each do |user|
-  user.associate_area
+  user.associate_municipality
   user.save!
 end
 
 puts "creating random Demands"
 Demand.delete_all
-arlington = Area.find_by(name: "Arlington, Massachusetts")
-bedford = Area.find_by(name: "Bedford, Massachusetts")
-boxford = Area.find_by(name: "Boxford, Massachusetts")
+arlington = Area.find_by(name: "Arlington, Middlesex, Massachusetts")
+bedford = Area.find_by(name: "Bedford, Middlesex, Massachusetts")
+boxford = Area.find_by(name: "Boxford, Essex, Massachusetts")
 
 ["Americans do not all have access to Primary Care. [Everyone needs Primary Care. Everyone!]",
 "Too many Americans can't navigate the healthcare system. [It's too damn complicated!]",
@@ -170,7 +170,7 @@ cities_and_users.each do |city, users|
   15.times do
     user = users.sample
     user.demands.create(
-      area: user.zip_code.area,
+      area: user.zip_code.municipality,
       problem: Problem.all.sample,
       solution: Faker::Lorem.paragraphs(4).join("\n")
     )
@@ -184,9 +184,12 @@ UserDemand.delete_all
 Demand.all.each do |demand|
   rand(1..3).times do
     filtered_users = users.reject { |u| demand.user == u || u.supported_demands.include?(demand) }
-    UserDemand.create(
-      user: filtered_users.sample,
-      demand: demand
-    )
+    user = filtered_users.sample
+    if user && demand
+      UserDemand.create(
+        user: user,
+        demand: demand
+      )
+    end
   end
 end

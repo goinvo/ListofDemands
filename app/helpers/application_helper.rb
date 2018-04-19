@@ -12,7 +12,7 @@ module ApplicationHelper
       yield(:brand)
     else
       if user_signed_in?
-        current_user.area.name_abbreviated
+        current_user.municipality.name_abbreviated
       elsif (area = Area.find_by(id: session[:area_id])).present?
         "#{area.name_abbreviated}".html_safe
       else

@@ -9,7 +9,6 @@ end
 gem 'bootsnap', require: false
 gem 'bulk_insert'
 gem 'devise', github: 'plataformatec/devise'
-gem 'faker', require: false
 gem 'geocoder'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -29,13 +28,14 @@ gem 'turbolinks', '~> 5'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-nav'
+  gem 'faker'
 end
 
 group :development do
   gem 'debase', '0.2.2.beta14'
   gem "letter_opener"
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'pry-nav'
   gem 'ruby-debug-ide'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -44,4 +44,5 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end

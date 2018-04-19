@@ -9,7 +9,7 @@ class UpdateProfileForm
 
     @user.profile.assign_attributes(@params)
 
-    @user.associate_area if @user.profile.zip_changed?
+    @user.associate_municipality if @user.profile.zip_changed?
 
     @user.save
   end

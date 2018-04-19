@@ -1,24 +1,28 @@
 class SearchController < ApplicationController
 
-  before_action :ensure_user_area
+  before_action :ensure_user_municipality
 
   def show
-    @demands = user_area.demands.to_a
+    @demands = user_municipality.demands.to_a
 
     if params[:q].present?
       # TODO: replace this with a proper search engine. elasticsearch?
       query = params[:q].split(' ').join('|')
 
-      demands = user_area.demands.advanced_search(solution: query)
+      demands = user_municipality.demands.advanced_search(solution: query)
 
-      demands_by_problem = user_area
+      demands_by_problem = user_municipality
                    .problems
                    .includes(:demands)
-                   .advanced_search(name: query).map { |problem| problem.demands.find { |demand| demand.area == user_area }}.compact
+                   .advanced_search(name: query).map { |problem| problem.demands.find { |demand| demand.area == user_municipality }}.compact
 
       @demands = Set.new(demands)
                    .merge(demands_by_problem).to_a
-
+    elsif params[:scope] == 'county'
+      county_municipality_ids = user_municipality.county.municipalities.map { |muni| muni.id }
+      @demands = Demand.where(area_id: county_municipality_ids).to_a
+    elsif params[:scope] == 'state'
+      @demands = user_municipality.state.demands.to_a
     end
 
     @demands.sort! { |first, second|
