@@ -1,10 +1,16 @@
 class Municipality < Area
+
+  has_many :area_definitions
+  has_many :zip_codes, through: :area_definitions
+
+  validates :name, uniqueness: true
+
   def county
-    self.zip_codes.first.county
+    self.area_definitions.first.county
   end
 
   def state
-    self.zip_codes.first.state
+    self.area_definitions.first.state
   end
 
   def name_abbreviated

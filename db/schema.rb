@@ -10,19 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405160604) do
+ActiveRecord::Schema.define(version: 20180419182356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
 
   create_table "area_definitions", force: :cascade do |t|
-    t.bigint "area_id", null: false
+    t.integer "municipality_id"
     t.bigint "zip_code_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["area_id", "zip_code_id"], name: "index_area_definitions_on_area_id_and_zip_code_id", unique: true
-    t.index ["area_id"], name: "index_area_definitions_on_area_id"
+    t.integer "county_id"
+    t.integer "state_id"
+    t.index ["municipality_id", "zip_code_id"], name: "index_area_definitions_on_municipality_id_and_zip_code_id", unique: true
+    t.index ["municipality_id"], name: "index_area_definitions_on_municipality_id"
     t.index ["zip_code_id"], name: "index_area_definitions_on_zip_code_id"
   end
 
