@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419182356) do
+ActiveRecord::Schema.define(version: 2018_04_19_182356) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "pg_trgm"
+  enable_extension "plpgsql"
 
   create_table "area_definitions", force: :cascade do |t|
     t.integer "municipality_id"

@@ -1,8 +1,4 @@
 require 'faker'
-require_relative "../app/util/zip_code_importer"
-
-puts "importing zip codes, areas, and area definitions"
-Util::ZipCodeImporter.run
 
 puts "creating users"
 rob = User.find_by(email: "rob@rescuedcode.com")
