@@ -20,6 +20,10 @@ module ApplicationHelper
       end
     end
   end
+
+  def is_active_topic(topic)
+    topic == params[:topic]
+  end
 end
 
 def is_active_path(path)

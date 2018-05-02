@@ -25,5 +25,6 @@ class ApplicationController < ActionController::Base
   def user_municipality
     @area ||= user_signed_in? ? current_user.municipality : Area.find_by(id: session[:area_id])
   end
+
   helper_method :user_municipality
 end

@@ -1,0 +1,8 @@
+<div class="topics-filter">
+  <span class="topics-filter__label">Topics</span>
+  <ul class="pills">
+    <% Constants::DEMAND_TOPICS.each do |topic| %>
+      <li><%= link_to("#{topic}", is_active_topic(topic) ? search_url(request.query_parameters.merge({topic: ''})) : search_url(request.query_parameters.merge({topic: topic})), class: "btn btn-primary--outline #{ is_active_topic(topic) ? 'is-active' : ''}") %></li>
+    <% end %>
+  </ul>
+</div>

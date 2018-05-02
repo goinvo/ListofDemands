@@ -1,3 +1,5 @@
+require "constants"
+
 class SearchController < ApplicationController
 
   before_action :ensure_user_municipality
@@ -23,6 +25,10 @@ class SearchController < ApplicationController
       @demands = Demand.where(area_id: county_municipality_ids).to_a
     elsif params[:scope] == 'state'
       @demands = user_municipality.state.demands.to_a
+    end
+
+    if params[:topic].present? && Constants::DEMAND_TOPICS.include?(params[:topic])
+      @demands = @demands.select{ |demand| demand.topic == params[:topic] }
     end
 
     @demands.sort! { |first, second|

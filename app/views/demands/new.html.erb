@@ -1,8 +1,10 @@
 <div class="new-demand">
   <h1 class="h2">Demand Something!</h1>
   <%= simple_form_for(@demand) do |f| %>
+    <% topic_options = Constants::DEMAND_TOPICS.map{ |topic| [topic, topic] } %>
     <%= f.input(:problem_text, input_html: { class: 'typeahead form-control--text', data: {source: Problem.all.map(&:name).uniq.to_json} }) %>
     <%= f.input(:solution, input_html: { class: 'typeahead form-control--text' }, required: false) %>
+    <%= f.input(:topic, input_html: { class: 'form-control form-control--select' }, as: :select, collection: topic_options, required: false) %>
     <%= f.input(:is_statewide, label: "Applies to the entire state of #{current_user.municipality.state.name}", input_html: { class: 'form-control--checkbox' }, required: false, as: :boolean) %>
     <%= f.submit("Add it!", class: 'btn btn-primary') %>
   <% end %>

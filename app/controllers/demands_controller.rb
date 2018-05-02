@@ -27,6 +27,6 @@ class DemandsController < ApplicationController
   private
 
   def create_params
-    params.require(:demand).permit(:solution, :problem_text, :is_statewide)
+    params.require(:demand).permit(:solution, :problem_text, :topic, :is_statewide)
   end
 end

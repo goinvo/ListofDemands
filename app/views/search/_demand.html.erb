@@ -4,7 +4,7 @@
     <div class="demand-item__name-container">
       <div class="demand-name"><%= link_to(demand.name, demand_path(demand)) %></div>
       <div class="demand-demanded">
-        demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %></span>
+        demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %> <%= demand.topic ? ", #{demand.topic}" : "" %></span>
       </div>
     </div>
     <div class="demand-item__button">
