@@ -3,8 +3,7 @@
   <ul class="pills">
     <% Constants::DEMAND_TOPICS.each do |topic| %>
       <% is_active_topic = topic == params[:topic] %>
-      <% query = "?topic=#{topic}" %>
-      <li><%= link_to("#{topic}", URI.encode("#{search_url}#{is_active_topic ? '' : query}"), class: "btn btn-primary--outline #{ is_active_topic ? 'is-active' : ''}") %></li>
+      <li><%= link_to("#{topic}", is_active_topic ? search_url(request.query_parameters.merge({topic: ''})) : search_url(request.query_parameters.merge({topic: topic})), class: "btn btn-primary--outline #{ is_active_topic ? 'is-active' : ''}") %></li>
     <% end %>
   </ul>
 </div>
