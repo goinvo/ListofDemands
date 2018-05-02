@@ -6,12 +6,11 @@ class Demand < ApplicationRecord
   belongs_to :problem
   has_many :user_demands
   validates :user, :area, :solution, presence: true
-  validates :topic, acceptance: { accept: Constants::DEMAND_TOPICS }
+  validates :topic, inclusion: { in: Constants::DEMAND_TOPICS }, allow_nil: true
 
   delegate :name, to: :problem
   attr_accessor :problem_text
   attr_accessor :is_statewide
-  attr_accessor :topic
 
   before_create :create_user_demand
 
