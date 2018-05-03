@@ -1,10 +1,10 @@
 <div class="flashes">
   <% flash.each do |key, value| %>
-    <div class="alert <%= %w(alert error).include?(key) ? '' : 'alert-dismissible' %> alert-<%= key %>">
-      <% if !%w(alert error).include?(key) %>
-        <a href="#" data-dismiss="alert" class="close">×</a>
-      <% end %>
-      <%= value %>
-    </div>
+    <a href="#" data-dismiss="alert" class="alert-dismiss-wrapper close">
+      <div class="alert alert-dismissible alert-<%= key %>">
+        <svg class="icon icon-close"><use xlink:href="#icons-close"></svg>
+        <%= value %>
+      </div>
+    </a>
   <% end %>
 </div>
