@@ -30,7 +30,15 @@ module ApplicationHelper
 end
 
 def is_active_path(path)
-  "is-active" if current_page?(path)
+  current_page?(path)
+end
+
+def should_have_active_nav_class(path, scope = nil)
+  if scope && current_page?(path)
+    'is-active' if params[:scope] == scope || (scope == '' && !params[:scope])
+  else
+    'is-active' if is_active_path(path)
+  end
 end
 
 private
