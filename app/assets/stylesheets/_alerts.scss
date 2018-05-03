@@ -1,0 +1,46 @@
+.flashes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: $z-index-flash;
+}
+
+.alert-dismiss-wrapper {
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    @include focus;
+  }
+}
+
+.alert {
+  padding: $spacing ($spacing * 3);
+  color: $color-blue--dark;
+  background-color: $color-blue--light;
+  border-top: 1px solid $color-blue--dark;
+  border-bottom: 1px solid $color-blue--dark;
+
+  .icon-close {
+    position: absolute;
+    top: 50%;
+    right: $spacing * 2;
+    width: 1rem;
+    height: 1rem;
+    fill: $color-blue--dark;
+    transform: translateY(-50%);
+  }
+
+  &-danger {
+    color: $color-red--dark;
+    background-color: $color-red--light;
+    border-top: 1px solid $color-red--dark;
+    border-bottom: 1px solid $color-red--dark;
+
+    .icon-close {
+      fill: $color-red--dark;
+    }
+  }
+}
