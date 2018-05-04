@@ -7,17 +7,20 @@ module ApplicationHelper
     end
   end
 
+  def current_user_area_name
+    if user_signed_in?
+      area_name_by_params_area(current_user.municipality)
+    elsif (area = Area.find_by(id: session[:area_id])).present?
+      "#{area_name_by_params_area(area)}".html_safe
+    end
+  end
+
   def user_header
     if content_for(:brand)
       yield(:brand)
     else
-      if user_signed_in?
-        current_user.municipality.name_abbreviated
-      elsif (area = Area.find_by(id: session[:area_id])).present?
-        "#{area.name_abbreviated}".html_safe
-      else
-        "listofdemands.us"
-      end
+      area_name = current_user_area_name
+      area_name ? area_name : "listofdemands.us"
     end
   end
 
@@ -26,6 +29,24 @@ module ApplicationHelper
   end
 end
 
-def is_active_path(path)
-  "is-active" if current_page?(path)
+def should_have_active_nav_class(path, scope = nil)
+  if current_page?(root_url) && scope == ''
+    'is-active'
+  elsif scope && current_page?(path)
+    'is-active' if params[:scope] == scope || (scope == '' && !params[:scope])
+  else
+    'is-active' if current_page?(path.split('?')[0])
+  end
+end
+
+private
+
+def area_name_by_params_area(area)
+  if params[:scope] == 'county'
+    area.county.name_abbreviated
+  elsif params[:scope] == 'state'
+    area.state.name
+  else
+    area.name_abbreviated
+  end
 end
