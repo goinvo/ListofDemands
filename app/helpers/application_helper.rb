@@ -27,6 +27,10 @@ module ApplicationHelper
   def is_active_topic(topic)
     topic == params[:topic]
   end
+
+  def current_user_owns_demand?
+    current_user == Demand.find(params[:id]).user
+  end
 end
 
 def should_have_active_nav_class(path, scope = nil)
