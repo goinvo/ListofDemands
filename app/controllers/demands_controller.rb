@@ -44,7 +44,7 @@ class DemandsController < ApplicationController
   private
 
   def require_permission
-    if !current_user_owns_demand?
+    if !current_user_owns_demand?(Demand.find(params[:id]))
       redirect_to root_path
     end
   end

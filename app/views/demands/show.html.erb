@@ -1,7 +1,7 @@
 <div class="main__content">
   <div class="main__scroll pad-all">
     <h1 class="h2"><%= @demand.name %></h1>
-    <% if current_user_owns_demand? %>
+    <% if current_user_owns_demand?(@demand) %>
       <%= link_to 'Edit', edit_demand_url(@demand) %>
     <% end %>
     <% @demand.solution.split("\n").each do |paragraph| %>

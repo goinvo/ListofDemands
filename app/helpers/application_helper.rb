@@ -28,8 +28,8 @@ module ApplicationHelper
     topic == params[:topic]
   end
 
-  def current_user_owns_demand?
-    current_user == Demand.find(params[:id]).user
+  def current_user_owns_demand?(demand)
+    current_user == demand.user
   end
 end
 
