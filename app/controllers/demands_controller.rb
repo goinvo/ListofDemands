@@ -9,9 +9,9 @@ class DemandsController < ApplicationController
   end
 
   def create
-    form = DemandCreateForm.new(current_user, create_params)
+    form = DemandForm.new(current_user, create_params)
 
-    if form.submit
+    if form.save
       redirect_to me_url
     elsif form.has_solution?
       flash[:info] = "Okay, we've saved that issue but no demand was created because the proposed solution was empty."
@@ -31,10 +31,10 @@ class DemandsController < ApplicationController
   end
 
   def update
-    @demand = Demand.find(params[:id])
+    form = DemandForm.new(current_user, update_params.merge({id: params[:id]}))
 
-    if @demand.update_attributes(update_params)
-      render :show
+    if form.save
+      redirect_to(Demand.find(params[:id]))
     else
       flash[:alert] = "Oops — we couldn't save those changes..."
       render :edit
