@@ -8,14 +8,14 @@ RSpec.describe DemandForm do
       form = DemandForm.new(user, {})
       expect(form.current_user).to eq(user)
     end
-    it 'builds new @demand' do
+    it 'builds new @demand if no id passed in' do
       user = create_arlington_user
       form = DemandForm.new(user, {})
       expect(form.demand).to be_instance_of(Demand)
     end
-    it 'sets existing @demand' do
+    it 'sets existing @demand if id passed in' do
       user = create_arlington_user
-      demand = create(:demand, :local)
+      demand = create(:demand, :local, user: user)
       form = DemandForm.new(user, { id: demand.id })
 
       expect(form.demand).to be_instance_of(Demand)

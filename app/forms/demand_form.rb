@@ -6,7 +6,7 @@ class DemandForm
     @current_user = current_user
 
     if attr[:id]
-      @demand = Demand.find(attr[:id])
+      @demand = @current_user.demands.find(attr[:id])
       @params = attr.except(:id)
     else
       @demand = @current_user.demands.build

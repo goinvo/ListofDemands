@@ -2,7 +2,6 @@ class DemandsController < ApplicationController
   include ApplicationHelper
 
   before_action :authenticate_user!, except: [:show]
-  before_action :require_permission, only: [:edit, :update]
 
   def new
     @demand = current_user.demands.build
@@ -27,14 +26,14 @@ class DemandsController < ApplicationController
   end
 
   def edit
-    @demand = Demand.find(params[:id])
+    @demand = current_user.demands.find(params[:id])
   end
 
   def update
     form = DemandForm.new(current_user, update_params.merge({id: params[:id]}))
 
     if form.save
-      redirect_to(Demand.find(params[:id]))
+      redirect_to(form.demand)
     else
       flash[:alert] = "Oops — we couldn't save those changes..."
       render :edit
@@ -42,12 +41,6 @@ class DemandsController < ApplicationController
   end
 
   private
-
-  def require_permission
-    if !current_user_owns_demand?(Demand.find(params[:id]))
-      redirect_to root_path
-    end
-  end
 
   def create_params
     params.require(:demand).permit(:solution, :problem_text, :topic, :is_statewide)

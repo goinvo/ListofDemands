@@ -25,6 +25,9 @@ class Demand < ApplicationRecord
     self.problem = Problem.find_or_create_by(name: name)
   end
 
+  def owned_by?(user)
+    user == self.user
+  end
   private
 
   def create_user_demand

@@ -1,11 +1,11 @@
 example_id                              | status | run_time        |
 --------------------------------------- | ------ | --------------- |
-./spec/forms/demand_form_spec.rb[1:1:1] | passed | 0.01856 seconds |
-./spec/forms/demand_form_spec.rb[1:1:2] | passed | 0.01946 seconds |
-./spec/forms/demand_form_spec.rb[1:1:3] | passed | 0.35292 seconds |
-./spec/forms/demand_form_spec.rb[1:2:1] | passed | 0.02144 seconds |
-./spec/forms/demand_form_spec.rb[1:2:2] | passed | 0.02081 seconds |
-./spec/forms/demand_form_spec.rb[1:2:3] | passed | 0.02182 seconds |
-./spec/forms/demand_form_spec.rb[1:2:4] | passed | 0.02151 seconds |
-./spec/forms/demand_form_spec.rb[1:3:1] | passed | 0.01902 seconds |
-./spec/forms/demand_form_spec.rb[1:3:2] | passed | 0.02253 seconds |
+./spec/forms/demand_form_spec.rb[1:1:1] | passed | 0.02301 seconds |
+./spec/forms/demand_form_spec.rb[1:1:2] | passed | 0.02205 seconds |
+./spec/forms/demand_form_spec.rb[1:1:3] | passed | 0.05926 seconds |
+./spec/forms/demand_form_spec.rb[1:2:1] | passed | 0.02101 seconds |
+./spec/forms/demand_form_spec.rb[1:2:2] | passed | 0.32615 seconds |
+./spec/forms/demand_form_spec.rb[1:2:3] | passed | 0.02007 seconds |
+./spec/forms/demand_form_spec.rb[1:2:4] | passed | 0.02344 seconds |
+./spec/forms/demand_form_spec.rb[1:3:1] | passed | 0.02405 seconds |
+./spec/forms/demand_form_spec.rb[1:3:2] | passed | 0.02492 seconds |
