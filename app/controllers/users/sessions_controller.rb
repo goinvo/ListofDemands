@@ -1,5 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  after_action :suppress_notice, only: [:create, :destroy]
 
   # GET /resource/sign_in
   # def new
@@ -17,6 +18,12 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # protected
+
+  private
+
+  def suppress_notice
+    flash.discard(:notice)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
