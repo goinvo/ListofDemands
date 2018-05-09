@@ -8,15 +8,21 @@ FactoryBot.define do
     type "Municipality"
   end
 
+  factory :state, parent: :area, class: "State" do
+    type "State"
+  end
+
   #### Area Definition ####
   factory :area_definition do
     trait :arlington do
       municipality { create(:municipality, name: "Arlington, Massachusetts") }
+      state { create(:state, name: "Massachusetts") }
       zip_code { create(:zip_code, :arlington) }
     end
 
     trait :bedford do
       municipality { create(:municipality, name: "Bedford, Massachusetts") }
+      state { create(:state, name: "Massachusetts") }
       zip_code { create(:zip_code, :bedford) }
     end
   end
@@ -66,6 +72,26 @@ FactoryBot.define do
       county "Middlesex"
       latitude "42.4843"
       longitude "-71.2768"
+    end
+  end
+
+  factory :problem do
+    name "problem"
+  end
+
+  factory :demand do
+    trait :local do
+      user { create(:user, profile: build(:profile, :arlington)) }
+      problem { create(:problem) }
+      area { create(:municipality) }
+      solution "solution"
+    end
+
+    trait :statewide do
+      user { create(:user, profile: build(:profile, :arlington)) }
+      problem { create(:problem) }
+      area { create(:state) }
+      solution "solution"
     end
   end
 end

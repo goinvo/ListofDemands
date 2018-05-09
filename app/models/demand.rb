@@ -9,15 +9,25 @@ class Demand < ApplicationRecord
   validates :topic, inclusion: { in: Constants::DEMAND_TOPICS }, allow_nil: true
 
   delegate :name, to: :problem
-  attr_accessor :problem_text
   attr_accessor :is_statewide
 
   before_create :create_user_demand
+
+  def is_statewide
+    self.area.type == 'State' if self.area
+  end
+
+  def problem_text
+    self.problem ? self.problem.name : ''
+  end
 
   def problem_text=(name)
     self.problem = Problem.find_or_create_by(name: name)
   end
 
+  def owned_by?(user)
+    user == self.user
+  end
   private
 
   def create_user_demand
