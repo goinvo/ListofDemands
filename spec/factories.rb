@@ -39,6 +39,10 @@ FactoryBot.define do
     trait :bedford do
       zip "01730"
     end
+
+    trait :boxford do
+      zip "01921"
+    end
   end
 
   #### User ####
@@ -72,6 +76,16 @@ FactoryBot.define do
       county "Middlesex"
       latitude "42.4843"
       longitude "-71.2768"
+    end
+
+    trait :boxford do
+      zip "01921"
+      city "Boxford"
+      state "Massachusetts"
+      state_abbreviation "MA"
+      county "Essex"
+      latitude "42.6612"
+      longitude "-70.9967"
     end
   end
 
