@@ -1,13 +1,7 @@
 <div class="edit-demand">
   <h1 class="h2">Edit Demand</h1>
   <%= simple_form_for(@demand) do |f| %>
-    <% if @demand.errors.full_messages.length > 0 %>
-      <ul>
-        <% @demand.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <%= render "errors", locals: { demand: @demand }%>
     <% topic_options = Constants::DEMAND_TOPICS.map{ |topic| [topic, topic] } %>
     <%= f.input(:problem_text, input_html: { class: 'typeahead form-control--text', data: {source: Problem.all.map(&:name).uniq.to_json} }) %>
     <%= f.input(:solution, input_html: { class: 'typeahead form-control--text' }, required: false) %>

@@ -12,7 +12,7 @@ class DemandsController < ApplicationController
 
     if form.save
       redirect_to me_url
-    elsif form.has_problem_text? && !form.has_solution?
+    elsif form.incomplete_demand?
       flash[:info] = "Okay, we've saved that issue but no demand was created because the proposed solution was empty."
       redirect_to search_url
     elsif !form.demand.valid?
