@@ -12,12 +12,16 @@ class DemandsController < ApplicationController
 
     if form.save
       redirect_to me_url
-    elsif form.has_solution?
+    elsif form.incomplete_demand?
       flash[:info] = "Okay, we've saved that issue but no demand was created because the proposed solution was empty."
       redirect_to search_url
+    elsif !form.demand.valid?
+      flash[:alert] = "Oops — we couldn't save those changes..."
+      @demand = form.demand
+      render :new
     else
       flash[:alert] = "Oops — we couldn't save those changes..."
-      render :new
+      redirect_to new_demand_path
     end
   end
 
@@ -36,6 +40,7 @@ class DemandsController < ApplicationController
       redirect_to(form.demand)
     else
       flash[:alert] = "Oops — we couldn't save those changes..."
+      @demand = form.demand
       render :edit
     end
   end
