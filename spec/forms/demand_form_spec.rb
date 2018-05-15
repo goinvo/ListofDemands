@@ -72,6 +72,23 @@ RSpec.describe DemandForm do
     end
   end
 
+  describe 'has_problem_text?' do
+    it 'is false if the demand does not have problem_text' do
+      user = create_arlington_user
+      form = DemandForm.new(user, {})
+      form.save
+
+      expect(form.has_problem_text?).to eq(false)
+    end
+    it 'is true if the demand does have problem_text' do
+      user = create_arlington_user
+      form = DemandForm.new(user, { problem_text: 'some problem' })
+      form.save
+
+      expect(form.has_problem_text?).to eq(true)
+    end
+  end
+
   def create_arlington_user
     create(:area_definition, :arlington)
     create(:user, profile: build(:profile, :arlington))

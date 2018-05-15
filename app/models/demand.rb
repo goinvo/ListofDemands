@@ -5,7 +5,7 @@ class Demand < ApplicationRecord
   belongs_to :area
   belongs_to :problem
   has_many :user_demands
-  validates :user, :area, :solution, presence: true
+  validates :user, :area, :solution, :problem_text, presence: true
   validates :topic, inclusion: { in: Constants::DEMAND_TOPICS }, allow_nil: true
 
   delegate :name, to: :problem
@@ -28,6 +28,7 @@ class Demand < ApplicationRecord
   def owned_by?(user)
     user == self.user
   end
+
   private
 
   def create_user_demand
