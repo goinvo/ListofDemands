@@ -1,6 +1,6 @@
 class BasicLodExperience
 
-  attr_reader :arlington_user, :bedford_user, :boxford_user, :demands
+  attr_reader :arlington_user, :bedford_user, :boxford_user, :boxford_user_new, :demands
 
   def initialize
     add_area_stuff
@@ -15,9 +15,9 @@ class BasicLodExperience
     @massachusetts = State.create(name: "Massachusetts")
     @essex = County.create(name: "Essex, Massachusetts")
     @middlesex = County.create(name: "Middlesex, Massachusetts")
-    @arlington = Municipality.create(name: "Arlington")
-    @bedford = Municipality.create(name: "Bedford")
-    @boxford = Municipality.create(name: "Boxford")
+    @arlington = Municipality.create(name: "Arlington, Middlesex, Massachusetts")
+    @bedford = Municipality.create(name: "Bedford, Middlesex, Massachusetts")
+    @boxford = Municipality.create(name: "Boxford, Essex, Massachusetts")
 
     @arlington_zip = FactoryBot.create(:zip_code, :arlington)
     @bedford_zip = FactoryBot.create(:zip_code, :bedford)
@@ -32,6 +32,8 @@ class BasicLodExperience
     @arlington_user = FactoryBot.create(:user, profile: FactoryBot.build(:profile, zip: @arlington_zip.zip))
     @bedford_user = FactoryBot.create(:user, profile: FactoryBot.build(:profile, zip: @bedford_zip.zip))
     @boxford_user = FactoryBot.create(:user, profile: FactoryBot.build(:profile, zip: @boxford_zip.zip))
+    # This new user should have no created/supported demands, valuable for testing
+    @boxford_user_new = FactoryBot.create(:user, profile: FactoryBot.build(:profile, zip: @boxford_zip.zip))
   end
 
   def add_demands

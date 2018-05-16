@@ -6,7 +6,6 @@ class SupportedDemandsController < ApplicationController
   def create
     @demand = find_demand
     current_user.user_demands.create(demand: @demand)
-    flash[:info] = "You've demanded #{@demand.name}!"
     redirect_to params[:redirect] || demand_url(@demand)
   end
 
@@ -31,6 +30,6 @@ class SupportedDemandsController < ApplicationController
   end
 
   def find_demand
-    user_municipality.demands.find(params[:id])
+    Demand.find(params[:id])
   end
 end
