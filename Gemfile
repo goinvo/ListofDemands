@@ -34,7 +34,7 @@ end
 
 group :development do
   gem 'debase', '0.2.2.beta14'
-  gem "letter_opener"
+  gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'ruby-debug-ide'
   gem 'spring'
