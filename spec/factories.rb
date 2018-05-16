@@ -94,18 +94,17 @@ FactoryBot.define do
   end
 
   factory :demand do
+    problem { create(:problem) }
+    solution "solution"
+
     trait :local do
       user { create(:user, profile: build(:profile, :arlington)) }
-      problem { create(:problem) }
       area { create(:municipality) }
-      solution "solution"
     end
 
     trait :statewide do
       user { create(:user, profile: build(:profile, :arlington)) }
-      problem { create(:problem) }
       area { create(:state) }
-      solution "solution"
     end
   end
 end
