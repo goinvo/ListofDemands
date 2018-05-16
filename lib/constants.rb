@@ -1,3 +1,16 @@
 module Constants
-  DEMAND_TOPICS = ['Healthcare', 'Firearms', 'Budget', 'Transportation', 'Policing', 'Voting', 'Other']
+  DEMAND_TOPICS = [
+    'Budget',
+    'Citizenship',
+    'Education',
+    'Elections',
+    'Energy',
+    'Firearms',
+    'Healthcare',
+    'Other',
+    'Policing',
+    'Transportation',
+    'Voting',
+    'Work'
+  ]
 end
