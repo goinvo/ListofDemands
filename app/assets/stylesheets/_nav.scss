@@ -54,6 +54,10 @@
   &__expand {
     display: none;
     margin-bottom: $spacing;
+
+    .nav-list {
+      padding: 0 ($spacing * 2);
+    }
   }
 
   &__site-links {
@@ -77,13 +81,16 @@
   @include list-unstyled;
   margin: ($spacing * 2) 0;
 
-  a {
+  .btn,
+  &__link {
     @extend .uppercase;
     display: block;
     padding: 10px 20px;
-    color: $color-primary;
-    text-decoration: none;
     letter-spacing: $font-letter-spacing-medium;
+  }
+
+  &__link {
+    color: $color-primary;
 
     &:hover {
       background-color: rgba(0, 0, 0, .05);
@@ -95,9 +102,20 @@
     }
   }
 
+  .btn {
+    font-size: $font-size-base;
+    text-align: left;
+    margin-bottom: $spacing;
+  }
+
+
   @media only screen and (min-width: $breakpoint-desktop) {
     margin: 0;
   }
+}
+
+a.nav-list__link {
+  text-decoration: none;
 }
 
 .nav-blurb {
