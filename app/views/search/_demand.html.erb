@@ -4,7 +4,9 @@
     <div class="demand-item__name-container">
       <div class="demand-name"><%= link_to(demand.name, demand_path(demand)) %></div>
       <div class="demand-demanded">
-        demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %> <%= demand.topic ? ", #{demand.topic}" : "" %></span>
+          <%= "For #{demand.area.short_name} | " if params[:scope] == 'county' %>
+          <%= "#{demand.topic} | " if demand.topic %>
+          demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %></span>
       </div>
     </div>
     <div class="demand-item__button">

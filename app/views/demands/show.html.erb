@@ -4,6 +4,11 @@
     <% if @demand.owned_by?(current_user) %>
       <%= link_to 'Edit', edit_demand_url(@demand) %>
     <% end %>
+    <p class="gray">
+      For <%= @demand.area.short_name %> |
+      <%= "#{@demand.topic} | " if @demand.topic %>
+      demanded by <span class="demand-count"><%= number_with_delimiter(@demand.user_demands.count) %></span>
+    </p>
     <% @demand.solution.split("\n").each do |paragraph| %>
       <p><%= paragraph %></p>
     <% end %>

@@ -13,7 +13,14 @@ $(function() {
       });
 
       var visibleDemands = $demands.filter(":visible");
-      visibleDemands.length === 0 ? $(".no-demands").show() : $(".no-demands").hide();
+
+      if (searchValue.length) {
+        $(".no-demands").hide();
+        visibleDemands.length === 0 ? $(".unmatched-search").show() : $(".unmatched-search").hide();
+      } else {
+        $(".unmatched-search").hide();
+        $(".no-demands").show();
+      }
     });
   });
 });
