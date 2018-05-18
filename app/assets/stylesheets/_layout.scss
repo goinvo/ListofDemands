@@ -1,20 +1,12 @@
 html {
-  overflow: hidden;
+  &.nav-open {
+    overflow-y: hidden;
+  }
 }
 
 body {
-  padding-top: $header-height;
   font-family: $font-family-sans-serif;
   font-size: $font-size-base;
-  overflow: hidden;
-
-  @media only screen and (min-width: $breakpoint-desktop) {
-    padding-top: 0;
-
-    &.search.show {
-      padding-top: 0;
-    }
-  }
 }
 
 .mobile-only {
@@ -50,40 +42,44 @@ body {
   }
 }
 
-.app-container {
-  display: flex;
-  height: calc(100vh - #{$header-height});
-}
-
 .sidebar {
-  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: $sidebar-width;
   padding: $spacing * 2;
-  flex-shrink: 0;
+  padding-top: $below-header-spacing-desktop;
+  overflow-x: hidden;
+  overflow-y: auto;
 
-  @media only screen and (min-width: $breakpoint-desktop + 200px) {
-    width: 300px;
+  &__title {
+    @extend .h3;
+    padding: $spacing ($spacing * 2);
+    margin-bottom: $spacing;
+    color: $color-black;
+    text-decoration: none !important;
   }
 }
 
 .main {
-  flex: 1;
-  max-width: 800px;
-  height: 100%;
-  padding-top: $spacing;
+  margin-top: $header-height;
+  padding-top: $below-header-spacing;
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
+    padding-left: $spacing;
+    padding-right: $spacing;
+    max-width: $content-max-width;
 
-  &__scroll {
-    flex: 1;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
+    @media only screen and (min-width: $breakpoint-desktop) {
+      padding-left: $spacing * 2;
+      padding-right: $spacing * 2;
+    }
   }
 
   @media only screen and (min-width: $breakpoint-desktop) {
-    padding-left: $spacing * 4;
+    margin-top: 0;
+    margin-left: $sidebar-width;
+    padding-top: 0;
   }
 }

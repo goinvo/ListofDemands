@@ -1,19 +1,18 @@
 .demands-list {
   @include list-unstyled();
-  padding: 0 $spacing;
 }
 
 .demand-item {
   display: flex;
-  border-bottom: 1px solid $color-gray--light;
-  padding: $spacing 0 ($spacing * 2) 0;
+  border-bottom: 1px solid $color-gray--lightest;
+  padding: ($spacing * 1.5) 0;
 
   &__counter {
-    min-width: 60px;
+    min-width: 52px;
     padding: 0 ($spacing * 2) 0 0;
-    font-size: $font-size-large;
+    font-size: $font-size-medium;
     font-family: $font-family-serif;
-    font-weight: 600;
+    color: $color-gray;
     text-align: right;
   }
 
@@ -44,10 +43,20 @@
       margin-top: 0;
     }
   }
+
+  @media only screen and (min-width: $breakpoint-desktop) {
+    padding: ($spacing * 1.5) ($spacing * 1.5) ($spacing * 1.5) 0;
+  }
 }
 
-.demand-demanded {
+.demand-name {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-medium;
+}
+
+.demand-meta {
   color: $color-gray;
+  font-size: $font-size-small;
 }
 
 .demand-count {

@@ -1,8 +1,10 @@
 <ul class="site-links">
   <li><a href="https://github.com/goinvo/ListofDemands/wiki/About-List-of-Demands" target="_blank">about</a></li>
-  <li><a href="mailto:demandfeedback@goinvo.com?subject=re: List of Demands Feedback">feedback</a></li>
   <% if user_signed_in? %>
     <li><%= link_to("profile", profile_path) %></li>
+  <% end %>
+  <li><a href="mailto:demandfeedback@goinvo.com?subject=re: List of Demands Feedback">feedback</a></li>
+  <% if user_signed_in? %>
     <li><%= link_to("signout", destroy_user_session_url, method: :delete) %></li>
   <% else %>
     <li><%= link_to("signin", new_user_session_url) %></li>

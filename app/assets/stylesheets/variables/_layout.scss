@@ -1,6 +1,14 @@
 $header-height: 56px;
 
+$sidebar-width: 300px;
+
 $spacing: 10px;
+
+$below-header-spacing: $spacing;
+$below-header-spacing-desktop: $spacing * 2;
 
 $headings-margin-bottom: $spacing * 2;
 $paragraph-margin-bottom: $spacing;
+
+$content-max-width: 800px;
+$app-max-width: $content-max-width + $sidebar-width;

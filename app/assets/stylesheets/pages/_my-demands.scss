@@ -1,0 +1,13 @@
+.my-demands {
+  &__header {
+  display: flex;
+
+    a {
+      margin-left: auto;
+    }
+  }
+
+  .demands-list:first-of-type {
+    margin-bottom: $spacing * 4;
+  }
+}

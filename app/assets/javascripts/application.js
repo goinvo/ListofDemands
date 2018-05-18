@@ -44,14 +44,18 @@ $(function() {
     });
 
     function toggleHeader() {
+      $('html').toggleClass('nav-open');
+      $('#overlay').toggleClass('is-active');
+      $('#navbar').toggleClass('is-open');
       $("#navbar-title").slideFadeToggle();
       $("#navbar-title-open").slideFadeToggle();
-      $('#navbar-expand').slideToggle();
-      $('#navbar-extra').slideToggle();
       $('#navbar-toggle .icon').toggle();
-      $('#overlay').toggleClass('is-active');
       state.navOpen = !state.navOpen;
     }
+
+    // Set these back on load, because turbolinks keeps them when navigating
+    $('html').removeClass('nav-open');
+    state.navOpen = false;
 
     $('#navbar-toggle, #overlay').click(toggleHeader);
 
