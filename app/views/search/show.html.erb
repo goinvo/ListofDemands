@@ -14,10 +14,18 @@
     <ul class="demands-list">
       <%= render(partial: 'demand', collection: @demands) %>
     </ul>
-    <div class="no-demands pad-all">
-      <p>No demands found! :(</p>
+    <% if @demands.empty? %>
+      <div class="no-demands pad-all">
+        <p>There aren't any demands for <%= current_user_area_name %> yet. :(</p>
+        <%= link_to new_demand_path, class: "btn btn-primary--outline btn-add" do %>
+          <span>+ Add a demand!</span>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="unmatched-search pad-all">
+      <p>Nothing matches that search.</p>
       <%= link_to new_demand_path, class: "btn btn-primary--outline btn-add" do %>
-        <span>+ Add a demand</span>
+        <span>+ Add a demand!</span>
       <% end %>
     </div>
   </div>
