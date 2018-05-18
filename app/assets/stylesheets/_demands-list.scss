@@ -9,10 +9,12 @@
   padding: $spacing 0 ($spacing * 2) 0;
 
   &__counter {
-    padding: 0 ($spacing * 2) 0 $spacing;
+    min-width: 60px;
+    padding: 0 ($spacing * 2) 0 0;
     font-size: $font-size-large;
     font-family: $font-family-serif;
     font-weight: 600;
+    text-align: right
   }
 
   &__content {
