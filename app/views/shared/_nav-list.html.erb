@@ -1,13 +1,13 @@
 <ul class="nav-list">
+  <li><%= link_to("New Demand", new_demand_path, class: "btn btn-primary--outline #{should_have_active_nav_class(new_demand_path)}") %></li>
   <% if user_signed_in? %>
-    <li><%= link_to("My Demands", me_path, class: should_have_active_nav_class(me_path)) %></li>
-    <li><%= link_to("New Demand", new_demand_path, class: should_have_active_nav_class(new_demand_path)) %></li>
+    <li><%= link_to("My Demands", me_path, class: "nav-list__link #{should_have_active_nav_class(me_path)}") %></li>
   <% end %>
   <% if user_municipality.present? %>
-    <li><%= link_to(user_municipality.short_name, search_url(request.query_parameters.merge({scope: ''})), class: should_have_active_nav_class(search_url, '')) %></li>
-    <li><%= link_to(user_municipality.county.short_name, search_url(request.query_parameters.merge({scope: 'county'})), class: should_have_active_nav_class(search_url, 'county')) %></li>
-    <li><%= link_to(user_municipality.state.short_name, search_url(request.query_parameters.merge({scope: 'state'})), class: should_have_active_nav_class(search_url, 'state')) %></li>
-    <li><%= link_to('Change Address', edit_area_or_profile_path, class: should_have_active_nav_class(edit_area_or_profile_path)) %></li>
+    <li><%= link_to(user_municipality.short_name, search_url(request.query_parameters.merge({scope: ''})), class: "nav-list__link #{should_have_active_nav_class(search_url, '')}") %></li>
+    <li><%= link_to("#{user_municipality.county.short_name} County", search_url(request.query_parameters.merge({scope: 'county'})), class: "nav-list__link #{should_have_active_nav_class(search_url, 'county')}") %></li>
+    <li><%= link_to(user_municipality.state.short_name, search_url(request.query_parameters.merge({scope: 'state'})), class: "nav-list__link #{should_have_active_nav_class(search_url, 'state')}") %></li>
+    <li><%= link_to('Change Address', edit_area_or_profile_path, class: "nav-list__link #{should_have_active_nav_class(edit_area_or_profile_path)}") %></li>
   <% end %>
 </ul>
 <div class="nav__blurbs">
