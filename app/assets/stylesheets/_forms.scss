@@ -46,3 +46,14 @@ abbr[title] {
   color: $color-gray;
   font-size: $font-size-small;
 }
+
+.has-error {
+  .form-control--text {
+    border: 1px solid $color-red;
+    background: $color-red--super-light;
+  }
+
+  .help-block {
+    color: $color-red;
+  }
+}

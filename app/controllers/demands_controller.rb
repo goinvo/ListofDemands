@@ -12,9 +12,10 @@ class DemandsController < ApplicationController
 
     if form.save
       redirect_to me_url
-    elsif form.incomplete_demand?
-      flash[:info] = "Okay, we've saved that issue but no demand was created because the proposed solution was empty."
-      redirect_to search_url
+    # NOTE: Temporarily removed until we find better option here
+    # elsif form.incomplete_demand?
+    #   flash[:info] = "Okay, we've saved that issue but no demand was created because the proposed solution was empty."
+    #   redirect_to search_url
     elsif !form.demand.valid?
       flash[:alert] = "Oops — we couldn't save those changes..."
       @demand = form.demand
@@ -48,10 +49,10 @@ class DemandsController < ApplicationController
   private
 
   def create_params
-    params.require(:demand).permit(:solution, :problem_text, :topic, :is_statewide)
+    params.require(:demand).permit(:solution, :demand_description, :topic, :is_statewide)
   end
 
   def update_params
-    params.require(:demand).permit(:solution, :problem_text, :topic, :is_statewide)
+    params.require(:demand).permit(:solution, :demand_description, :topic, :is_statewide)
   end
 end

@@ -5,7 +5,7 @@ class Demand < ApplicationRecord
   belongs_to :area
   belongs_to :problem
   has_many :user_demands
-  validates :user, :area, :solution, :problem_text, presence: true
+  validates :user, :area, :solution, :demand_description, presence: true
   validates :topic, inclusion: { in: Constants::DEMAND_TOPICS }, allow_nil: true
 
   delegate :name, to: :problem
@@ -17,11 +17,11 @@ class Demand < ApplicationRecord
     self.area.type == 'State' if self.area
   end
 
-  def problem_text
+  def demand_description
     self.problem ? self.problem.name : ''
   end
 
-  def problem_text=(name)
+  def demand_description=(name)
     self.problem = Problem.find_or_create_by(name: name)
   end
 

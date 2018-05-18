@@ -67,30 +67,30 @@ RSpec.describe DemandForm do
     end
   end
 
-  describe 'has_problem_text?' do
-    it 'is false if the demand does not have problem_text' do
+  describe 'has_demand_description?' do
+    it 'is false if the demand does not have demand_description' do
       form = DemandForm.new(@user, {})
       form.save
 
-      expect(form.has_problem_text?).to eq(false)
+      expect(form.has_demand_description?).to eq(false)
     end
-    it 'is true if the demand does have problem_text' do
-      form = DemandForm.new(@user, { problem_text: 'some problem' })
+    it 'is true if the demand does have demand_description' do
+      form = DemandForm.new(@user, { demand_description: 'some problem' })
       form.save
 
-      expect(form.has_problem_text?).to eq(true)
+      expect(form.has_demand_description?).to eq(true)
     end
   end
 
   describe 'incomplete_demand?' do
     it 'is false if the demand has required properties' do
-      form = DemandForm.new(@user, { problem_text: 'some problem', solution: 'a solution' })
+      form = DemandForm.new(@user, { demand_description: 'some problem', solution: 'a solution' })
       form.save
 
       expect(form.incomplete_demand?).to eq(false)
     end
-    it 'is true if the demand is incomplete (has problem_text but no solution)' do
-      form = DemandForm.new(@user, { problem_text: 'some problem', solution: '' })
+    it 'is true if the demand is incomplete (has demand_description but no solution)' do
+      form = DemandForm.new(@user, { demand_description: 'some problem', solution: '' })
       form.save
 
       expect(form.incomplete_demand?).to eq(true)
