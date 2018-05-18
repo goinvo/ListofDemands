@@ -25,11 +25,11 @@ class DemandForm
     @demand.solution.present?
   end
 
-  def has_problem_text?
-    @demand.problem_text.present? && !@demand.problem_text.blank?
+  def has_demand_description?
+    @demand.demand_description.present? && !@demand.demand_description.blank?
   end
 
   def incomplete_demand?
-    has_problem_text? && !has_solution?
+    has_demand_description? && !has_solution?
   end
 end

@@ -38,6 +38,50 @@ label input[type="radio"] {
   }
 }
 
+.radio-pills {
+  display: flex;
+  flex-wrap: wrap;
+
+  .radio {
+    margin: 0 $spacing $spacing 0;
+
+    input {
+      display: none;
+    }
+
+    label {
+      @extend .btn;
+      @extend .btn-primary--outline;
+      position: relative;
+      margin-bottom: 0;
+      padding: 6px 30px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    label::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 40%;
+      display: none;
+      width: 6px;
+      height: 12px;
+      border: solid $color-white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translateY(-50%);
+    }
+
+    input:checked ~ label {
+      @extend .btn-primary;
+    }
+
+    input:checked ~ label::after {
+      display: block;
+    }
+  }
+}
+
 abbr[title] {
   text-decoration: none;
 }
@@ -45,4 +89,15 @@ abbr[title] {
 .help-block {
   color: $color-gray;
   font-size: $font-size-small;
+}
+
+.has-error {
+  .form-control--text {
+    border: 1px solid $color-red;
+    background: $color-red--super-light;
+  }
+
+  .help-block {
+    color: $color-red;
+  }
 }

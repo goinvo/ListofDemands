@@ -7,10 +7,10 @@ module Constants
     'Energy',
     'Firearms',
     'Healthcare',
-    'Other',
     'Policing',
     'Transportation',
     'Voting',
-    'Work'
+    'Work',
+    'Other'
   ]
 end
