@@ -1,0 +1,13 @@
+<% if user_signed_in? && demanded_by_user?(demand) %>
+  <%= form_tag(supported_demands_path, method: :delete) do %>
+    <input type="hidden" name="id" value="<%= demand.id %>" />
+    <input type="hidden" name="redirect" value="<%= request.original_url %>" />
+    <%= submit_tag("Demanded", class: 'btn btn-primary btn-demand') %>
+  <% end %>
+<% else %>
+  <%= form_tag(supported_demands_path) do %>
+    <input type="hidden" name="id" value="<%= demand.id %>" />
+    <input type="hidden" name="redirect" value="<%= request.original_url %>" />
+    <%= submit_tag("Demand", class: 'btn btn-primary--outline btn-demand') %>
+  <% end %>
+<% end %>
