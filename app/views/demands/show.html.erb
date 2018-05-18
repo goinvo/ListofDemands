@@ -13,7 +13,7 @@
       <p><%= paragraph %></p>
     <% end %>
     <% if demanded_by_user?(@demand) %>
-      <span class="btn btn-primary btn-demand">Demanded</span>
+      <span class="btn btn-primary--outline btn-demand btn-demand--demanded">Demanded</span>
     <% else %>
       <%= form_tag(supported_demands_path) do %>
         <input type="hidden" name="id" value="<%= @demand.id %>" />

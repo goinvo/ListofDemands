@@ -77,7 +77,24 @@ fieldset:disabled a.btn {
 }
 
 .btn-demand {
+  position: relative;
   min-width: 150px;
+
+  &--demanded {
+    &::after {
+      @extend .icon-checkmark;
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 41%;
+      border-color: $color-primary;
+      transform: rotate(45deg) translateY(-50%);
+    }
+
+    &:hover::after {
+      border-color: $color-white;
+    }
+  }
 }
 
 //

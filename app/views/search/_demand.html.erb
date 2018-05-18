@@ -11,7 +11,7 @@
     </div>
     <div class="demand-item__button">
       <% if user_signed_in? && current_user.supported_demands.include?(demand) %>
-        <button class="btn btn-primary btn-demand">Demanded</button>
+        <span class="btn btn-primary--outline btn-demand btn-demand--demanded">Demanded</span>
       <% else %>
         <%= form_tag(supported_demands_path) do %>
           <input type="hidden" name="id" value="<%= demand.id %>" />

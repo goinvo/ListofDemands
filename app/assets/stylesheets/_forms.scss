@@ -60,15 +60,12 @@ label input[type="radio"] {
     }
 
     label::after {
+      @extend .icon-checkmark;
       content: "";
       position: absolute;
       left: 10px;
       top: 40%;
       display: none;
-      width: 6px;
-      height: 12px;
-      border: solid $color-white;
-      border-width: 0 2px 2px 0;
       transform: rotate(45deg) translateY(-50%);
     }
 

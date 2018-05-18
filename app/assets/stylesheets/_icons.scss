@@ -2,3 +2,13 @@
   width: 1.5rem;
   height: 1.5rem;
 }
+
+.icon-checkmark {
+  display: block;
+  width: 6px;
+  height: 12px;
+  border-style: solid;
+  border-color: $color-white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
