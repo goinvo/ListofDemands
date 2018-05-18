@@ -78,7 +78,7 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = {
-    host: 'serene-waters-79732.herokuapp.com',
+    host: 'www.listofdemands.us',
     protocol: 'https'
   }
 
