@@ -1,9 +1,14 @@
 .flashes {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 10px;
+  left: 5%;
+  width: 90%;
   z-index: $z-index-flash;
+
+  @media only screen and (min-width: $breakpoint-desktop) {
+    left: 10%;
+    width: 80%;
+  }
 }
 
 .alert-dismiss-wrapper {
@@ -16,12 +21,16 @@
   }
 }
 
+.alert-dismissible {
+  display: none;
+}
+
 .alert {
   padding: $spacing ($spacing * 3);
   color: $color-blue--dark;
   background-color: $color-blue--light;
-  border-top: 1px solid $color-blue--dark;
-  border-bottom: 1px solid $color-blue--dark;
+  border: 1px solid $color-blue--dark;
+  border-radius: $border-radius;
 
   .icon-close {
     position: absolute;

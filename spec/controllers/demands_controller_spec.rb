@@ -35,7 +35,6 @@ RSpec.describe DemandsController do
       post :create, params: { demand: { demand_description: '', solution: '' } }
 
       expect(response).to render_template(:new)
-      expect(flash[:alert]).to eq("Oops — we couldn't save those changes...")
       expect(assigns(:demand).errors.full_messages).to include("Demand description can't be blank")
       expect(assigns(:demand).errors.full_messages).to include("Solution can't be blank")
     end

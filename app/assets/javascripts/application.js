@@ -30,9 +30,11 @@ $(function() {
     };
     var breakpointDesktop = 800; // Should be equal to SCSS variable '$breakpoint-desktop'
 
+    $('.alert-dismissible').fadeIn(200);
+
     setTimeout(function() {
       $('.alert-dismissible').fadeOut();
-    }, 3000);
+    }, 8000);
 
     $('.datepicker-input').datepicker();
 
