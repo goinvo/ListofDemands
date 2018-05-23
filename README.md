@@ -1,24 +1,18 @@
-# README
+# List of Demands
+Understand what matters the most from Me to We.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Production](https://listofdemands.us) - Submits real demands.
 
-Things you may want to cover:
+## Contribute
+We encourage you to contribute to List of Demands!  
+Please check out the [Contribute](CONTRIBUTE.md) guidelines for how to proceed.
 
-* Ruby version
+## Code of Conduct
+Help us keep List of Demands open and inclusive.  
+Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-* System dependencies
+## Authors
+[GoInvo](http://www.goinvo.com)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## License
+[Apache License, Version 2.0](LICENSE)
