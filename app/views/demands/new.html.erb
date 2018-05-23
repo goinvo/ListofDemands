@@ -1,8 +1,4 @@
-<div class="main__content">
-  <div class="main__scroll pad-all">
-    <div class="new-demand">
-      <h1 class="h2">Demand Something!</h1>
-      <%= render(partial: 'form', locals: { demand: @demand, submit_text: 'Add it!' }) %>
-    </div>
-  </div>
+<div class="main__content new-demand">
+  <h1 class="h2">Demand Something!</h1>
+  <%= render(partial: 'form', locals: { demand: @demand, submit_text: 'Add it!' }) %>
 </div>

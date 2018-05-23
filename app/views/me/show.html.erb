@@ -1,29 +1,27 @@
 <div class="main__content my-demands">
-  <div class="main__scroll pad-all">
-    <div class="my-demands__header">
-      <h1 class="h2">My Demands</h1>
-    </div>
-
-    <% if current_user.user_demands.none? %>
-      <h3 class="h3">You have no demands.</h3>
-    <% else %>
-      <%= form_tag(supported_demands_path, method: :put, remote: true, authenticity_token: true) do %>
-        <ol class="demands-list sortable-list">
-          <% current_user.user_demands.each_with_index do |user_demand, index| %>
-            <li class="demand-item">
-              <%= hidden_field_tag("supported_demands[]", user_demand.id) %>
-              <div class="demand-item__counter"><%= index + 1 %></div>
-              <div class="demand-item__content">
-                <div class="demand-name">
-                  <%= link_to(user_demand.problem.name, user_demand.demand) %>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        </ol>
-      <% end %>
-    <% end %>
+  <div class="my-demands__header">
+    <h1 class="h2">My Demands</h1>
   </div>
+
+  <% if current_user.user_demands.none? %>
+    <h3 class="h3">You have no demands.</h3>
+  <% else %>
+    <%= form_tag(supported_demands_path, method: :put, remote: true, authenticity_token: true) do %>
+      <ol class="demands-list sortable-list">
+        <% current_user.user_demands.each_with_index do |user_demand, index| %>
+          <li class="demand-item">
+            <%= hidden_field_tag("supported_demands[]", user_demand.id) %>
+            <div class="demand-item__counter"><%= index + 1 %></div>
+            <div class="demand-item__content">
+              <div class="demand-name">
+                <%= link_to(user_demand.problem.name, user_demand.demand) %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
+  <% end %>
 </div>
 
 <% content_for(:before_body) do %>

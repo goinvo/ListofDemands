@@ -1,12 +1,10 @@
 <div class="main__content">
-  <div class="main__scroll pad-all">
-    <h1 class="h2">Change your area?</h1>
-    <h5>Your area is <%= user_municipality.name %>. Enter a new ZIP below to change it.</h5>
-    <%= render(partial: 'form') %>
-    <h4 class="margin-top-double">Why is the ZIP important?</h4>
-    <p>
-      List of Demands is all about local issues that are important to you and your neighbors. We use the ZIP code as
-      the basic point of organization for demands.
-    </p>
-  </div>
+  <h1 class="h2">Change your area?</h1>
+  <h5>Your area is <%= user_municipality.name %>. Enter a new ZIP below to change it.</h5>
+  <%= render(partial: 'form') %>
+  <h4 class="margin-top-double">Why is the ZIP important?</h4>
+  <p>
+    List of Demands is all about local issues that are important to you and your neighbors. We use the ZIP code as
+    the basic point of organization for demands.
+  </p>
 </div>
