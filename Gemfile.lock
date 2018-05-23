@@ -90,6 +90,10 @@ GEM
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
+    flipper (0.15.0)
+    flipper-active_record (0.15.0)
+      activerecord (>= 3.2, < 6)
+      flipper (~> 0.15.0)
     geocoder (1.4.4)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -253,6 +257,8 @@ DEPENDENCIES
   devise!
   factory_bot_rails
   faker
+  flipper
+  flipper-active_record
   geocoder
   letter_opener
   listen (>= 3.0.5, < 3.2)
