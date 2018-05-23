@@ -5,13 +5,13 @@ def stub_arlington_geoip
     "0.0.0.0",
     [
       {
-        'coordinates'  => [42.4154, -71.1565],
-        'address'      => 'Arlington, MA, USA',
-        'state'        => 'Massachusetts',
-        'zip'          => '02474',
-        'state_code'   => 'MA',
-        'country'      => 'United States',
-        'country_code' => 'US'
+        "coordinates"  => [42.4154, -71.1565],
+        "address"      => "Arlington, MA, USA",
+        "state"        => "Massachusetts",
+        "zip"          => "02474",
+        "state_code"   => "MA",
+        "country"      => "United States",
+        "country_code" => "US"
       }
     ]
   )
