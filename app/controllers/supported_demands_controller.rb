@@ -6,7 +6,7 @@ class SupportedDemandsController < ApplicationController
   def create
     @demand = find_demand
     current_user.user_demands.create(demand: @demand)
-    redirect_to params[:redirect] || demand_url(@demand)
+    redirect_to redirect_path
   end
 
   def update
@@ -23,6 +23,12 @@ class SupportedDemandsController < ApplicationController
     end
   end
 
+  def destroy
+    @demand = find_demand
+    current_user.user_demands.find_by(demand: @demand)&.destroy
+    redirect_to redirect_path
+  end
+
   private
 
   def update_params
@@ -31,5 +37,9 @@ class SupportedDemandsController < ApplicationController
 
   def find_demand
     Demand.find(params[:id])
+  end
+
+  def redirect_path
+    params[:redirect] || demand_url(@demand)
   end
 end
