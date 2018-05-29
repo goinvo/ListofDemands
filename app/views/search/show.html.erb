@@ -3,30 +3,35 @@
 <% end %>
 
 <div class="main__content search-show">
-  <div class="desktop-only desktop-header-container">
-    <h2 class="h2 margin-bottom">
-      <%= current_user_area_name %> Demands
-    </h2>
-    <%= render('shared/search_form', locals: { demands: @demands }) %>
-    <%= render('shared/topics-filter') %>
-  </div>
-  <div class="main__scroll">
-    <ul class="demands-list">
-      <%= render(partial: 'demand', collection: @demands) %>
-    </ul>
-    <% if @demands.empty? %>
-      <div class="no-demands pad-all">
-        <p>There aren't any demands for <%= current_user_area_name %> yet. :(</p>
-        <%= link_to new_demand_path, class: "btn btn-primary--outline btn-add" do %>
-          <span>+ Add a demand!</span>
+  <div class="page-header">
+    <div class="page-header__content">
+      <div class="page-header__title-container">
+        <h2 class="h2">
+          <%= current_user_area_name %> Demands
+        </h2>
+        <% if user_municipality.present? %>
+          <%= link_to('change location', edit_area_or_profile_path, class: "page-header__title-link") %>
         <% end %>
       </div>
-    <% end %>
-    <div class="unmatched-search pad-all">
-      <p>Nothing matches that search.</p>
+      <%= render('shared/search_form', locals: { demands: @demands }) %>
+    </div>
+  </div>
+  <%= render('shared/topics-filter') %>
+  <ul class="demands-list">
+    <%= render(partial: 'demand', collection: @demands) %>
+  </ul>
+  <% if @demands.empty? %>
+    <div class="no-demands pad-all">
+      <p>There aren't any demands for <%= current_user_area_name %> yet. :(</p>
       <%= link_to new_demand_path, class: "btn btn-primary--outline btn-add" do %>
         <span>+ Add a demand!</span>
       <% end %>
     </div>
+  <% end %>
+  <div class="unmatched-search pad-all">
+    <p>Nothing matches that search.</p>
+    <%= link_to new_demand_path, class: "btn btn-primary--outline btn-add" do %>
+      <span>+ Add a demand!</span>
+    <% end %>
   </div>
 </div>

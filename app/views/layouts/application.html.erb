@@ -14,14 +14,14 @@
   <body class="<%= controller_name %> <%= action_name %>">
     <%= render("shared/flashes") %>
     <%= render("shared/header") %>
-    <div class="app-container">
-      <div class="sidebar desktop-only">
-        <%= render('shared/nav-list') %>
-      </div>
-      <div class="main">
-        <%= yield %>
-      </div>
-    </div>
+    <aside class="sidebar desktop-only">
+      <%= link_to "listofdemands.us", "/", class: "sidebar__title" %>
+      <%= render('shared/nav-list') %>
+      <%= render('shared/site-links') %>
+    </aside>
+    <main class="main">
+      <%= yield %>
+    </main>
     <%= yield(:before_body) %>
     <div id="overlay" class="body-overlay"></div>
     <%= raw Rails.application.assets_manifest.find_sources('icons.svg').first.force_encoding("UTF-8") %>

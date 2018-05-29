@@ -1,22 +1,20 @@
 <div class="main__content profile">
   <h1 class="h2">Profile</h1>
-  <div class="main__scroll">
-    <div class="profile__edit-fields">
-      <%= simple_form_for(current_user, url: profile_path, defaults: { input_html: { class: 'form-control--text' } }) do |f| %>
-        <%= f.simple_fields_for :profile, current_user.profile do |address_fields| %>
-          <%= address_fields.input :name %>
-          <%= address_fields.input :address1, required: true %>
-          <%= address_fields.input :address2 %>
-          <%= address_fields.input :city, required: true %>
-          <%= address_fields.input :state, required: true %>
-          <%= address_fields.input :zip, required: true, hint: 'Heads up! Changing your ZIP code will change your area.' %>
-          <%= address_fields.input :gender %>
-          <%= address_fields.input :date_of_birth, as: :string, input_html: {class: 'datepicker-input form-control--text'} %>
-          <%= address_fields.input :political_party %>
-        <% end %>
-        <%= f.submit("Update Profile", class: 'btn btn-primary') %>
-        or <%= link_to('cancel', profile_path) %>
+  <div class="profile__edit-fields">
+    <%= simple_form_for(current_user, url: profile_path, defaults: { input_html: { class: 'form-control--text' } }) do |f| %>
+      <%= f.simple_fields_for :profile, current_user.profile do |address_fields| %>
+        <%= address_fields.input :name %>
+        <%= address_fields.input :address1, required: true %>
+        <%= address_fields.input :address2 %>
+        <%= address_fields.input :city, required: true %>
+        <%= address_fields.input :state, required: true %>
+        <%= address_fields.input :zip, required: true, hint: 'Heads up! Changing your ZIP code will change your area.' %>
+        <%= address_fields.input :gender %>
+        <%= address_fields.input :date_of_birth, as: :string, input_html: {class: 'datepicker-input form-control--text'} %>
+        <%= address_fields.input :political_party %>
       <% end %>
-    </div>
+      <%= f.submit("Update Profile", class: 'btn btn-primary') %>
+      or <%= link_to('cancel', profile_path) %>
+    <% end %>
   </div>
 </div>

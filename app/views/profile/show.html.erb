@@ -1,26 +1,24 @@
 <div class="main__content">
-  <div class="main__scroll pad-all">
-    <h1 class="h2">Your Profile</h1>
-    <p><%= link_to('edit profile', edit_profile_path) %></p>
-    <dl>
-      <dt>Name</dt>
-      <dd><%= current_user.profile.name || "N/A" %></dd>
-      <dt>Address</dt>
-      <dd><%= current_user.profile.address1 %></dd>
-      <dt>Address (cont)</dt>
-      <dd><%= current_user.profile.address2 || "N/A" %></dd>
-      <dt>City</dt>
-      <dd><%= current_user.profile.city %></dd>
-      <dt>State</dt>
-      <dd><%= current_user.profile.state %></dd>
-      <dt>ZIP code</dt>
-      <dd><%= current_user.profile.zip %></dd>
-      <dt>Gender</dt>
-      <dd><%= current_user.profile.gender || "N/A" %></dd>
-      <dt>Birthdate</dt>
-      <dd><%= current_user.profile.date_of_birth || "N/A" %></dd>
-      <dt>Political Leaning</dt>
-      <dd><%= current_user.profile.political_party || "N/A" %></dd>
-    </dl>
-  </div>
+  <h1 class="h2">Your Profile</h1>
+  <p><%= link_to('edit profile', edit_profile_path) %></p>
+  <dl>
+    <dt>Name</dt>
+    <dd><%= current_user.profile.name || "N/A" %></dd>
+    <dt>Address</dt>
+    <dd><%= current_user.profile.address1 %></dd>
+    <dt>Address (cont)</dt>
+    <dd><%= current_user.profile.address2 || "N/A" %></dd>
+    <dt>City</dt>
+    <dd><%= current_user.profile.city %></dd>
+    <dt>State</dt>
+    <dd><%= current_user.profile.state %></dd>
+    <dt>ZIP code</dt>
+    <dd><%= current_user.profile.zip %></dd>
+    <dt>Gender</dt>
+    <dd><%= current_user.profile.gender || "N/A" %></dd>
+    <dt>Birthdate</dt>
+    <dd><%= current_user.profile.date_of_birth || "N/A" %></dd>
+    <dt>Political Leaning</dt>
+    <dd><%= current_user.profile.political_party || "N/A" %></dd>
+  </dl>
 </div>

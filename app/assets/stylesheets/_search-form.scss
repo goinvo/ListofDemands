@@ -1,15 +1,7 @@
 .search-form {
-  padding: 5px 10px;
-}
+  padding: 0 $spacing $spacing;
 
-.topics-filter {
-  display: flex;
-  align-items: center;
-  padding: $spacing $spacing ($spacing / 2);
-
-  &__label {
-    flex-shrink: 0;
-    margin: 0 $spacing ($spacing / 2) 0;
-    color: $color-gray;
+  @media only screen and (min-width: $breakpoint-desktop) {
+    padding: $spacing ($spacing * 1.5);
   }
 }

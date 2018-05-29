@@ -1,0 +1,17 @@
+.topics-filter {
+  display: flex;
+  align-items: center;
+  padding: $spacing;
+  border-bottom: 1px solid $color-gray--lightest;
+
+  &__label {
+    flex-shrink: 0;
+    margin: 0 $spacing ($spacing / 2) 0;
+    color: $color-gray;
+    font-size: $font-size-small;
+  }
+
+  @media only screen and (min-width: $breakpoint-desktop) {
+    padding: $spacing ($spacing * 1.5);
+  }
+}
