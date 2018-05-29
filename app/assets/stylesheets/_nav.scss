@@ -23,10 +23,6 @@
   &__main {
     display: flex;
     padding: 0 $spacing;
-
-    @media only screen and (min-width: $breakpoint-desktop) {
-      padding: 0 ($spacing * 3) 0 ($spacing * 4);
-    }
   }
 
   &__title-container {
@@ -43,10 +39,6 @@
     &--main {
       @extend .h3;
       display: none;
-
-      @media only screen and (min-width: $breakpoint-desktop) {
-        display: block !important;
-      }
     }
   }
 
@@ -63,6 +55,7 @@
   }
 
   &__expand {
+    padding-top: $spacing;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 
@@ -73,13 +66,6 @@
 
   &__site-links {
     margin-left: auto;
-  }
-
-  .search-form,
-  .topics-filter {
-    @media only screen and (min-width: $breakpoint-desktop) {
-      display: none;
-    }
   }
 
   &.is-open {

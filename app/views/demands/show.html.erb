@@ -11,20 +11,5 @@
   <% @demand.solution.split("\n").each do |paragraph| %>
     <p><%= paragraph %></p>
   <% end %>
-  <% if demanded_by_user?(@demand) %>
-    <span class="btn btn-primary btn-demand">Demanded</span>
-  <% else %>
-    <%= form_tag(supported_demands_path) do %>
-      <input type="hidden" name="id" value="<%= @demand.id %>" />
-      <%= submit_tag("Demand", class: 'btn btn-primary--outline btn-demand') %>
-    <% end %>
-    <p class="gray">
-      For <%= @demand.area.short_name %> |
-      <%= "#{@demand.topic} | " if @demand.topic %>
-      demanded by <span class="demand-count"><%= number_with_delimiter(@demand.user_demands.count) %></span>
-    </p>
-    <% @demand.solution.split("\n").each do |paragraph| %>
-      <p><%= paragraph %></p>
-  <% end %>
   <%= render(partial: 'demands/support-demand-form', locals: { demand: @demand }) %>
 </div>

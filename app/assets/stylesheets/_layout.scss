@@ -49,7 +49,7 @@ body {
   bottom: 0;
   width: $sidebar-width;
   padding: $spacing * 2;
-  padding-top: $below-header-spacing-desktop;
+  padding-top: $below-header-spacing;
   overflow-x: hidden;
   overflow-y: auto;
 
@@ -64,20 +64,18 @@ body {
 
 .main {
   margin-top: $header-height;
-  padding-top: $below-header-spacing;
 
   &__content {
-    padding: $spacing;
+    padding: $below-header-spacing $spacing $spacing;
     max-width: $content-max-width;
 
     @media only screen and (min-width: $breakpoint-desktop) {
-      padding: ($spacing * 3) ($spacing * 2) $spacing;
+      padding: ($below-header-spacing + $spacing) ($spacing * 2) $spacing;
     }
   }
 
   @media only screen and (min-width: $breakpoint-desktop) {
     margin-top: 0;
     margin-left: $sidebar-width;
-    padding-top: 0;
   }
 }

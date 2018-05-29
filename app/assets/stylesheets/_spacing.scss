@@ -41,11 +41,11 @@ $directions: 'top' 'bottom' 'left' 'right';
     padding-#{$direction}: $spacing;
   }
 
-  .pad-#{$direction}-half {
+  .pad-#{$direction}--half {
     padding-#{$direction}: $spacing / 2;
   }
 
-  .pad-#{$direction}-none {
+  .pad-#{$direction}--none {
     padding-#{$direction}: 0;
   }
 
@@ -53,19 +53,19 @@ $directions: 'top' 'bottom' 'left' 'right';
     margin-#{$direction}: $spacing;
   }
 
-  .margin-#{$direction}-half {
+  .margin-#{$direction}--half {
     margin-#{$direction}: $spacing / 2;
   }
 
-  .margin-#{$direction}-quarter {
+  .margin-#{$direction}--quarter {
     margin-#{$direction}: $spacing / 4;
   }
 
-  .margin-#{$direction}-double {
+  .margin-#{$direction}--double {
     margin-#{$direction}: $spacing * 2;
   }
 
-  .margin-#{$direction}-none {
+  .margin-#{$direction}--none {
     margin-#{$direction}: 0;
   }
 }
