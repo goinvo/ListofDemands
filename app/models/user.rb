@@ -38,6 +38,10 @@ class User < ApplicationRecord
     self.area = zip_code.municipality
   end
 
+  def display_name
+    profile.name || email.split('@')[0]
+  end
+
   private
 
   def create_profile
