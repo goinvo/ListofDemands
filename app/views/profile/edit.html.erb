@@ -2,8 +2,8 @@
   <h1 class="h2">Profile</h1>
   <div class="profile__edit-fields">
     <%= simple_form_for(current_user, url: profile_path, defaults: { input_html: { class: 'form-control--text' } }) do |f| %>
-      <%= f.simple_fields_for :profile, current_user.profile do |address_fields| %>
-        <%= address_fields.input :name %>
+      <%= f.simple_fields_for :profile, @profile do |address_fields| %>
+        <%= address_fields.input :name, required: true %>
         <%= address_fields.input :address1, required: true %>
         <%= address_fields.input :address2 %>
         <%= address_fields.input :city, required: true %>

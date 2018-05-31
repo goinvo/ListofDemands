@@ -29,6 +29,7 @@ FactoryBot.define do
 
   #### Profile ####
   factory :profile do
+    name { "#{Faker::Name.name}" }
     address1 { "#{Faker::Address.street_address}" }
     city { "#{Faker::Address.city}" }
     state { "#{Faker::Address.state}" }

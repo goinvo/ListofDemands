@@ -7,11 +7,12 @@
       <%= f.input :email, input_html: { class: "form-control--text" }, required: true, autofocus: true %>
       <%= f.input :password, input_html: { class: "form-control--text" }, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
       <%= f.simple_fields_for :profile, resource.profile || resource.build_profile do |address_fields| %>
-        <%= address_fields.input :zip, input_html: { class: "form-control--text" }, required: true %>
+        <%= address_fields.input :name, input_html: { class: "form-control--text" }, required: true %>
         <%= address_fields.input :address1, input_html: { class: "form-control--text" } %>
         <%= address_fields.input :address2, input_html: { class: "form-control--text" } %>
         <%= address_fields.input :city, input_html: { class: "form-control--text" } %>
         <%= address_fields.input :state, input_html: { class: "form-control--text" } %>
+        <%= address_fields.input :zip, input_html: { class: "form-control--text" }, required: true %>
       <% end %>
     </div>
 
