@@ -150,9 +150,14 @@ ActiveRecord::Schema.define(version: 2018_05_31_003842) do
       problems.name AS problem,
       d.solution,
       d.topic,
+      ( SELECT dt.parts[1] AS parts
+             FROM ( SELECT regexp_split_to_array((areas_1.name)::text, ','::text) AS regexp_split_to_array
+                     FROM areas areas_1
+                    WHERE (areas_1.id = d.area_id)) dt(parts)) AS short_name,
       ( SELECT count(user_demands.id) AS count
              FROM user_demands
-            WHERE (user_demands.demand_id = d.id)) AS demand_count
+            WHERE (user_demands.demand_id = d.id)) AS demand_count,
+      d.created_at
      FROM ((demands d
        JOIN problems ON ((problems.id = d.problem_id)))
        LEFT JOIN areas ON ((areas.id = d.area_id)));

@@ -26,10 +26,19 @@ SELECT
 	d.solution AS solution,
 	d.topic AS topic,
 	(
+		SELECT parts[1]
+		FROM (
+			SELECT regexp_split_to_array(areas.name, ',')
+			FROM areas
+			WHERE areas.id = d.area_id
+		) as dt(parts)
+	) as short_name,
+	(
 		SELECT count(id)
 		FROM user_demands
 		WHERE user_demands.demand_id = d.id
-	) AS demand_count
+	) AS demand_count,
+	d.created_at as created_at
 FROM demands d
 INNER JOIN problems ON problems.id = d.problem_id
 LEFT JOIN areas ON areas.id = d.area_id

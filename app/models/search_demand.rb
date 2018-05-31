@@ -14,4 +14,20 @@ class SearchDemand < ApplicationRecord
   def readonly?
     true
   end
+
+  # TODO: refactor these in views after we cut over to fancy search
+  def name
+    problem
+  end
+
+  UserDemandsStruct = Struct.new(:count)
+
+  def user_demands
+    UserDemandsStruct.new(demand_count)
+  end
+
+  AreaStruct = Struct.new(:short_name)
+  def area
+    AreaStruct.new(short_name)
+  end
 end
