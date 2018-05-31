@@ -41,11 +41,15 @@ class User < ApplicationRecord
   end
 
   def display_name
-    profile.name || email.split('@')[0]
+    profile.name || email.split("@")[0]
   end
 
   def to_param
     uuid
+  end
+
+  def private?
+    profile.private_user?
   end
 
   private

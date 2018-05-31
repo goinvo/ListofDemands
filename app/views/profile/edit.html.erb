@@ -12,6 +12,16 @@
         <%= address_fields.input :gender %>
         <%= address_fields.input :date_of_birth, as: :string, input_html: {class: 'datepicker-input form-control--text'} %>
         <%= address_fields.input :political_party %>
+        <%= address_fields.input(:private_user,
+          as: :radio_buttons,
+          wrapper: :radio_pills,
+          collection: [['0', 'Everyone'], ['1', 'Just me']],
+          label_method: :second,
+          value_method: :first,
+          label: "The demands I support are visible to",
+          checked: current_user.private? ? '1' : '0',
+          required: false)
+        %>
       <% end %>
       <%= f.submit("Update Profile", class: 'btn btn-primary') %>
       or <%= link_to('cancel', profile_path) %>

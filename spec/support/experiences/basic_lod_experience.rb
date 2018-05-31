@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class BasicLodExperience
-  attr_reader :arlington_user, :bedford_user, :boxford_user, :boxford_user_new, :demands
+  attr_reader :arlington_user, :bedford_user, :boxford_user,
+              :boxford_user_new, :private_user, :demands
 
   def initialize
     add_area_stuff
@@ -35,6 +36,7 @@ class BasicLodExperience
     @boxford_user = FactoryBot.create(:user, profile: FactoryBot.build(:profile, zip: @boxford_zip.zip))
     # This new user should have no created/supported demands, valuable for testing
     @boxford_user_new = FactoryBot.create(:user, profile: FactoryBot.build(:profile, zip: @boxford_zip.zip))
+    @private_user = FactoryBot.create(:user, profile: FactoryBot.build(:profile, zip: @arlington_zip.zip, private_user: true))
   end
 
   def add_demands

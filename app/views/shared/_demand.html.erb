@@ -8,9 +8,9 @@
           <%= "#{demand.topic} | " if demand.topic %>
           demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %></span>
       </div>
-      <% if local_assigns[:display_creator] %>
-        <div class="demand-item__creator">
-          <span class="gray text--small">created by <%= link_to demand.user.display_name, demand.user %></span>
+      <% if local_assigns[:display_creator] && !demand.user.private? %>
+        <div class="demand-item__creator gray text--small">
+          created by <%= link_to demand.user.display_name, demand.user %>
         </div>
       <% end %>
     </div>

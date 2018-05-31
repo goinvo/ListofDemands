@@ -35,7 +35,8 @@ class ProfileController < ApplicationController
         :zip,
         :gender,
         :date_of_birth,
-        :policitcal_party
+        :policitcal_party,
+        :private_user
       ]
     )
   end
