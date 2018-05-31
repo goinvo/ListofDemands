@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_003842) do
+ActiveRecord::Schema.define(version: 2018_05_31_182208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "area_definitions", force: :cascade do |t|
     t.integer "municipality_id"
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_003842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "area_id"
+    t.uuid "uuid", default: -> { "uuid_generate_v4()" }, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
