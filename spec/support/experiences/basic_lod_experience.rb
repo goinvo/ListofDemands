@@ -1,5 +1,6 @@
-class BasicLodExperience
+# frozen_string_literal: true
 
+class BasicLodExperience
   attr_reader :arlington_user, :bedford_user, :boxford_user, :boxford_user_new, :demands
 
   def initialize
