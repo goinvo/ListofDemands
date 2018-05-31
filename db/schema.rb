@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_23_013515) do
+ActiveRecord::Schema.define(version: 2018_05_31_003842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -130,5 +130,33 @@ ActiveRecord::Schema.define(version: 2018_05_23_013515) do
     t.decimal "longitude", precision: 7, scale: 4
     t.index ["zip"], name: "index_zip_codes_on_zip", unique: true
   end
+
+
+  create_view "demands_view", materialized: true,  sql_definition: <<-SQL
+      SELECT demands.id AS demand_id,
+      problems.name AS problem,
+      demands.solution,
+      demands.topic,
+      ( SELECT count(user_demands.id) AS count
+             FROM user_demands
+            WHERE (user_demands.demand_id = demands.id)) AS demand_count
+     FROM ((demands
+       JOIN problems ON ((problems.id = demands.problem_id)))
+       LEFT JOIN areas ON ((areas.id = demands.area_id)));
+  SQL
+
+  create_view "search_demands", materialized: true,  sql_definition: <<-SQL
+      SELECT demands.id AS demand_id,
+      demands.user_id AS demanded_by_user_id,
+      problems.name AS problem,
+      demands.solution,
+      demands.topic,
+      ( SELECT count(user_demands.id) AS count
+             FROM user_demands
+            WHERE (user_demands.demand_id = demands.id)) AS demand_count
+     FROM ((demands
+       JOIN problems ON ((problems.id = demands.problem_id)))
+       LEFT JOIN areas ON ((areas.id = demands.area_id)));
+  SQL
 
 end
