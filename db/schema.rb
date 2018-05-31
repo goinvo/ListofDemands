@@ -132,31 +132,30 @@ ActiveRecord::Schema.define(version: 2018_05_31_003842) do
   end
 
 
-  create_view "demands_view", materialized: true,  sql_definition: <<-SQL
-      SELECT demands.id AS demand_id,
-      problems.name AS problem,
-      demands.solution,
-      demands.topic,
-      ( SELECT count(user_demands.id) AS count
-             FROM user_demands
-            WHERE (user_demands.demand_id = demands.id)) AS demand_count
-     FROM ((demands
-       JOIN problems ON ((problems.id = demands.problem_id)))
-       LEFT JOIN areas ON ((areas.id = demands.area_id)));
-  SQL
-
   create_view "search_demands", materialized: true,  sql_definition: <<-SQL
-      SELECT demands.id AS demand_id,
-      demands.user_id AS demanded_by_user_id,
+      SELECT d.id AS demand_id,
+      d.user_id AS demanded_by_user_id,
+      ( SELECT areas_1.id
+             FROM (areas areas_1
+               JOIN demands ON ((areas_1.id = demands.area_id)))
+            WHERE ((areas_1.type = 'Municipality'::text) AND (demands.id = d.id))) AS municipality_id,
+      ( SELECT areas_1.id
+             FROM (areas areas_1
+               JOIN demands ON ((areas_1.id = demands.area_id)))
+            WHERE ((areas_1.type = 'County'::text) AND (demands.id = d.id))) AS county_id,
+      ( SELECT areas_1.id
+             FROM (areas areas_1
+               JOIN demands ON ((areas_1.id = demands.area_id)))
+            WHERE ((areas_1.type = 'State'::text) AND (demands.id = d.id))) AS state_id,
       problems.name AS problem,
-      demands.solution,
-      demands.topic,
+      d.solution,
+      d.topic,
       ( SELECT count(user_demands.id) AS count
              FROM user_demands
-            WHERE (user_demands.demand_id = demands.id)) AS demand_count
-     FROM ((demands
-       JOIN problems ON ((problems.id = demands.problem_id)))
-       LEFT JOIN areas ON ((areas.id = demands.area_id)));
+            WHERE (user_demands.demand_id = d.id)) AS demand_count
+     FROM ((demands d
+       JOIN problems ON ((problems.id = d.problem_id)))
+       LEFT JOIN areas ON ((areas.id = d.area_id)));
   SQL
 
 end
