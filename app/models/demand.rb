@@ -12,6 +12,11 @@ class Demand < ApplicationRecord
   attr_accessor :is_statewide
 
   before_create :create_user_demand
+  after_commit :refresh_search_demands
+
+  def refresh_search_demands
+    SearchDemand.refresh
+  end
 
   def is_statewide
     self.area.type == 'State' if self.area

@@ -21,6 +21,7 @@ gem "simple_form", "4.0.0"
 gem "svgeez"
 gem "textacular", github: "textacular/textacular"
 gem "uglifier", ">= 1.3.0"
+gem 'scenic'
 
 # https://github.com/turbolinks/turbolinks
 gem "turbolinks", "~> 5"

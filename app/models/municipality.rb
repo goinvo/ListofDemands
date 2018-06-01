@@ -16,4 +16,8 @@ class Municipality < Area
   def name_abbreviated
     "#{self.zip_codes.first.city}, #{self.zip_codes.first.state_abbreviation}"
   end
+
+  def municipalities
+    [self]
+  end
 end

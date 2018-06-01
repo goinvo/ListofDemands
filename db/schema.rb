@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_23_013515) do
+ActiveRecord::Schema.define(version: 2018_05_31_003842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -130,5 +130,37 @@ ActiveRecord::Schema.define(version: 2018_05_23_013515) do
     t.decimal "longitude", precision: 7, scale: 4
     t.index ["zip"], name: "index_zip_codes_on_zip", unique: true
   end
+
+
+  create_view "search_demands", materialized: true,  sql_definition: <<-SQL
+      SELECT d.id AS demand_id,
+      d.user_id AS created_by_user_id,
+      ( SELECT area_definitions.municipality_id
+             FROM ((area_definitions
+               JOIN areas areas_1 ON ((areas_1.id = area_definitions.municipality_id)))
+               JOIN demands ON ((areas_1.id = demands.area_id)))
+            WHERE (demands.id = d.id)
+           LIMIT 1) AS municipality_id,
+      ( SELECT area_definitions.state_id
+             FROM ((area_definitions
+               JOIN areas areas_1 ON ((areas_1.id = area_definitions.state_id)))
+               JOIN demands ON ((areas_1.id = demands.area_id)))
+            WHERE (demands.id = d.id)
+           LIMIT 1) AS state_id,
+      problems.name AS problem,
+      d.solution,
+      d.topic,
+      ( SELECT dt.parts[1] AS parts
+             FROM ( SELECT regexp_split_to_array((areas_1.name)::text, ','::text) AS regexp_split_to_array
+                     FROM areas areas_1
+                    WHERE (areas_1.id = d.area_id)) dt(parts)) AS short_name,
+      ( SELECT count(user_demands.id) AS count
+             FROM user_demands
+            WHERE (user_demands.demand_id = d.id)) AS demand_count,
+      d.created_at
+     FROM ((demands d
+       JOIN problems ON ((problems.id = d.problem_id)))
+       LEFT JOIN areas ON ((areas.id = d.area_id)));
+  SQL
 
 end

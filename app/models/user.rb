@@ -21,6 +21,14 @@ class User < ApplicationRecord
     self.area
   end
 
+  def county
+    self.area.county
+  end
+
+  def state
+    self.area.state
+  end
+
   def associate_municipality
     return if profile&.zip.blank?
 
