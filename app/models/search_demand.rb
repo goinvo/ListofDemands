@@ -1,6 +1,6 @@
 class SearchDemand < ApplicationRecord
 
-  belongs_to :demanded_by_user, class_name: "User"
+  belongs_to :created_by_user, class_name: "User"
   belongs_to :demand
 
   # see https://github.com/thoughtbot/scenic#faqs

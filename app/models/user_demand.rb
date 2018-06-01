@@ -11,6 +11,12 @@ class UserDemand < ApplicationRecord
 
   delegate :problem, :area, to: :demand
 
+  after_commit :refresh_search_demands
+
+  def refresh_search_demands
+    SearchDemand.refresh
+  end
+
   def set_priority
     if priority.blank?
       assign_attributes(priority: user.user_demands.count + 1)
