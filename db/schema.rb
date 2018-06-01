@@ -134,19 +134,19 @@ ActiveRecord::Schema.define(version: 2018_05_31_003842) do
 
   create_view "search_demands", materialized: true,  sql_definition: <<-SQL
       SELECT d.id AS demand_id,
-      d.user_id AS demanded_by_user_id,
-      ( SELECT areas_1.id
-             FROM (areas areas_1
+      d.user_id AS created_by_user_id,
+      ( SELECT area_definitions.municipality_id
+             FROM ((area_definitions
+               JOIN areas areas_1 ON ((areas_1.id = area_definitions.municipality_id)))
                JOIN demands ON ((areas_1.id = demands.area_id)))
-            WHERE ((areas_1.type = 'Municipality'::text) AND (demands.id = d.id))) AS municipality_id,
-      ( SELECT areas_1.id
-             FROM (areas areas_1
+            WHERE (demands.id = d.id)
+           LIMIT 1) AS municipality_id,
+      ( SELECT area_definitions.state_id
+             FROM ((area_definitions
+               JOIN areas areas_1 ON ((areas_1.id = area_definitions.state_id)))
                JOIN demands ON ((areas_1.id = demands.area_id)))
-            WHERE ((areas_1.type = 'County'::text) AND (demands.id = d.id))) AS county_id,
-      ( SELECT areas_1.id
-             FROM (areas areas_1
-               JOIN demands ON ((areas_1.id = demands.area_id)))
-            WHERE ((areas_1.type = 'State'::text) AND (demands.id = d.id))) AS state_id,
+            WHERE (demands.id = d.id)
+           LIMIT 1) AS state_id,
       problems.name AS problem,
       d.solution,
       d.topic,

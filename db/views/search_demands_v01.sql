@@ -1,26 +1,23 @@
 SELECT
 	d.id AS demand_id,
-	d.user_id as demanded_by_user_id,
+	d.user_id as created_by_user_id,
 	(
 		SELECT
-			areas.id
-		FROM areas
+			area_definitions.municipality_id
+		FROM area_definitions
+		INNER JOIN areas ON areas.id = area_definitions.municipality_id
 		INNER JOIN demands ON areas.id = demands.area_id
-		WHERE areas.type = 'Municipality' AND demands.id = d.id
+		WHERE demands.id = d.id
+		LIMIT 1
 	) AS municipality_id,
 	(
 		SELECT
-			areas.id
-		FROM areas
+			area_definitions.state_id
+		FROM area_definitions
+		INNER JOIN areas ON areas.id = area_definitions.state_id
 		INNER JOIN demands ON areas.id = demands.area_id
-		WHERE areas.type = 'County' AND demands.id = d.id
-	) AS county_id,
-	(
-		SELECT
-			areas.id
-		FROM areas
-		INNER JOIN demands ON areas.id = demands.area_id
-		WHERE areas.type = 'State' AND demands.id = d.id
+		WHERE demands.id = d.id
+		LIMIT 1
 	) AS state_id,
 	problems.name AS problem,
 	d.solution AS solution,

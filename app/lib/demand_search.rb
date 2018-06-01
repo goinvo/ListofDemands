@@ -19,7 +19,7 @@ class DemandSearch
 
   def find_demands
     query = SearchDemand.order("demand_count DESC, created_at DESC")
-    query = add_area_scope(query)
+    query = add_query_scope(query)
     # query = query.advanced_search(solution: process_query) if query?
     query = query.where(topic: process_topic) if topic?
 
@@ -40,10 +40,6 @@ class DemandSearch
 
   private
 
-  def add_area_scope(query)
-    query.where("#{query_scope.class.name.downcase}_id" => query_scope.id)
-  end
-
   def topic?
     !topic.blank?
   end
@@ -56,14 +52,25 @@ class DemandSearch
     SCOPE_FALLBACK[scope]
   end
 
-  def query_scope
-    # binding.pry
-    if current_user.present?
-      current_user.send(scope)
-    elsif scope == :municipality
-      user_municipality
+  def add_query_scope(query)
+    query_scope =
+      if current_user.present?
+        current_user.municipality
+      else
+        user_municipality
+      end
+
+    case scope
+    when :municipality
+      query
+        .where(municipality_id: query_scope.id)
+    when :county
+      query
+        .where(municipality_id: query_scope.county.municipalities.pluck(:id))
     else
-      user_municipality.send(scope)
+      # binding.pry
+      query
+        .where(state_id: query_scope.state.id)
     end
   end
 
