@@ -20,5 +20,7 @@
     <dd><%= current_user.profile.date_of_birth || "N/A" %></dd>
     <dt>Political Leaning</dt>
     <dd><%= current_user.profile.political_party || "N/A" %></dd>
+    <dt>The demands I support are visible to</dt>
+    <dd><%= current_user.private? ? "Just me" : "Everyone" %></dd>
   </dl>
 </div>

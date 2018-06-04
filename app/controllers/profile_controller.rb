@@ -6,6 +6,7 @@ class ProfileController < ApplicationController
   end
 
   def edit
+    @profile = current_user.profile
   end
 
   def update
@@ -15,8 +16,9 @@ class ProfileController < ApplicationController
       flash[:info] = "Profile updated!"
       redirect_to profile_url
     else
+      @profile = form.user.profile
       flash[:alert] = "Oops — we couldn't save those changes..."
-      redirect_to edit_profile_url
+      render :edit
     end
   end
 
@@ -33,7 +35,8 @@ class ProfileController < ApplicationController
         :zip,
         :gender,
         :date_of_birth,
-        :policitcal_party
+        :policitcal_party,
+        :private_user
       ]
     )
   end

@@ -2,8 +2,8 @@
   <h1 class="h2">Profile</h1>
   <div class="profile__edit-fields">
     <%= simple_form_for(current_user, url: profile_path, defaults: { input_html: { class: 'form-control--text' } }) do |f| %>
-      <%= f.simple_fields_for :profile, current_user.profile do |address_fields| %>
-        <%= address_fields.input :name %>
+      <%= f.simple_fields_for :profile, @profile do |address_fields| %>
+        <%= address_fields.input :name, required: true %>
         <%= address_fields.input :address1, required: true %>
         <%= address_fields.input :address2 %>
         <%= address_fields.input :city, required: true %>
@@ -12,6 +12,16 @@
         <%= address_fields.input :gender %>
         <%= address_fields.input :date_of_birth, as: :string, input_html: {class: 'datepicker-input form-control--text'} %>
         <%= address_fields.input :political_party %>
+        <%= address_fields.input(:private_user,
+          as: :radio_buttons,
+          wrapper: :radio_pills,
+          collection: [['0', 'Everyone'], ['1', 'Just me']],
+          label_method: :second,
+          value_method: :first,
+          label: "The demands I support are visible to",
+          checked: current_user.private? ? '1' : '0',
+          required: false)
+        %>
       <% end %>
       <%= f.submit("Update Profile", class: 'btn btn-primary') %>
       or <%= link_to('cancel', profile_path) %>

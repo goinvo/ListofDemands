@@ -17,9 +17,7 @@
     </div>
   </div>
   <%= render('shared/topics-filter') %>
-  <ul class="demands-list">
-    <%= render(partial: 'demand', collection: @demands) %>
-  </ul>
+  <%= render partial: 'shared/demand', collection: @demands, locals: { display_creator: true, display_area: params[:scope] == 'county' } %>
   <% if @demands.empty? %>
     <div class="no-demands pad-all">
       <p>There aren't any demands for <%= current_user_area_name %> yet. :(</p>

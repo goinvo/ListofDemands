@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  validates :uuid, uniqueness: true
+
   has_one :profile
   accepts_nested_attributes_for :profile
   delegate :zip_code, to: :profile
@@ -36,6 +38,18 @@ class User < ApplicationRecord
     return if zip_code.municipality.blank?
 
     self.area = zip_code.municipality
+  end
+
+  def display_name
+    profile.name || email.split("@")[0]
+  end
+
+  def to_param
+    uuid
+  end
+
+  def private?
+    profile.private_user?
   end
 
   private
