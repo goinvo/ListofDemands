@@ -26,7 +26,7 @@ class DemandsController < ApplicationController
   end
 
   def show
-    @demand = Demand.find(params[:id])
+    @demand = DemandView.new(Demand.find(params[:id]))
   end
 
   def edit

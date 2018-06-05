@@ -7,10 +7,10 @@
     For <%= @demand.area.short_name %> |
     <%= "#{@demand.topic} | " if @demand.topic %>
     demanded by <span class="demand-count"><%= number_with_delimiter(@demand.user_demands.count) %></span> |
-    created by <%= link_to @demand.user.display_name, @demand.user %>
+    created by <%= link_to @demand.wrapped_user.display_name, @demand.user %>
   </p>
   <% @demand.solution.split("\n").each do |paragraph| %>
     <p><%= paragraph %></p>
   <% end %>
-  <%= render(partial: 'demands/support-demand-form', locals: { demand: @demand }) %>
+  <%= render(partial: 'demands/support-demand-form', locals: { demand: @demand.model }) %>
 </div>

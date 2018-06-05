@@ -1,4 +1,4 @@
 <div class="main__content">
   <h1 class="h2"><%= @user.display_name %>'s Supported Demands</h1>
-  <%= render partial: 'shared/demand', collection: @user.supported_demands, locals: { display_creator: true, display_area: true } %>
+  <%= render partial: 'shared/demand', collection: @user.wrapped_supported_demands, locals: { display_creator: true, display_area: true } %>
 </div>
