@@ -1,0 +1,14 @@
+<h1 class="h2"><%= name %></h1>
+<% if owned_by_current_user? %>
+  <%= link_to 'Edit', edit_demand_url(model) %>
+<% end %>
+<p class="gray text--small">
+  For <%= area.short_name %> |
+  <%= "#{topic} | " if topic %>
+  demanded by <span class="demand-count"><%= number_with_delimiter(user_demands.count) %></span> |
+  created by <%= link_to user_display_name, user %>
+</p>
+<% solution.split("\n").each do |paragraph| %>
+  <p><%= paragraph %></p>
+<% end %>
+<%= cell(:demand, model).(:support_demand_form) %>

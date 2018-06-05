@@ -1,0 +1,4 @@
+<h1 class="h2"><%= display_name %>'s Supported Demands</h1>
+<% cell(:demand, collection: supported_demands, display_creator: true, display_area: true).join do |cell, i| %>
+  <%= cell.(:list_item, count: i + 1) %>
+<% end %>

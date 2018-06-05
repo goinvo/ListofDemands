@@ -1,0 +1,12 @@
+<li class="demand-item">
+  <div class="demand-item__counter"><%= @count %></div>
+  <div class="demand-item__content">
+    <div class="demand-item__name-container">
+      <div class="demand-name"><%= link_to(name, demand_path(model)) %></div>
+      <%= cell(:demand, model, display_creator: options[:display_creator], display_area: options[:display_area]).(:meta) %>
+    </div>
+    <div class="demand-item__button">
+      <%= cell(:demand, model).(:support_demand_form) %>
+    </div>
+  </div>
+</li>

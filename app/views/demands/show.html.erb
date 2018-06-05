@@ -1,16 +1,3 @@
 <div class="main__content">
-  <h1 class="h2"><%= @demand.name %></h1>
-  <% if @demand.owned_by?(current_user) %>
-    <%= link_to 'Edit', edit_demand_url(@demand) %>
-  <% end %>
-  <p class="gray text--small">
-    For <%= @demand.area.short_name %> |
-    <%= "#{@demand.topic} | " if @demand.topic %>
-    demanded by <span class="demand-count"><%= number_with_delimiter(@demand.user_demands.count) %></span> |
-    created by <%= link_to @demand.user.display_name, @demand.user %>
-  </p>
-  <% @demand.solution.split("\n").each do |paragraph| %>
-    <p><%= paragraph %></p>
-  <% end %>
-  <%= render(partial: 'demands/support-demand-form', locals: { demand: @demand }) %>
+  <%= cell(:demand, @demand) %>
 </div>
