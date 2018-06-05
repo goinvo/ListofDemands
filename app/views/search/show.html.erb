@@ -17,7 +17,9 @@
     </div>
   </div>
   <%= render('shared/topics-filter') %>
-  <%= render partial: 'shared/demand', collection: @demands, locals: { display_creator: true, display_area: params[:scope] == 'county' } %>
+  <% cell(:demand, collection: @demands, display_creator: true, display_area: params[:scope] == 'county').join do |cell, i| %>
+    <%= cell.(:list_item, count: i + 1) %>
+  <% end %>
   <% if @demands.empty? %>
     <div class="no-demands pad-all">
       <p>There aren't any demands for <%= current_user_area_name %> yet. :(</p>

@@ -1,0 +1,10 @@
+<div class="demand-meta">
+    <%= "For #{area.short_name} | " if options[:display_area] %>
+    <%= "#{topic} | " if topic %>
+    demanded by <span class="demand-count"><%= number_with_delimiter(user_demands.count) %></span>
+</div>
+<% if options[:display_creator] && !user.private? %>
+  <div class="demand-item__creator gray text--small">
+    created by <%= link_to user_display_name, user %>
+  </div>
+<% end %>
