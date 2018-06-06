@@ -44,6 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     keys: [
       :attribute,
       profile_attributes: [
+        :name,
         :address1,
         :address2,
         :city,

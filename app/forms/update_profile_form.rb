@@ -1,4 +1,6 @@
 class UpdateProfileForm
+  attr_reader :user
+
   def initialize(current_user, user_params)
     @user = current_user
     @params = user_params[:profile_attributes]
