@@ -49,5 +49,6 @@ class SearchController < ApplicationController
         end
       }
     end
+    @demands = DemandView.collection(@demands)
   end
 end

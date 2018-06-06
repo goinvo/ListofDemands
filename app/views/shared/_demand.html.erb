@@ -10,12 +10,12 @@
       </div>
       <% if local_assigns[:display_creator] && !demand.user.private? %>
         <div class="demand-item__creator gray text--small">
-          created by <%= link_to demand.user.display_name, demand.user %>
+          created by <%= link_to demand.wrapped_user.display_name, demand.user %>
         </div>
       <% end %>
     </div>
     <div class="demand-item__button">
-      <%= render(partial: 'demands/support-demand-form', locals: { demand: demand }) %>
+      <%= render(partial: 'demands/support-demand-form', locals: { demand: demand.model }) %>
     </div>
   </div>
 </li>
