@@ -32,7 +32,11 @@ FactoryBot.define do
   #### Profile ####
   factory :profile do
     name { "#{Faker::Name.name}" }
+    date_of_birth { "#{Faker::Date.birthday}" }
+    gender { rand(1..2) % 2 == 0 ? "Male" : "Female" }
+    political_party { "#{Faker::Company.name}"}
     address1 { "#{Faker::Address.street_address}" }
+    address2 { "#{Faker::Address.street_address}" }
     city { "#{Faker::Address.city}" }
     state { "#{Faker::Address.state}" }
     private_user { false }

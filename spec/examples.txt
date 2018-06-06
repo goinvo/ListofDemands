@@ -30,3 +30,7 @@ example_id                                                     | status  | run_t
 ./spec/forms/demand_form_spec.rb[1:4:2]                        | passed  | 0.02171 seconds |
 ./spec/forms/demand_form_spec.rb[1:5:1]                        | passed  | 0.04225 seconds |
 ./spec/forms/demand_form_spec.rb[1:5:2]                        | passed  | 0.02323 seconds |
+./spec/forms/update_profile_form_spec.rb[1:1:1]                | passed  | 0.25782 seconds |
+./spec/forms/update_profile_form_spec.rb[1:2:1]                | passed  | 0.02791 seconds |
+./spec/forms/update_profile_form_spec.rb[1:2:2]                | passed  | 0.02446 seconds |
+./spec/forms/update_profile_form_spec.rb[1:2:3]                | passed  | 0.02507 seconds |
