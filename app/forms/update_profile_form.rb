@@ -13,6 +13,6 @@ class UpdateProfileForm
 
     @user.associate_municipality if @user.profile.zip_changed?
 
-    @user.save
+    @user.save!
   end
 end
