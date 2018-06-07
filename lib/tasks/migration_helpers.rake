@@ -107,4 +107,30 @@ namespace :migration_helpers do
     end
   end
 
+  desc "Add short_names to Area records."
+  task add_area_short_names: :environment do
+    puts "Deleting Areas with empty name"
+    Area.where(name: [nil, '']).destroy_all
+
+    puts "Adding short_name's to Area."
+    count = 0
+    Area.find_each do |area|
+      area.short_name = area.name.split(",")[0].strip()
+      area.save!
+
+      count += 1
+      if count % 1000 == 0
+        puts "Processed #{count} rows"
+      end
+    end
+  end
+
+  desc "Add national level area (USA) to database and creation AreaDefinitions."
+  task add_usa: :environment do
+    usa = Area.new(name: "United States of America", short_name: "USA", type: "Country")
+    usa.save!
+
+    puts "Updating AreaDefinitions with USA Country field."
+    AreaDefinition.update_all country_id: usa.id
+  end
 end

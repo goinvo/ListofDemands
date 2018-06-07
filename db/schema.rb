@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_223334) do
+ActiveRecord::Schema.define(version: 2018_06_07_191742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_223334) do
     t.datetime "updated_at", null: false
     t.integer "county_id"
     t.integer "state_id"
+    t.integer "country_id"
     t.index ["municipality_id", "zip_code_id"], name: "index_area_definitions_on_municipality_id_and_zip_code_id", unique: true
     t.index ["municipality_id"], name: "index_area_definitions_on_municipality_id"
     t.index ["zip_code_id"], name: "index_area_definitions_on_zip_code_id"
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_223334) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "type"
+    t.string "short_name"
     t.index ["name"], name: "index_areas_on_name", unique: true
   end
 
