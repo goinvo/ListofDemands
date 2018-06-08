@@ -3,15 +3,20 @@
   <%= f.input(:demand_description, as: :text, input_html: { class: 'typeahead form-control--text', data: {source: Problem.all.map(&:name).uniq.to_json} }) %>
   <%= f.input(:solution, input_html: { class: 'form-control--text' }, required: false) %>
   <%= f.input(:topic, input_html: { class: 'form-control form-control--select' }, as: :select, collection: topic_options, required: false) %>
-  <%= f.input(:is_statewide,
-    as: :radio_buttons,
-    wrapper: :radio_pills,
-    collection: [['0', current_user.municipality.short_name], ['1', current_user.municipality.state.name]],
-    label_method: :second,
+  <%= f.input(:area,
+    as: :check_boxes,
+    wrapper: :input_pills,
+    collection: [
+      [current_user.municipality.id, current_user.municipality.short_name],
+      [current_user.municipality.state.id, current_user.municipality.state.short_name],
+      [current_user.municipality.country.id, current_user.municipality.country.short_name]
+    ],
+    disabled: [demand.area ? demand.area.id : nil], # TODO: This will have to return all "related" demands once relations are built. This also incorrectly makes disabled on forms that are rendered after failing to save.
     value_method: :first,
-    label: "Demand applies to",
-    checked: demand.is_statewide ? '1' : '0',
-    required: false)
+    label_method: :last,
+    hint: "(check all that apply)",
+    label: "Demand for",
+    required: true)
   %>
   <%= f.submit(submit_text, class: 'btn btn-primary') %>
 <% end %>

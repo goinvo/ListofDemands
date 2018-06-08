@@ -5,21 +5,17 @@ class Demand < ApplicationRecord
   belongs_to :area
   belongs_to :problem
   has_many :user_demands
-  validates :user, :area, :solution, :demand_description, presence: true
+  validates :user, :solution, :demand_description, presence: true
+  validates_presence_of :area, message: "Must pertain to at least one area"
   validates :topic, inclusion: { in: Constants::DEMAND_TOPICS }, allow_nil: true
 
   delegate :name, to: :problem
-  attr_accessor :is_statewide
 
   before_create :create_user_demand
   after_commit :refresh_search_demands
 
   def refresh_search_demands
     SearchDemand.refresh
-  end
-
-  def is_statewide
-    self.area.type == 'State' if self.area
   end
 
   def demand_description

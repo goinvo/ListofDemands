@@ -38,11 +38,12 @@ label input[type="radio"] {
   }
 }
 
-.radio-pills {
+.input-pills {
   display: flex;
   flex-wrap: wrap;
 
-  .radio {
+  .radio,
+  .checkbox {
     margin: 0 $spacing $spacing 0;
 
     input {
@@ -78,6 +79,17 @@ label input[type="radio"] {
 
     input:checked ~ label::after {
       display: block;
+    }
+
+    input:disabled ~ label {
+      opacity: 0.65;
+      cursor: default !important;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: $color-primary !important;
+      }
     }
   }
 }

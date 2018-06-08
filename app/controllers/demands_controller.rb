@@ -48,10 +48,10 @@ class DemandsController < ApplicationController
   private
 
   def create_params
-    params.require(:demand).permit(:solution, :demand_description, :topic, :is_statewide)
+    params.require(:demand).permit(:solution, :demand_description, :topic, :area => [])
   end
 
   def update_params
-    params.require(:demand).permit(:solution, :demand_description, :topic, :is_statewide)
+    params.require(:demand).permit(:solution, :demand_description, :topic, :area => [])
   end
 end
