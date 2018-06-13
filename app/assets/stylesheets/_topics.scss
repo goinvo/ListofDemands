@@ -11,6 +11,25 @@
     font-size: $font-size-small;
   }
 
+  .btn-primary--outline {
+    &:hover,
+    &:focus {
+      color: $color-primary;
+      background-color: lighten($color-primary, 50%);
+      font-weight: $font-weight-bold;
+    }
+
+    &.is-active {
+      color: $color-white;
+      background-color: $color-primary;
+      font-weight: $font-weight-normal;
+
+      &:hover {
+        background-color: darken($color-primary, 5%);
+      }
+    }
+  }
+
   @media only screen and (min-width: $breakpoint-desktop) {
     padding: $spacing ($spacing * 1.5);
   }
