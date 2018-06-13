@@ -72,12 +72,27 @@ fieldset:disabled a.btn {
   @include button-outline-variant($color-primary, $color-white);
 }
 
+.btn-gray--outline {
+  @include button-outline-variant($color-gray--dark, $color-gray--dark, lighten($color-gray--dark, 60%));
+}
+
 .btn-transparent {
   @include button-variant($color-black, transparent, transparent);
 }
 
 .btn-demand {
-  min-width: 150px;
+  min-width: 172px;
+
+  &--demanded {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 10px;
+    }
+  }
 }
 
 //

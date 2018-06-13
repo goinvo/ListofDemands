@@ -2,6 +2,7 @@ $color-black: #000;
 $color-gray: #757575;
 $color-gray--light: lighten($color-gray, 30%);
 $color-gray--lightest: lighten($color-gray, 48%);
+$color-gray--dark: darken($color-gray, 10%);
 $color-white: #fff;
 $color-blue: #1dbed3;
 $color-blue--light: lighten($color-blue, 45%);
