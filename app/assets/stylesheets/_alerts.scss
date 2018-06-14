@@ -12,9 +12,9 @@
 }
 
 .alert-dismiss-wrapper {
-  &:hover {
-    text-decoration: none;
-  }
+  display: block;
+  border: 0;
+  background: none;
 
   &:focus {
     @include focus;
