@@ -36,6 +36,11 @@ module ApplicationHelper
       current_user.applicable_areas
     end
   end
+
+  def authenticate_user!
+    flash[:custom_unauthenticated] = "You need to sign in or sign up before continuing."
+    super
+  end
 end
 
 def should_have_active_nav_class(path, scope = nil)

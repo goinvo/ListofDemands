@@ -1,10 +1,12 @@
 <div class="flashes">
   <% flash.each do |key, value| %>
-    <button data-dismiss="alert" class="alert-dismiss-wrapper close">
-      <div class="alert alert-dismissible alert-<%= key %>">
-        <svg class="icon icon-close"><use xlink:href="#icons-close"></svg>
-        <%= value %>
-      </div>
-    </button>
+    <% if key != "custom_unauthenticated" && !value.blank? %>
+      <button data-dismiss="alert" class="alert-dismiss-wrapper close">
+        <div class="alert alert-dismissible alert-<%= key %>">
+          <svg class="icon icon-close"><use xlink:href="#icons-close"></svg>
+          <%= value %>
+        </div>
+      </button>
+    <% end %>
   <% end %>
 </div>

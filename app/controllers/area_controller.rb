@@ -1,5 +1,6 @@
 
 class AreaController < ApplicationController
+  include ActionView::Helpers::NumberHelper
 
   def new
   end
@@ -13,7 +14,7 @@ class AreaController < ApplicationController
       session[:area_id] = zip.municipality.id
       redirect_to session.delete(:set_area_redirect) || search_url
     else
-      flash[:alert] = "We know of #{ZipCode.count} ZIP codes. That wasn't one of them :-("
+      flash[:alert] = "We know of #{number_with_delimiter(ZipCode.count)} ZIP codes. That wasn't one of them :-("
       redirect_to new_area_url
     end
   end
