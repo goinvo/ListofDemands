@@ -23,6 +23,7 @@
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
+    <%= render("shared/flashes") %>
     <%= render("shared/header") %>
     <aside class="sidebar desktop-only">
       <%= link_to "listofdemands.us", "/", class: "sidebar__title" %>
@@ -30,7 +31,6 @@
       <%= render('shared/site-links') %>
     </aside>
     <main class="main">
-      <%= render("shared/flashes") %>
       <%= yield %>
     </main>
     <%= yield(:before_body) %>
