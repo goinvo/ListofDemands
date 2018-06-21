@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_07_191742) do
+ActiveRecord::Schema.define(version: 2018_06_21_195650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 2018_06_07_191742) do
     t.text "type"
     t.string "short_name"
     t.index ["name"], name: "index_areas_on_name", unique: true
+  end
+
+  create_table "demand_relationships", force: :cascade do |t|
+    t.bigint "demand_id"
+    t.bigint "related_demand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["demand_id", "related_demand_id"], name: "index_demand_relationships_on_demand_id_and_related_demand_id", unique: true
+    t.index ["demand_id"], name: "index_demand_relationships_on_demand_id"
+    t.index ["related_demand_id"], name: "index_demand_relationships_on_related_demand_id"
   end
 
   create_table "demands", force: :cascade do |t|
@@ -136,6 +146,8 @@ ActiveRecord::Schema.define(version: 2018_06_07_191742) do
     t.index ["zip"], name: "index_zip_codes_on_zip", unique: true
   end
 
+  add_foreign_key "demand_relationships", "demands"
+  add_foreign_key "demand_relationships", "demands", column: "related_demand_id"
 
   create_view "search_demands", materialized: true,  sql_definition: <<-SQL
       SELECT d.id AS demand_id,
