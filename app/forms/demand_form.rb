@@ -4,6 +4,7 @@ class DemandForm
 
   def initialize(current_user, attr = {})
     @current_user = current_user
+    @created_demands = []
 
     if attr[:id]
       @demand = @current_user.demands.find(attr[:id])
@@ -34,6 +35,7 @@ class DemandForm
       if @demand.persisted?
         assign_demand_attributes(params, nil)
         return false if !@demand.save
+        @created_demands << @demand
       end
 
       # Lastly, make new demands for each area in the areas array
@@ -42,14 +44,23 @@ class DemandForm
           @demand = @current_user.demands.build
           assign_demand_attributes(params, area_id)
           return false if !@demand.save
+          @created_demands << @demand
         end
       else
         if (areas.blank? && !@demand.persisted?) # Trying to make a new demand with no area assigned
           assign_demand_attributes(params, nil) # Assign the attributes that are valid to be sent back to form
           return false
         end
-        true
       end
+
+      if @created_demands.length > 1
+        @created_demands.each_with_index do |demand, i|
+          @created_demands.length.times do |j|
+            DemandRelationship.find_or_create_by(demand: demand, related_demand: @created_demands[j]) if i != j
+          end
+        end
+      end
+      true
     end
   rescue ActiveRecord::RecordInvalid => exception
     return false

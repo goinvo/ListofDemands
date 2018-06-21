@@ -158,6 +158,22 @@ RSpec.describe DemandForm do
         expect(demand.area.id).to eq(area)
       end
     end
+
+    it "creates relationships between all created demands" do
+      areas = @areas.dup
+      @basic_demand_params[:area] = areas.unshift("")
+      form = DemandForm.new(@user, @basic_demand_params)
+      form.save
+      @user.user_demands.reload
+
+      @user.user_demands.each do |user_demand|
+        expected_demands = @user.user_demands.where.not(demand: user_demand.demand).map do |other_user_demand|
+          other_user_demand.demand
+        end
+        expect(user_demand.demand.related_demands.length).to eq(2)
+        expect(user_demand.demand.related_demands).to eq(expected_demands)
+      end
+    end
   end
 
   describe 'has_solution?' do
