@@ -7,6 +7,7 @@
     <li><%= link_to(user_municipality.short_name, search_url(request.query_parameters.merge({scope: ''})), class: "nav-list__link #{should_have_active_nav_class(search_url, '')}") %></li>
     <li><%= link_to("#{user_municipality.county.short_name} County", search_url(request.query_parameters.merge({scope: 'county'})), class: "nav-list__link #{should_have_active_nav_class(search_url, 'county')}") %></li>
     <li><%= link_to(user_municipality.state.short_name, search_url(request.query_parameters.merge({scope: 'state'})), class: "nav-list__link #{should_have_active_nav_class(search_url, 'state')}") %></li>
+    <li><%= link_to(user_municipality.country.short_name, search_url(request.query_parameters.merge({scope: 'country'})), class: "nav-list__link #{should_have_active_nav_class(search_url, 'country')}") %></li>
   <% end %>
 </ul>
 <% if user_municipality.present? %>

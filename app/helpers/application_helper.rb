@@ -55,6 +55,8 @@ def area_name_by_params_area(area)
     area.county.name_abbreviated
   elsif params[:scope] == 'state'
     area.state.name
+  elsif params[:scope] == 'country'
+    area.country.short_name
   else
     area.name_abbreviated
   end
