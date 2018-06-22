@@ -23,6 +23,15 @@ class DemandForm
     end
   end
 
+  def make_relationships(demand, related_demand)
+    DemandRelationship.find_or_create_by(demand: demand, related_demand: related_demand)
+    related_demand.related_demands.each do |cousin|
+      if demand != cousin
+        DemandRelationship.find_or_create_by(demand: demand, related_demand: cousin)
+      end
+    end
+  end
+
   def save
     # First, dup the params and separate out the areas array
     params = @params.dup
@@ -39,7 +48,7 @@ class DemandForm
         @created_demands << @demand
       end
 
-      # Lastly, make new demands for each area in the areas array
+      # Make new demands for each area in the areas array
       if !areas.blank?
         areas.each do |area_id|
           @demand = @current_user.demands.build
@@ -54,21 +63,19 @@ class DemandForm
         end
       end
 
-      if @created_demands.length > 1
-        @created_demands.each_with_index do |demand, i|
-          @created_demands.length.times do |j|
-            DemandRelationship.find_or_create_by(demand: demand, related_demand: @created_demands[j]) if i != j
+      # Last, create all the necessary relations between Demands where they
+      # don't already exist
+      @created_demands.each_with_index do |demand, i|
+        @created_demands.length.times do |j|
+          if i != j
+            make_relationships(demand, @created_demands[j]) # TODO: Will this fail the transaction if there is a problem with relationship creation?
           end
         end
       end
 
       if clone_from.present?
         demand_to_clone_from = Demand.find(@params[:clone_from])
-        DemandRelationship.find_or_create_by(demand: @demand, related_demand: demand_to_clone_from)
-
-        demand_to_clone_from.related_demands.each do |related_demand|
-          DemandRelationship.find_or_create_by(demand: @demand, related_demand: related_demand)
-        end
+        make_relationships(demand, demand_to_clone_from)
       end
       true
     end

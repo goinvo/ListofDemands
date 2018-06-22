@@ -167,12 +167,32 @@ RSpec.describe DemandForm do
       @user.user_demands.reload
 
       @user.user_demands.each do |user_demand|
+        expect(user_demand.demand.related_demands.length).to eq(2)
         expected_demands = @user.user_demands.where.not(demand: user_demand.demand).map do |other_user_demand|
           other_user_demand.demand
         end
-        expect(user_demand.demand.related_demands.length).to eq(2)
         expect(user_demand.demand.related_demands).to match_array(expected_demands)
       end
+    end
+
+    it "creates relationships when updating/creating demands at the same time" do
+      areas = @areas.dup
+      final_area = areas.pop
+      @basic_demand_params[:area] = areas.unshift("")
+      form = DemandForm.new(@user, @basic_demand_params)
+      form.save
+      @user.user_demands.reload
+      @basic_demand_params = @basic_demand_params.merge(id: @user.user_demands.first.demand.id, area: ["", final_area])
+      form = DemandForm.new(@user, @basic_demand_params)
+      form.save
+      @user.user_demands.reload
+
+      expect(@user.user_demands.length).to eq(3)
+      @user.user_demands.each do |user_demand|
+        expect(user_demand.demand.related_demands.length).to eq(2)
+      end
+      expected_demands = @user.user_demands.first(2).map(&:demand)
+      expect(@user.user_demands.last.demand.related_demands).to match_array(expected_demands)
     end
 
     it "creates relationships from clone when clone_from is present" do
