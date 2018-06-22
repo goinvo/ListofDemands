@@ -27,6 +27,15 @@ module ApplicationHelper
   def is_active_topic(topic)
     topic == params[:topic]
   end
+
+  def current_user_areas
+    if !user_signed_in?
+      area = Area.find(session[:area_id])
+      [area, area.state, area.country]
+    else
+      current_user.applicable_areas
+    end
+  end
 end
 
 def should_have_active_nav_class(path, scope = nil)

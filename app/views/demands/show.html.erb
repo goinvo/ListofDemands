@@ -14,7 +14,7 @@
   <% end %>
 
   <ul class="list-unstyled">
-    <% current_user.applicable_areas.promote(@demand.area).each do |area| %>
+    <% current_user_areas.promote(@demand.area).each do |area| %>
       <% if @demand.area == area %>
         <li class="margin-bottom"><%= render(partial: 'demands/support-demand-form', locals: { demand: @demand.model }) %></li>
       <% elsif @demand.related_demand_for(area).present? %>
