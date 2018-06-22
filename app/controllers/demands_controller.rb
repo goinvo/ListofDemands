@@ -4,7 +4,7 @@ class DemandsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
   def new
-    @demand = current_user.demands.build
+    @demand = DemandView.new(current_user.demands.build)
   end
 
   def create
@@ -30,7 +30,7 @@ class DemandsController < ApplicationController
   end
 
   def edit
-    @demand = current_user.demands.find(params[:id])
+    @demand = DemandView.new(current_user.demands.find(params[:id]))
   end
 
   def update

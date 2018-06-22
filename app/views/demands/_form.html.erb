@@ -6,12 +6,9 @@
   <%= f.input(:area,
     as: :check_boxes,
     wrapper: :input_pills,
-    collection: [
-      [current_user.municipality.id, current_user.municipality.short_name],
-      [current_user.municipality.state.id, current_user.municipality.state.short_name],
-      [current_user.municipality.country.id, current_user.municipality.country.short_name]
-    ],
-    disabled: [demand.area ? demand.area.id : nil], # TODO: This will have to return all "related" demands once relations are built. This also incorrectly makes disabled on forms that are rendered after failing to save.
+    collection: current_user.applicable_areas(true),
+    checked: demand.persisted? ? demand.checked_areas_for_edit : params[:area],
+    disabled: demand.persisted? ? demand.checked_areas_for_edit : params[:area],
     value_method: :first,
     label_method: :last,
     hint: "(check all that apply)",

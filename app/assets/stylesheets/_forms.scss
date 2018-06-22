@@ -52,44 +52,67 @@ label input[type="radio"] {
 
     label {
       @extend .btn;
-      @extend .btn-primary--outline;
       position: relative;
       margin-bottom: 0;
       padding: 6px 30px;
+      color: $color-primary;
       border-radius: 25px;
-      cursor: pointer;
+      background-color: $color-white;
+      border-color: $color-primary;
+      box-shadow: $btn-box-shadow;
+
+      .icon {
+        fill: $color-primary;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 40%;
+        display: none;
+        width: 6px;
+        height: 12px;
+        border: solid $color-white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg) translateY(-50%);
+      }
     }
 
-    label::after {
-      content: "";
-      position: absolute;
-      left: 10px;
-      top: 40%;
-      display: none;
-      width: 6px;
-      height: 12px;
-      border: solid $color-white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg) translateY(-50%);
+    input:focus ~ label,
+    input.focus ~ label {
+      @include focus;
+    }
+
+    input:disabled ~ label,
+    input.disabled ~ label {
+      opacity: 0.65;
+      box-shadow: none;
+
+      &:hover {
+        cursor: default;
+      }
     }
 
     input:checked ~ label {
-      @extend .btn-primary;
-    }
+      color: $color-white;
+      background-color: $color-primary;
 
-    input:checked ~ label::after {
-      display: block;
-    }
-
-    input:disabled ~ label {
-      opacity: 0.65;
-      cursor: default !important;
-
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: $color-primary !important;
+      &::after {
+        display: block;
       }
+    }
+
+    input:not(:disabled) ~ label:hover,
+    input:not(:disabled) ~ label.is-active {
+      color: $color-white;
+      background-color: $color-primary;
+      border-color: $color-primary;
+    }
+
+    input:checked:not(:disabled) ~ label:hover {
+      background-color: darken($color-primary, 5%);
+      border-color: darken($color-primary, 5%);
     }
   }
 }
