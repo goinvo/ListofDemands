@@ -11,7 +11,7 @@ class DemandsController < ApplicationController
     form = DemandForm.new(current_user, create_params)
 
     if form.save
-      redirect_to me_url
+      redirect_to redirect_path
     # NOTE: Temporarily removed until we find better option here
     # elsif form.incomplete_demand?
     #   flash[:info] = "Okay, we've saved that issue but no demand was created because the proposed solution was empty."
@@ -48,10 +48,14 @@ class DemandsController < ApplicationController
   private
 
   def create_params
-    params.require(:demand).permit(:solution, :demand_description, :topic, :area => [])
+    params.require(:demand).permit(:solution, :demand_description, :topic, :clone_from, :area => [])
   end
 
   def update_params
     params.require(:demand).permit(:solution, :demand_description, :topic, :area => [])
+  end
+
+  def redirect_path
+    params[:redirect] || me_url
   end
 end

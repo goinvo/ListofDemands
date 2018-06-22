@@ -18,6 +18,13 @@ RSpec.describe DemandsController do
       expect(flash[:notice]).to be(nil)
     end
 
+    it "redirects to specified url if redirect param is present" do
+      url = "test.me/now"
+      post :create, params: { demand: @valid_attributes, redirect: url }
+
+      expect(response).to redirect_to(url)
+    end
+
     it 'saves a Problem but not Demand when given blank solution' do
       skip "Temporarily removed this functionality but it may come back in slightly different form."
       no_solution = @valid_attributes.merge({solution: ''})

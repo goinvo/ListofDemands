@@ -40,6 +40,10 @@ class User < ApplicationRecord
     self.area = zip_code.municipality
   end
 
+  def applicable_areas
+    [municipality, municipality.state, municipality.country]
+  end
+
   def to_param
     uuid
   end

@@ -32,6 +32,10 @@ class Demand < ApplicationRecord
     user == self.user
   end
 
+  def related_demand_for(area)
+    related_demands.find_by(area_id: area.id)
+  end
+
   private
 
   def create_user_demand

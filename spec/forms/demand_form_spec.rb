@@ -171,8 +171,31 @@ RSpec.describe DemandForm do
           other_user_demand.demand
         end
         expect(user_demand.demand.related_demands.length).to eq(2)
-        expect(user_demand.demand.related_demands).to eq(expected_demands)
+        expect(user_demand.demand.related_demands).to match_array(expected_demands)
       end
+    end
+
+    it "creates relationships from clone when clone_from is present" do
+      demand_a = create(:demand, :local, user: @user)
+      demand_b = create(:demand, :statewide, user: @user)
+      area = create(:country)
+      demand_a.related_demands << demand_b
+      params = {
+        demand_description: demand_a.demand_description,
+        solution: demand_a.solution,
+        area: ["", area.id],
+        clone_from: demand_a.id
+      }
+      expected_relations = demand_a.related_demands.dup.push(demand_a)
+
+      form = DemandForm.new(@user, params)
+      form.save
+      @user.user_demands.reload
+
+      cloned_demand = @user.user_demands.first.demand
+      expect(cloned_demand.related_demands).to eq(expected_relations)
+      expect(demand_a.related_demands).to include(cloned_demand)
+      expect(demand_b.related_demands).to include(cloned_demand)
     end
   end
 

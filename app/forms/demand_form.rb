@@ -26,6 +26,7 @@ class DemandForm
   def save
     # First, dup the params and separate out the areas array
     params = @params.dup
+    clone_from = params.delete :clone_from
     areas = params.delete :area
     areas.shift # Remove the first value (which is always blank from rails hidden input)
 
@@ -58,6 +59,15 @@ class DemandForm
           @created_demands.length.times do |j|
             DemandRelationship.find_or_create_by(demand: demand, related_demand: @created_demands[j]) if i != j
           end
+        end
+      end
+
+      if clone_from.present?
+        demand_to_clone_from = Demand.find(@params[:clone_from])
+        DemandRelationship.find_or_create_by(demand: @demand, related_demand: demand_to_clone_from)
+
+        demand_to_clone_from.related_demands.each do |related_demand|
+          DemandRelationship.find_or_create_by(demand: @demand, related_demand: related_demand)
         end
       end
       true

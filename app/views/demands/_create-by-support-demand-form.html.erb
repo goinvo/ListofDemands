@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+  <%= simple_form_for(demand.dup) do %>
+    <input type="hidden" name="demand[demand_description]" value="<%= demand.demand_description %>" />
+    <input type="hidden" name="demand[solution]" value="<%= demand.solution %>" />
+    <input type="hidden" name="demand[topic]" value="<%= demand.topic %>" />
+    <input type="hidden" name="demand[area][]" value="" />
+    <input type="hidden" name="demand[area][]" value="<%= area.id %>" />
+    <input type="hidden" name="demand[clone_from]" value="<%= demand.id %>" />
+    <input type="hidden" name="redirect" value="<%= request.original_url %>" />
+    <%= button_tag("Demand For #{area.short_name}", type: "submit", class: "btn btn-primary--outline btn-demand") %>
+  <% end %>
+<% end %>
