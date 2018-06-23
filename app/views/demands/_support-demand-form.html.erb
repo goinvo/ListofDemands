@@ -4,13 +4,13 @@
     <input type="hidden" name="redirect" value="<%= request.original_url %>" />
     <%= button_tag(type: "submit", class: 'btn btn-gray--outline btn-demand btn-demand--demanded') do %>
       <svg class="icon icon-checkbox"><use xlink:href="#icons-checkbox"></svg>
-      Demanded
+      Demanded <%= local_assigns[:title] %>
     <% end %>
   <% end %>
 <% else %>
   <%= form_tag(supported_demands_path) do %>
     <input type="hidden" name="id" value="<%= demand.id %>" />
     <input type="hidden" name="redirect" value="<%= request.original_url %>" />
-    <%= button_tag("Demand", type: "submit", class: 'btn btn-primary--outline btn-demand') %>
+    <%= button_tag(local_assigns[:title] || "Demand", type: "submit", class: 'btn btn-primary--outline btn-demand') %>
   <% end %>
 <% end %>

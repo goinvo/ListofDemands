@@ -55,19 +55,19 @@ SimpleForm.setup do |config|
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
   end
 
-  config.wrappers :radio_pills, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+  config.wrappers :input_pills, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.optional :readonly
 
-    b.wrapper tag: 'div', class: 'radio-pills-container' do |pill|
+    b.wrapper tag: 'div', class: 'input-pills-container' do |pill|
       pill.use :label, :class => 'control-label'
+      pill.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
 
-      pill.wrapper :tag => 'div', :class => 'radio-pills' do |bb|
-        bb.use :input, class: 'form-control radio-pill'
+      pill.wrapper :tag => 'div', :class => 'input-pills' do |bb|
+        bb.use :input, class: 'form-control input-pill'
       end
 
       pill.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      pill.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     end
   end
 

@@ -3,11 +3,12 @@ require 'rails_helper'
 RSpec.describe DemandsController do
   describe '#create' do
     before(:each) do
-      @demand_description = 'demand description'
-      @valid_attributes = { demand_description: @demand_description, solution: 'solution' }
       user = create_arlington_user
       user.confirm
       sign_in user
+
+      @demand_description = 'demand description'
+      @valid_attributes = { demand_description: @demand_description, solution: 'solution', area: ["", Area.find(user.area.id)] }
     end
 
     it 'saves a valid demand' do
@@ -15,6 +16,13 @@ RSpec.describe DemandsController do
 
       expect(response).to redirect_to(me_url)
       expect(flash[:notice]).to be(nil)
+    end
+
+    it "redirects to specified url if redirect param is present" do
+      url = "test.me/now"
+      post :create, params: { demand: @valid_attributes, redirect: url }
+
+      expect(response).to redirect_to(url)
     end
 
     it 'saves a Problem but not Demand when given blank solution' do
@@ -32,11 +40,12 @@ RSpec.describe DemandsController do
     end
 
     it 'provides error messages for an invalid Demand' do
-      post :create, params: { demand: { demand_description: '', solution: '' } }
+      post :create, params: { demand: { demand_description: '', solution: '', area: [""] } }
 
       expect(response).to render_template(:new)
       expect(assigns(:demand).errors.full_messages).to include("Demand description can't be blank")
       expect(assigns(:demand).errors.full_messages).to include("Solution can't be blank")
+      expect(assigns(:demand).errors.full_messages).to include("Area must pertain to at least one area")
     end
   end
 end

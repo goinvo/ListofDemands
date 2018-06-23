@@ -6,15 +6,19 @@ class Municipality < Area
   validates :name, uniqueness: true
 
   def county
-    self.area_definitions.first.county
+    area_definitions.first.county
   end
 
   def state
-    self.area_definitions.first.state
+    area_definitions.first.state
+  end
+
+  def country
+    area_definitions.first.country
   end
 
   def name_abbreviated
-    "#{self.zip_codes.first.city}, #{self.zip_codes.first.state_abbreviation}"
+    "#{zip_codes.first.city}, #{zip_codes.first.state_abbreviation}"
   end
 
   def municipalities

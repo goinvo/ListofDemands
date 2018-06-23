@@ -40,6 +40,16 @@ class User < ApplicationRecord
     self.area = zip_code.municipality
   end
 
+  def applicable_areas(for_input = false)
+    for_input ?
+      [
+        [municipality.id, municipality.short_name],
+        [municipality.state.id, municipality.state.short_name],
+        [municipality.country.id, municipality.country.short_name]
+      ]
+    : [municipality, municipality.state, municipality.country]
+  end
+
   def to_param
     uuid
   end

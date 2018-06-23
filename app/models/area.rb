@@ -3,7 +3,7 @@ class Area < ApplicationRecord
   has_many :problems, through: :demands
   has_many :users
 
-  def short_name
-    self.name.split(",")[0].strip()
+  def to_i
+    id
   end
 end

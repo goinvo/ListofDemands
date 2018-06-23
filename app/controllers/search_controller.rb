@@ -34,6 +34,8 @@ class SearchController < ApplicationController
         @demands = Demand.where(area_id: county_municipality_ids).to_a
       elsif params[:scope] == 'state'
         @demands = user_municipality.state.demands.to_a
+      elsif params[:scope] == 'country'
+        @demands = user_municipality.country.demands.to_a
       end
 
       if params[:topic].present? && Constants::DEMAND_TOPICS.include?(params[:topic])

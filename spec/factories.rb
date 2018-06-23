@@ -14,17 +14,23 @@ FactoryBot.define do
     type "State"
   end
 
+  factory :country, parent: :area, class: "Country" do
+    type "Country"
+  end
+
   #### Area Definition ####
   factory :area_definition do
     trait :arlington do
       municipality { create(:municipality, name: "Arlington, Massachusetts") }
       state { create(:state, name: "Massachusetts") }
+      country { create(:country, name: "United States of America") }
       zip_code { create(:zip_code, :arlington) }
     end
 
     trait :bedford do
       municipality { create(:municipality, name: "Bedford, Massachusetts") }
       state { create(:state, name: "Massachusetts") }
+      country { create(:country, name: "United States of America") }
       zip_code { create(:zip_code, :bedford) }
     end
   end
@@ -111,6 +117,11 @@ FactoryBot.define do
     trait :statewide do
       user { create(:user, profile: build(:profile, :arlington)) }
       area { create(:state) }
+    end
+
+    trait :national do
+      user { create(:user, profile: build(:profile, :arlington)) }
+      area { create(:country) }
     end
   end
 end

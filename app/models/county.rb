@@ -8,7 +8,11 @@ class County < Area
     area_definitions.first.state
   end
 
+  def country
+    area_definitions.first.country
+  end
+
   def name_abbreviated
-    "#{self.short_name}, #{self.zip_codes.first.state_abbreviation}"
+    "#{short_name}, #{zip_codes.first.state_abbreviation}"
   end
 end

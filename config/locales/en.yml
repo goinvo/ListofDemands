@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        demand:
+          attributes:
+            area:
+              required: "must pertain to at least one area"

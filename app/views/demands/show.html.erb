@@ -12,5 +12,16 @@
   <% @demand.solution.split("\n").each do |paragraph| %>
     <p><%= paragraph %></p>
   <% end %>
-  <%= render(partial: 'demands/support-demand-form', locals: { demand: @demand.model }) %>
+
+  <ul class="list-unstyled">
+    <% current_user_areas.promote(@demand.area).each do |area| %>
+      <% if @demand.area == area %>
+        <li class="margin-bottom"><%= render(partial: 'demands/support-demand-form', locals: { demand: @demand.model }) %></li>
+      <% elsif @demand.related_demand_for(area).present? %>
+        <li class="margin-bottom"><%= render(partial: 'demands/support-demand-form', locals: { demand: @demand.related_demand_for(area), title: "For #{area.short_name}" }) %></li>
+      <% else %>
+        <li class="margin-bottom"><%= render(partial: 'demands/create-by-support-demand-form', locals: { demand: @demand, area: area }) %></li>
+      <% end %>
+    <% end %>
+  </ul>
 </div>
