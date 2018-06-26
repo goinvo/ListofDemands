@@ -32,6 +32,10 @@ $(function() {
 
     $('.alert-dismissible').fadeIn(200);
 
+    $('.alert-dismiss-wrapper').click(function() {
+      $(this).fadeOut();
+    });
+
     setTimeout(function() {
       $('.alert-dismissible').fadeOut();
     }, 8000);

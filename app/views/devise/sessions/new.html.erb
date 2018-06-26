@@ -1,5 +1,8 @@
 <div class="main__content profile">
   <h2 class="h2">Log in</h2>
+  <% if flash[:custom_unauthenticated] %>
+    <p><%= flash[:custom_unauthenticated] %></p>
+  <% end %>
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-inputs">
       <%= f.input :email, input_html: { class: 'form-control--text' }, required: false, autofocus: true %>
