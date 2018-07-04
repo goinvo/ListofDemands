@@ -1,6 +1,6 @@
 SELECT
 	d.id AS demand_id,
-	d.user_id as created_by_user_id,
+	d.user_id as user_id,
 	(
 		SELECT
 			area_definitions.municipality_id
@@ -30,6 +30,11 @@ SELECT
 	) AS country_id,
 	problems.name AS problem,
 	d.solution AS solution,
+	(
+	  SELECT areas.short_name
+	  FROM areas
+		WHERE areas.id = d.area_id
+	) as short_name,
 	d.topic AS topic,
 	(
 		SELECT count(id)

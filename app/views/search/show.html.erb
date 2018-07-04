@@ -32,4 +32,16 @@
       <span>+ Add a demand!</span>
     <% end %>
   </div>
+  <% if @fallback_demands.present? %>
+    <div class="near-demands pad-all">
+      <h2 class="h2 margin-top--double">Demands near you</h2>
+      <p>
+        Demands for your
+        <% @fallback_areas.each_with_index do |area, i| %>
+          <span><%= "and " if i == (@fallback_areas.length - 1) && @fallback_areas.length > 1 %><%= area %><%= ", " if i != (@fallback_areas.length - 1) && @fallback_areas.length > 1 %><%= "." if i == (@fallback_areas.length - 1) %></span>
+        <% end %>
+      </p>
+      <%= render partial: 'shared/demand', collection: @fallback_demands, locals: { display_creator: true, display_area: true } %>
+    </div>
+  <% end %>
 </div>

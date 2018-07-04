@@ -3,10 +3,12 @@ class DemandSearch
   SCOPE_FALLBACK = {
     municipality: :county,
     county: :state,
-    state: nil
+    state: :country,
+    country: nil
   }
 
-  attr_reader :current_user, :user_municipality, :scope, :query, :topic, :demands
+  attr_reader :current_user, :user_municipality, :scope, :query, :topic, :demands,
+              :fallback_demands, :fallback_areas
 
   def initialize(current_user:, user_municipality:, scope:, query:, topic:)
     @current_user = current_user
@@ -15,9 +17,11 @@ class DemandSearch
     @query = query || ''
     @topic = topic || ''
     @demands = []
+    @fallback_demands = []
+    @fallback_areas = []
   end
 
-  def find_demands
+  def find_demands(fallback = false)
     query = SearchDemand.order("demand_count DESC, created_at DESC")
     query = add_query_scope(query)
     # query = query.advanced_search(solution: process_query) if query?
@@ -25,14 +29,24 @@ class DemandSearch
 
     demands = query.to_a
 
-    if demands.empty? && scope_fallback.present?
-      return DemandSearch.new(
+    @fallback_areas << @scope if fallback && demands.present?
+
+    if ((!fallback && demands.length < 5) || fallback) && scope_fallback.present?
+      search = DemandSearch.new(
         current_user: current_user,
         user_municipality: @user_municipality,
         scope: scope_fallback,
         query: query,
         topic: topic
-      ).find_demands
+      )
+
+      if fallback
+        demands += search.find_demands(true)
+      else
+        @fallback_demands = search.find_demands(true)
+      end
+
+      @fallback_areas += search.fallback_areas
     end
 
     demands
@@ -67,10 +81,12 @@ class DemandSearch
     when :county
       query
         .where(municipality_id: query_scope.county.municipalities.pluck(:id))
-    else
-      # binding.pry
+    when :state
       query
         .where(state_id: query_scope.state.id)
+    else
+      query
+        .where(country_id: query_scope.country.id)
     end
   end
 

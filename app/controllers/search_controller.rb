@@ -8,13 +8,16 @@ class SearchController < ApplicationController
     @demands = user_municipality.demands.to_a
 
     if Flipper.enabled?(:fancy_search)
-      @demands = DemandSearch.new(
+      search = DemandSearch.new(
         current_user: current_user,
         user_municipality: user_municipality,
         scope: params[:scope],
         query: params[:q],
         topic: params[:topic]
-      ).find_demands
+      )
+      @demands = search.find_demands
+      @fallback_demands = search.fallback_demands
+      @fallback_areas = search.fallback_areas
     else
       if params[:q].present?
         # TODO: replace this with a proper search engine. elasticsearch?

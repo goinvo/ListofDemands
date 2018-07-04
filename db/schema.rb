@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 2018_07_11_004515) do
 
   create_view "search_demands", materialized: true,  sql_definition: <<-SQL
       SELECT d.id AS demand_id,
-      d.user_id AS created_by_user_id,
+      d.user_id,
       ( SELECT area_definitions.municipality_id
              FROM ((area_definitions
                JOIN areas areas_1 ON ((areas_1.id = area_definitions.municipality_id)))
@@ -174,6 +174,9 @@ ActiveRecord::Schema.define(version: 2018_07_11_004515) do
            LIMIT 1) AS country_id,
       problems.name AS problem,
       d.solution,
+      ( SELECT areas_1.short_name
+             FROM areas areas_1
+            WHERE (areas_1.id = d.area_id)) AS short_name,
       d.topic,
       ( SELECT count(user_demands.id) AS count
              FROM user_demands

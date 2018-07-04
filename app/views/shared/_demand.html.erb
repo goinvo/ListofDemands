@@ -4,18 +4,22 @@
     <div class="demand-item__name-container">
       <div class="demand-name"><%= link_to(demand.name, demand_path(demand)) %></div>
       <div class="demand-meta">
-          <%= "For #{demand.area.short_name} | " if local_assigns[:display_area] %>
+          <%= "For #{demand.demand_view.area.short_name} | " if local_assigns[:display_area] %>
           <%= "#{demand.topic} | " if demand.topic %>
           demanded by <span class="demand-count"><%= number_with_delimiter(demand.user_demands.count) %></span>
       </div>
       <% if local_assigns[:display_creator] && !demand.user.private? %>
         <div class="demand-item__creator gray text--small">
-          created by <%= link_to demand.wrapped_user.display_name, demand.user %>
+          created by <%= link_to demand.demand_view.wrapped_user.display_name, demand.demand_view.user %>
         </div>
       <% end %>
     </div>
     <div class="demand-item__button">
-      <%= render(partial: 'demands/support-demand-form', locals: { demand: demand.model }) %>
+      <% if current_user_areas.include?(demand.demand_view.area) %>
+        <%= render(partial: 'demands/support-demand-form', locals: { demand: demand.demand_view.model }) %>
+      <% else %>
+        <%= render(partial: 'demands/create-by-support-demand-form', locals: { demand: demand.demand_view.model, area: current_user_areas.select { |area| area.type == demand.demand_view.area.type }[0] }) %>
+      <% end %>
     </div>
   </div>
 </li>
