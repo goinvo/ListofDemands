@@ -1,6 +1,7 @@
 class DemandsController < ApplicationController
   include ApplicationHelper
 
+  before_action :ensure_user_municipality
   before_action :authenticate_user!, except: [:show]
 
   def new
