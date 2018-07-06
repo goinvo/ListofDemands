@@ -27,6 +27,7 @@ class ProfileController < ApplicationController
   def update_params
     params.require(:user).permit(
       profile_attributes: [
+        :username,
         :name,
         :address1,
         :address2,

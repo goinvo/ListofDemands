@@ -37,6 +37,7 @@ FactoryBot.define do
 
   #### Profile ####
   factory :profile do
+    username { SecureRandom.uuid }
     name { "#{Faker::Name.name}" }
     address1 { "#{Faker::Address.street_address}" }
     city { "#{Faker::Address.city}" }

@@ -8,7 +8,14 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    User.find_by(uuid: params[:uuid])
+    # TODO: Not sure how to make this one query
+    user = User.joins(:profile).find_by(profiles: { username: params[:slug] })
+
+    if user.blank?
+      user = User.find_by(uuid: params[:slug])
+    end
+
+    user
   end
 
   def check_user_privacy
