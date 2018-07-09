@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.describe DemandRelationship do
   before(:each) do
-    @user = create_arlington_user
-    @zip = "02476"
-    @profile = FactoryBot.create(:profile, user: @user, zip: @zip)
+    @experience = BasicLodExperience.new
+    @user = @experience.arlington_user
+    @profile = @user.profile
   end
 
   describe "save" do
@@ -57,6 +57,28 @@ RSpec.describe DemandRelationship do
 
       expect(@profile.username).to eq(username)
       expect(@profile.username.encoding.name).to eq("UTF-8")
+    end
+
+    it "disallows identical usernames" do
+      username = "derp"
+      @user.profile.username = username
+      @user.save
+
+      user2 = @experience.boxford_user
+      user2.profile.username = username
+      user2.save
+
+      expect(user2.profile.errors.full_messages).to include("Username has already been taken")
+    end
+
+    it "disallows username matching an existing User UUID" do
+      username = @user.uuid
+
+      user2 = @experience.boxford_user
+      user2.profile.username = username
+      user2.save
+
+      expect(user2.profile.errors.full_messages).to include("Username has already been taken")
     end
   end
 end

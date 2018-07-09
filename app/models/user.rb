@@ -51,7 +51,7 @@ class User < ApplicationRecord
   end
 
   def to_param
-    profile.username || uuid
+    profile.username.blank? ? uuid : profile.username
   end
 
   def private?
