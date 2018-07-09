@@ -20,6 +20,7 @@ RSpec.describe DemandForm do
       form = UpdateProfileForm.new(@user, profile_attributes: @profile_params)
       form.submit
 
+      expect(@user.profile.username).to eq(@profile_params[:username])
       expect(@user.profile.name).to eq(@profile_params[:name])
       expect(Date.parse(@user.profile.date_of_birth.to_s)).to eq(Date.parse(@profile_params[:date_of_birth]))
       expect(@user.profile.gender).to eq(@profile_params[:gender])
