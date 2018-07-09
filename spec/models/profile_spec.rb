@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe DemandRelationship do
+RSpec.describe Profile do
   before(:each) do
     @experience = BasicLodExperience.new
     @user = @experience.arlington_user
@@ -8,7 +8,7 @@ RSpec.describe DemandRelationship do
   end
 
   describe "save" do
-    it "allows alpha-numeric chars, hyphens, and underscores" do
+    it "allows alpha-numeric chars, hyphens, and underscores for usernames" do
       valid_usernames = ["derp", "1derp", "derp1", "-derp", "derp-", "_derp", "derp_", "1-derp", "derp-1"]
 
       valid_usernames.each do |valid_username|
@@ -19,7 +19,7 @@ RSpec.describe DemandRelationship do
       end
     end
 
-    it "disallows names to be only a number, symbol, or number and symbol" do
+    it "disallows usernames to be only a number, symbol, or number and symbol" do
       error_msg = "Username Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter."
       invalid_usernames = ["0", "1", "123456789", "-0", "0-", "_", "-", "867-5309"]
 
@@ -31,7 +31,19 @@ RSpec.describe DemandRelationship do
       end
     end
 
-    it "disallows symbols and characters not in alphanumeric range, hyphens, or underscores" do
+    it "disallows usernames with whitespace" do
+      error_msg = "Username Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter."
+      invalid_usernames = [" ", "Bob Derp", " derp", "derp  "]
+
+      invalid_usernames.each do |invalid_username|
+        @profile.username = invalid_username
+        @profile.save
+
+        expect(@profile.errors.full_messages).to include(error_msg)
+      end
+    end
+
+    it "disallows usernames with symbols and characters not in alphanumeric range, hyphens, or underscores" do
       error_msg = "Username Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter."
       invalid_usernames = ["derp!", ".derp", "$", "~", "%(d3-rp)%", "demands/", "/demands", "¯\_(ツ)_/¯", "¯\\_(ツ)_/¯", "💯"]
 
@@ -43,20 +55,11 @@ RSpec.describe DemandRelationship do
       end
     end
 
-    it "calls utf-8 encoding function" do
+    it "calls utf-8 encoding function on usernames" do
       @profile.username = "derp-1"
       expect(@profile).to receive(:encode_username)
 
       @profile.save
-    end
-
-    it "forces utf-8 encoding for non-utf-8 encoded strings" do
-      username = "derp-1"
-      @profile.username = username.force_encoding("ISO-8859-1")
-      @profile.save
-
-      expect(@profile.username).to eq(username)
-      expect(@profile.username.encoding.name).to eq("UTF-8")
     end
 
     it "disallows identical usernames" do

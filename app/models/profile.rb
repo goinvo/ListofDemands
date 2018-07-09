@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  include EncodingHelpers
+
   belongs_to :user
   has_one :zip_code, foreign_key: :zip, primary_key: :zip
 
@@ -10,8 +12,7 @@ class Profile < ApplicationRecord
   before_update :encode_username
 
   def encode_username
-    # http://graysoftinc.com/character-encodings/ruby-19s-string
-    username.encode!(Encoding.find("UTF-8"), {invalid: :replace, undef: :replace, replace: ""})
+    encode_as_utf8!(username)
   end
 
   def uuid_exists
