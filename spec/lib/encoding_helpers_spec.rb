@@ -25,5 +25,15 @@ RSpec.describe EncodingHelpers do
       expect(string).to eq("derp")
       expect(string.encoding.name).to eq("UTF-8")
     end
+
+    it "one more for good measure, to properly test utf-8 encoding" do
+      string = (100..1000).to_a.pack('c*')
+      expect(string.encoding.name).to eq("ASCII-8BIT")
+
+      @dummy.encode_as_utf8!(string)
+
+      expect(string.encoding.name).to eq("UTF-8")
+    end
+
   end
 end
