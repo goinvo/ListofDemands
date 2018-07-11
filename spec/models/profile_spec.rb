@@ -62,13 +62,18 @@ RSpec.describe Profile do
       @profile.save
     end
 
-    it "disallows identical usernames" do
+    it "disallows identical usernames, including case-insensitivity" do
       username = "derp"
       @user.profile.username = username
       @user.save
 
       user2 = @experience.boxford_user
       user2.profile.username = username
+      user2.save
+
+      expect(user2.profile.errors.full_messages).to include("Username has already been taken")
+
+      user2.profile.username = username.capitalize
       user2.save
 
       expect(user2.profile.errors.full_messages).to include("Username has already been taken")

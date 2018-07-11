@@ -5,7 +5,11 @@ class Profile < ApplicationRecord
   has_one :zip_code, foreign_key: :zip, primary_key: :zip
 
   validates :zip, :name, presence: true
-  validates :username, uniqueness: true, format: { with: /\A(?=.*[a-z])[a-z\d\-\_]+\Z/i, message: "Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter." }
+  validates :username, format: { with: /\A(?=.*[a-z])[a-z\d\-\_]+\Z/i, message: "Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter." }
+  # TODO: If for some reason the following uniqueness validation fails to catch
+  # an indentical username, the DB should catch it but will throw ActiveRecord::RecordNotUnique
+  # Can we rescue from that here somehow and add it as an error on the invalid model?
+  validates :username, uniqueness: { case_sensitive: false }
   validate :uuid_exists
 
   before_create :encode_username
