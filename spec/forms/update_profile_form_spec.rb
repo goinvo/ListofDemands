@@ -48,5 +48,14 @@ RSpec.describe DemandForm do
 
       expect(form.user.valid?).to be(false)
     end
+
+    it "rescues from non-unique username if validation doesn't catch it" do
+      expect_any_instance_of(User).to receive(:save!).and_raise(ActiveRecord::RecordNotUnique, "index_profiles_on_lower_username")
+
+      form = UpdateProfileForm.new(@user, profile_attributes: @profile_params)
+      form.submit
+
+      expect(@user.profile.errors.full_messages).to include("Username has already been taken")
+    end
   end
 end

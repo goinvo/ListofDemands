@@ -7,12 +7,20 @@ class UpdateProfileForm
   end
 
   def submit
-    original_zip = @user.profile.zip
+    begin
+      original_zip = @user.profile.zip
 
-    @user.profile.assign_attributes(@params)
+      @user.profile.assign_attributes(@params)
 
-    @user.associate_municipality if @user.profile.zip_changed?
+      @user.associate_municipality if @user.profile.zip_changed?
 
-    @user.save!
+      @user.save!
+    rescue ActiveRecord::RecordNotUnique => e
+      if e.message.include?("index_profiles_on_lower_username")
+        @user.profile.errors.add(:username, "has already been taken")
+      else
+        errors.add(:base, e.message)
+      end
+    end
   end
 end
