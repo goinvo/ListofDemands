@@ -5,6 +5,9 @@ RSpec.describe Profile do
     @experience = BasicLodExperience.new
     @user = @experience.arlington_user
     @profile = @user.profile
+
+    @invalid_characters = "Username #{I18n.t("activerecord.errors.models.profile.attributes.username.invalid_characters")}"
+    @username_taken = "Username has already been taken"
   end
 
   describe "save" do
@@ -20,38 +23,35 @@ RSpec.describe Profile do
     end
 
     it "disallows usernames to be only a number, symbol, or number and symbol" do
-      error_msg = "Username Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter."
       invalid_usernames = ["0", "1", "123456789", "-0", "0-", "_", "-", "867-5309"]
 
       invalid_usernames.each do |invalid_username|
         @profile.username = invalid_username
         @profile.save
 
-        expect(@profile.errors.full_messages).to include(error_msg)
+        expect(@profile.errors.full_messages).to include(@invalid_characters)
       end
     end
 
     it "disallows usernames with whitespace" do
-      error_msg = "Username Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter."
       invalid_usernames = [" ", "Bob Derp", " derp", "derp  "]
 
       invalid_usernames.each do |invalid_username|
         @profile.username = invalid_username
         @profile.save
 
-        expect(@profile.errors.full_messages).to include(error_msg)
+        expect(@profile.errors.full_messages).to include(@invalid_characters)
       end
     end
 
     it "disallows usernames with symbols and characters not in alphanumeric range, hyphens, or underscores" do
-      error_msg = "Username Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter."
       invalid_usernames = ["derp!", ".derp", "$", "~", "%(d3-rp)%", "demands/", "/demands", "¯\_(ツ)_/¯", "¯\\_(ツ)_/¯", "💯"]
 
       invalid_usernames.each do |invalid_username|
         @profile.username = invalid_username
         @profile.save
 
-        expect(@profile.errors.full_messages).to include(error_msg)
+        expect(@profile.errors.full_messages).to include(@invalid_characters)
       end
     end
 
@@ -71,12 +71,12 @@ RSpec.describe Profile do
       user2.profile.username = username
       user2.save
 
-      expect(user2.profile.errors.full_messages).to include("Username has already been taken")
+      expect(user2.profile.errors.full_messages).to include(@username_taken)
 
       user2.profile.username = username.capitalize
       user2.save
 
-      expect(user2.profile.errors.full_messages).to include("Username has already been taken")
+      expect(user2.profile.errors.full_messages).to include(@username_taken)
     end
 
     it "disallows username matching an existing User UUID" do
@@ -86,7 +86,7 @@ RSpec.describe Profile do
       user2.profile.username = username
       user2.save
 
-      expect(user2.profile.errors.full_messages).to include("Username has already been taken")
+      expect(user2.profile.errors.full_messages).to include(@username_taken)
     end
   end
 end
