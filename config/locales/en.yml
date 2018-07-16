@@ -38,3 +38,7 @@ en:
           attributes:
             area:
               required: "must pertain to at least one area"
+        profile:
+          attributes:
+            username:
+              invalid_characters: "Only letters, numbers, hyphens, and underscores are allowed. Must contain at least one letter."

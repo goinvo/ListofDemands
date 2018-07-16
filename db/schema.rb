@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_21_195650) do
+ActiveRecord::Schema.define(version: 2018_07_11_004515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 2018_06_21_195650) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.boolean "private_user", default: false
+    t.string "username"
+    t.index "lower((username)::text)", name: "index_profiles_on_lower_username", unique: true
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

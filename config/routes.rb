@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resource :me, controller: :me
   resource :supported_demands
   resources :demands
-  resources :users, only: [:show], param: :uuid
+  resources :users, only: [:show], param: :slug
 
   root to: "search#show"
 end

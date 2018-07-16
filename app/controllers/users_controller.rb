@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    User.find_by(uuid: params[:uuid])
+    User.joins(:profile).where(profiles: { username: params[:slug] }).or(User.joins(:profile).where(uuid: params[:slug])).first
   end
 
   def check_user_privacy

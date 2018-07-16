@@ -2,6 +2,8 @@
   <h1 class="h2">Your Profile</h1>
   <p><%= link_to('edit profile', edit_profile_path) %></p>
   <dl>
+    <dt>Username</dt>
+    <dd><%= current_user.profile.username || "N/A" %></dd>
     <dt>Name</dt>
     <dd><%= current_user.profile.name || "N/A" %></dd>
     <dt>Address</dt>

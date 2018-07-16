@@ -41,15 +41,15 @@ module ApplicationHelper
     flash[:custom_unauthenticated] = "You need to sign in or sign up before continuing."
     super
   end
-end
 
-def should_have_active_nav_class(path, scope = nil)
-  if current_page?(root_url) && scope == ''
-    'is-active'
-  elsif scope && current_page?(path)
-    'is-active' if params[:scope] == scope || (scope == '' && !params[:scope])
-  else
-    'is-active' if current_page?(path.split('?')[0])
+  def should_have_active_nav_class(path, scope = nil)
+    if current_page?(root_url) && scope == ''
+      'is-active'
+    elsif scope && current_page?(path)
+      'is-active' if params[:scope] == scope || (scope == '' && !params[:scope])
+    else
+      'is-active' if current_page?(path.split('?')[0])
+    end
   end
 end
 

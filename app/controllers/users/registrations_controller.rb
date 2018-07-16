@@ -9,9 +9,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    begin
+      super
+    rescue ActiveRecord::RecordNotUnique => e
+      if e.message.include?("index_profiles_on_lower_username")
+        resource.profile.errors.add(:username, "has already been taken")
+        @resource = resource # this is only so I can access in test...
+        render :new
+      else
+        errors.add(:base, e.message)
+      end
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -44,6 +54,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     keys: [
       :attribute,
       profile_attributes: [
+        :username,
         :name,
         :address1,
         :address2,
@@ -53,6 +64,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       ]
     ])
   end
+
+  private
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
