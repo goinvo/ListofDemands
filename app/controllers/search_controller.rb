@@ -5,7 +5,7 @@ class SearchController < ApplicationController
   before_action :ensure_user_municipality
 
   def show
-    @demands = user_municipality.demands.to_a
+    # @demands = user_municipality.demands.to_a
 
     # if Flipper.enabled?(:fancy_search)
       search = DemandSearch.new(

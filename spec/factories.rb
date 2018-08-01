@@ -104,6 +104,16 @@ FactoryBot.define do
       latitude "42.6612"
       longitude "-70.9967"
     end
+
+    trait :salisbury do
+      zip "01952"
+      city "Salisbury"
+      state "Massachusetts"
+      state_abbreviation "MA"
+      county "Essex"
+      latitude "42.8417"
+      longitude "70.8606"
+    end
   end
 
   factory :problem do

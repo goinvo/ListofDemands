@@ -2,7 +2,9 @@
 
 class BasicLodExperience
   attr_reader :arlington_user, :bedford_user, :boxford_user,
-              :boxford_user_new, :private_user, :demands
+              :boxford_user_new, :private_user, :demands,
+              :arlington, :bedford, :boxford,
+              :salisbury, :massachusetts, :usa
 
   def initialize
     add_area_stuff
@@ -21,14 +23,17 @@ class BasicLodExperience
     @arlington = Municipality.create(name: "Arlington, Middlesex, Massachusetts")
     @bedford = Municipality.create(name: "Bedford, Middlesex, Massachusetts")
     @boxford = Municipality.create(name: "Boxford, Essex, Massachusetts")
+    @salisbury = Municipality.create(name: "Salisbury, Essex, Massachusetts")
 
     @arlington_zip = FactoryBot.create(:zip_code, :arlington)
     @bedford_zip = FactoryBot.create(:zip_code, :bedford)
     @boxford_zip = FactoryBot.create(:zip_code, :boxford)
+    @salisbury_zip = FactoryBot.create(:zip_code, :salisbury)
 
     FactoryBot.create(:area_definition, zip_code: @arlington_zip, country: @usa, state: @massachusetts, county: @middlesex, municipality: @arlington)
     FactoryBot.create(:area_definition, zip_code: @boxford_zip, country: @usa, state: @massachusetts, county: @essex, municipality: @boxford)
     FactoryBot.create(:area_definition, zip_code: @bedford_zip, country: @usa, state: @massachusetts, county: @middlesex, municipality: @bedford)
+    FactoryBot.create(:area_definition, zip_code: @salisbury_zip, country: @usa, state: @massachusetts, county: @essex, municipality: @salisbury)
   end
 
   def add_users
