@@ -80,7 +80,7 @@ class DemandSearch
         .where(municipality_id: query_scope.id)
     when :county
       query
-        .where(municipality_id: query_scope.county.municipalities.pluck(:id))
+        .where(municipality_id: query_scope.county.municipalities.pluck(:id).select{ |id| id != @user_municipality.id })
     when :state
       query
         .where(state_id: query_scope.state.id)
