@@ -4,10 +4,10 @@ example_id                                                       | status  | run
 ./spec/controllers/demands_controller_spec.rb[1:1:2]             | passed  | 0.05189 seconds |
 ./spec/controllers/demands_controller_spec.rb[1:1:3]             | pending | 0.02986 seconds |
 ./spec/controllers/demands_controller_spec.rb[1:1:4]             | passed  | 0.05493 seconds |
-./spec/controllers/search_controller_spec.rb[1:1:1]              | passed  | 0.52553 seconds |
-./spec/controllers/search_controller_spec.rb[1:1:2]              | passed  | 0.55471 seconds |
-./spec/controllers/search_controller_spec.rb[1:1:3]              | passed  | 0.46634 seconds |
-./spec/controllers/search_controller_spec.rb[1:1:4]              | passed  | 0.52434 seconds |
+./spec/controllers/search_controller_spec.rb[1:1:1]              | passed  | 0.52517 seconds |
+./spec/controllers/search_controller_spec.rb[1:1:2]              | passed  | 0.5437 seconds  |
+./spec/controllers/search_controller_spec.rb[1:1:3]              | passed  | 0.89567 seconds |
+./spec/controllers/search_controller_spec.rb[1:1:4]              | passed  | 0.55221 seconds |
 ./spec/controllers/sessions_controller_spec.rb[1:1:1]            | passed  | 0.08084 seconds |
 ./spec/controllers/sessions_controller_spec.rb[1:2:1]            | passed  | 0.02691 seconds |
 ./spec/controllers/supported_demands_controller_spec.rb[1:1:1]   | passed  | 0.46165 seconds |

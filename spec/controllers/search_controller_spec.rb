@@ -6,8 +6,9 @@ RSpec.describe SearchController, type: :controller do
   end
 
   describe "GET show" do
+    stub_arlington_geoip
+
     it "assigns @demands" do
-      stub_arlington_geoip
       get :show
 
       expect(response.status).to eq(200)
