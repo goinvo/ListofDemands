@@ -1,6 +1,6 @@
 class SearchDemand < ApplicationRecord
 
-  belongs_to :created_by_user, class_name: "User"
+  belongs_to :user, class_name: "User"
   belongs_to :demand
 
   # see https://github.com/thoughtbot/scenic#faqs
@@ -13,6 +13,10 @@ class SearchDemand < ApplicationRecord
 
   def readonly?
     true
+  end
+
+  def demand_view
+    DemandView.new(demand)
   end
 
   # TODO: refactor these in views after we cut over to fancy search

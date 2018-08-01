@@ -7,14 +7,6 @@ module ApplicationHelper
     end
   end
 
-  def current_user_area_name
-    if user_signed_in?
-      area_name_by_params_area(current_user.municipality)
-    elsif (area = Area.find_by(id: session[:area_id])).present?
-      "#{area_name_by_params_area(area)}".html_safe
-    end
-  end
-
   def user_header
     if content_for(:brand)
       yield(:brand)
@@ -29,11 +21,18 @@ module ApplicationHelper
   end
 
   def current_user_areas
-    if !user_signed_in?
-      area = Area.find(session[:area_id])
-      [area, area.state, area.country]
-    else
+    if user_signed_in?
       current_user.applicable_areas
+    elsif (area = Area.find_by(id: session[:area_id])).present?
+      [area, area.state, area.country]
+    end
+  end
+
+  def current_user_area_name
+    if user_signed_in?
+      area_name_by_params_area(current_user.municipality)
+    elsif (area = Area.find_by(id: session[:area_id])).present?
+      "#{area_name_by_params_area(area)}".html_safe
     end
   end
 
