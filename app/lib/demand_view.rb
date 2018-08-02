@@ -6,4 +6,8 @@ class DemandView < ViewModel
   def checked_areas_for_edit
     related_demands.map{ |demand| demand.area.id }.push(area.id)
   end
+
+  def demand_view
+    self
+  end
 end
