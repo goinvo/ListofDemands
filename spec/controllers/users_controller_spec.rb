@@ -6,6 +6,18 @@ RSpec.describe UsersController do
   end
 
   describe "#show" do
+    it "uses root path" do
+      @user_to_visit = @experience.arlington_user
+      @user_to_visit.profile.username = nil
+      @user_to_visit.save
+
+      expect(get: "/#{@user_to_visit.to_param}").to route_to(
+        controller: "users",
+        action: "show",
+        slug: @user_to_visit.uuid
+      )
+    end
+
     it "finds correct user when user does not have a username" do
       @user_to_visit = @experience.arlington_user
       @user_to_visit.profile.username = nil
