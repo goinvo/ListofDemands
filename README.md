@@ -18,4 +18,4 @@ Help us keep List of Demands open and inclusive.
 Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
-[Apache License, Version 2.0](LICENSE)
+[Apache License, Version 2.0](LICENSE) 
