@@ -38,6 +38,25 @@ RSpec.describe UsersController do
       expect(assigns(:user)).to eq(@user_to_visit)
     end
 
+    it "responds to json format" do
+      @user_to_visit = @experience.arlington_user
+      @user_to_visit.save
+
+      get :show,  params: { slug: @user_to_visit.to_param }, format: :json
+
+      expect(response.header['Content-Type']).to include('application/json')
+      expect(JSON(response.body).length).to eq(@user_to_visit.supported_demands.length)
+    end
+
+    it "adds demand description to json response" do
+      @user_to_visit = @experience.arlington_user
+      @user_to_visit.save
+
+      get :show,  params: { slug: @user_to_visit.to_param }, format: :json
+
+      expect(JSON(response.body)[0]["demand_description"]).to eq(@user_to_visit.supported_demands.first.demand_description)
+    end
+
     it "returns 404 when attempting to visit private users" do
       @user_to_visit = @experience.private_user
 
