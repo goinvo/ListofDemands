@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_user_privacy, only: [:show]
+  before_action :ensure_user_municipality, only: [:show]
 
   def show
     @user ||= UserView.new(find_user)
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
   def check_user_privacy
     @user ||= UserView.new(find_user)
 
-    if @user.private?
+    if !@user || @user.private?
       raise ActionController::RoutingError.new('Not Found')
     end
   end
