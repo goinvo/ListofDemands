@@ -12,6 +12,11 @@
   <% @demand.solution.split("\n").each do |paragraph| %>
     <p><%= paragraph %></p>
   <% end %>
+  <% if @demand.link %>
+    <p>
+      <a href="<%= @demand.link %>" target="_blank" rel="noopener noreferrer"><%= @demand.link %></a>
+    </p>
+  <% end %>
 
   <ul class="list-unstyled">
     <% current_user_areas.promote(@demand.area).each do |area| %>

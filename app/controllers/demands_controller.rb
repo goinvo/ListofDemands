@@ -49,11 +49,11 @@ class DemandsController < ApplicationController
   private
 
   def create_params
-    params.require(:demand).permit(:solution, :demand_description, :topic, :clone_from, :area => [])
+    params.require(:demand).permit(:solution, :demand_description, :topic, :link, :clone_from, :area => [])
   end
 
   def update_params
-    params.require(:demand).permit(:solution, :demand_description, :topic, :area => [])
+    params.require(:demand).permit(:solution, :demand_description, :topic, :link, :area => [])
   end
 
   def redirect_path

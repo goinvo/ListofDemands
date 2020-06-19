@@ -10,6 +10,7 @@ class Demand < ApplicationRecord
   validates :user, :solution, :demand_description, presence: true
   validates_presence_of :area, message: "Must pertain to at least one area"
   validates :topic, inclusion: { in: Constants::DEMAND_TOPICS }, allow_nil: true
+  validates :link, url: { allow_blank: true, allow_nil: true }
 
   delegate :name, to: :problem
 

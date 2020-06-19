@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_11_004515) do
+ActiveRecord::Schema.define(version: 2020_06_19_041446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_07_11_004515) do
     t.text "solution"
     t.integer "problem_id", null: false
     t.string "topic"
+    t.text "link"
     t.index ["area_id"], name: "index_demands_on_area_id"
     t.index ["user_id"], name: "index_demands_on_user_id"
   end

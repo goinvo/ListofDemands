@@ -23,6 +23,7 @@ gem "textacular", github: "textacular/textacular"
 gem "uglifier", ">= 1.3.0"
 gem 'scenic'
 gem 'rack-cors'
+gem 'validate_url'
 
 # https://github.com/turbolinks/turbolinks
 gem "turbolinks", "~> 5"
