@@ -140,7 +140,7 @@ GEM
       pry (>= 0.9.10, < 0.11.0)
     public_suffix (3.0.0)
     puma (3.10.0)
-    rack (2.0.5)
+    rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-test (1.0.0)
