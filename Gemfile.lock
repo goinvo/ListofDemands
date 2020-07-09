@@ -95,7 +95,7 @@ GEM
     flipper-active_record (0.15.0)
       activerecord (>= 3.2, < 6)
       flipper (~> 0.15.0)
-    geocoder (1.4.4)
+    geocoder (1.6.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (0.9.5)
